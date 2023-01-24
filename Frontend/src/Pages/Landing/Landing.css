@@ -1,0 +1,92 @@
+.Landing-Main{
+    position: relative;
+    overflow: hidden;
+    height: 100vh;
+    padding: 2em;
+}
+
+.Landing-Header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.Landing-Logo{
+    color: var(--primary);
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.Landing-Nav a{
+    color: var(--white);
+    text-decoration: none;
+    user-select: none;
+}
+
+.Landing-ThemeToggle{
+    cursor: pointer;
+}
+
+.Landing-Body{
+    height: 100%;
+    justify-content: space-around;
+}
+
+.Landing-Intro{
+    padding: 1em;
+    align-self: flex-start;
+    color: var(--text);
+    user-select: none;
+}
+
+.Landing-Start{
+    align-self: flex-end;
+    gap: 2em;
+    padding: 2em;
+    margin-right: 10em;
+    border-radius: 0.4em;
+    background-color: var(--secondary);
+    color: var(--white);
+    user-select: none;
+}
+
+.Landing-Btn{
+    padding: 0.8em 1em;
+    border-radius: 0.4em;
+    cursor: pointer;
+    text-align: center;
+    background-color: var(--greyDark);
+    /* border: 2px solid var(--white); */
+    transition: 0.3s ease-in-out;
+}
+
+.Landing-Btn:hover{
+    background-color: var(--primary);
+}
+
+.Landing-Btn h3{
+    letter-spacing: 1.5px;
+    font-size: 0.9em;
+}
+
+.Landing-Btn p{
+    font-size: 0.8em;
+    opacity: 0.8;
+}
+
+.Landing-Footer{
+    color: var(--white);
+    user-select: none;
+}
+
+.Landing-Clip{
+    position: absolute;
+    top: 5em;
+    right: -20em;
+    width: 100%;
+    height: 600px;
+    z-index: -1;
+    background-color: var(--primary);
+    rotate: -45deg;
+    transform-origin: center;
+}

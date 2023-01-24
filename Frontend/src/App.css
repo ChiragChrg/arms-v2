@@ -1,5 +1,56 @@
+:root{
+    --primary: #2d65ce;
+    --secondary: rgb(17, 63, 160);
+    --base: #FAFAFA;
+    --white: #FAFAFA;
+    --black: #0F0F0F;
+    --text: #000;
+    --textAlt: #FFF;
+    --grey: rgba(204, 204, 204, 0.3);
+    --greyDark: rgba(26, 26, 26, 0.3);
+}
+
+[data-theme="dark"]{
+    --primary: #2d65ce;
+    --secondary: rgb(17, 63, 160);
+    --base: #0F0F0F;
+    --white: #FAFAFA;
+    --black: #0F0F0F;
+    --text: #FFF;
+    --textAlt: #000;
+    --grey: rgba(204, 204, 204, 0.3);
+    --greyDark: rgba(26, 26, 26, 0.3);
+}
+
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body{
+    background-color: var(--base);
+}
+
+.flex{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.col{
+    flex-direction: column;
+}
+
+.gap{
+    gap: 1em;
+}
+
+.gap05{
+    gap: 0.5em;
+}
+
+.gap2{
+    gap: 2em;
 }

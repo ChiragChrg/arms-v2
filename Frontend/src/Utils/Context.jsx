@@ -3,12 +3,21 @@ import { useState, createContext } from 'react';
 export const Context = createContext();
 
 const ContextProvider = ({ children }) => {
-    const [isFacultyLoggedIn, setIsFacultyLoggedIn] = useState(false);
+    const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
+    const [isUserFaculty, setIsUserFaculty] = useState(false);
+    const [isDarkTheme, setIsDarkTheme] = useState(false);
+    const [onLogout, setOnLogout] = useState(false);
 
     return (
         <Context.Provider value={{
-            isFacultyLoggedIn,
-            setIsFacultyLoggedIn
+            isUserLoggedIn,
+            setIsUserLoggedIn,
+            isUserFaculty,
+            setIsUserFaculty,
+            isDarkTheme,
+            setIsDarkTheme,
+            onLogout,
+            setOnLogout
         }}>
             {children}
         </Context.Provider>
