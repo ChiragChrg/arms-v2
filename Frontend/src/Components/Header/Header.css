@@ -1,0 +1,23 @@
+.Header-Main{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.Header-Logo{
+    color: var(--primary);
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.Header-Nav a{
+    color: var(--white);
+    font-size: 1.1em;
+    letter-spacing: 1px;
+    text-decoration: none;
+    user-select: none;
+}
+
+.Header-ThemeToggle{
+    cursor: pointer;
+}
