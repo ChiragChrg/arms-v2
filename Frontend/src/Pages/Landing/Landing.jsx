@@ -1,13 +1,14 @@
 import "./Landing.css"
 import { useContextData } from "../../Hooks/useContextData"
 import { useNavigate } from "react-router-dom"
-
-import { CgDarkMode } from 'react-icons/cg'
+import Header from "../../Components/Header/Header"
 
 const Landing = () => {
-    const { setIsUserLoggedIn, setIsUserFaculty, setIsDarkTheme } = useContextData();
+    const { setIsUserLoggedIn, setIsUserFaculty } = useContextData();
     const navigate = useNavigate();
     let currYear = new Date().getFullYear();
+    // const StripCount = [1, 2]
+    const StripCount = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
     const HandleStudentLogin = () => {
         setIsUserLoggedIn(true);
@@ -17,30 +18,9 @@ const Landing = () => {
         navigate('/dashboard');
     }
 
-    const HandleFacultyLogin = () => {
-        setIsUserLoggedIn(true);
-        setIsUserFaculty(true);
-        localStorage.setItem('arms-isUserLoggedIn', true);
-        localStorage.setItem('arms-isFacultyLoggedIn', true);
-        navigate('/dashboard');
-    }
-
     return (
         <div className="Landing-Main">
-            <div className="Landing-Header">
-                <div className="Landing-Logo">
-                    ARMS
-                </div>
-
-                <div className="Landing-Nav flex gap2">
-                    <a href="https://devbase.netlify.app/">DevBase</a>
-                    <a href="https://github.com/ChiragChrg/ARMS">GitHub</a>
-
-                    <div className="Landing-ThemeToggle flex" onClick={() => setIsDarkTheme(prev => !prev)}>
-                        <CgDarkMode size={25} color="var(--white)" />
-                    </div>
-                </div>
-            </div>
+            <Header />
 
             <div className="Landing-Body flex col">
                 <div className="Landing-Intro flex col">
@@ -58,9 +38,9 @@ const Landing = () => {
                             <p>Anonymous</p>
                         </div>
 
-                        <div className="Landing-Btn" onClick={HandleFacultyLogin}>
+                        <div className="Landing-Btn" onClick={() => navigate('/login')}>
                             <h3>I'm a Faculty</h3>
-                            <p>Login/Register</p>
+                            <p>Login / Signup</p>
                         </div>
                     </div>
                 </div>
@@ -72,6 +52,11 @@ const Landing = () => {
             </div>
 
             <div className="Landing-Clip">
+                <div className="Landing-StripHolder flex col gap2">
+                    {StripCount.map((item) => {
+                        return <div key={item} className="Landing-Strip flex"></div>
+                    })}
+                </div>
             </div>
         </div>
     )
