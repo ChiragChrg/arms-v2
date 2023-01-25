@@ -8,10 +8,19 @@
     color: var(--primary);
     font-size: 1.5em;
     font-weight: bold;
+    user-select: none;
+}
+
+.Header-Nav.darkTxt{
+    color: var(--text) !important;
+}
+
+.Header-Nav.lightTxt{
+    color: var(--white) !important;
 }
 
 .Header-Nav a{
-    color: var(--white);
+    color: inherit;
     font-size: 1.1em;
     letter-spacing: 1px;
     text-decoration: none;
