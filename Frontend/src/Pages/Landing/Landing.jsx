@@ -2,13 +2,14 @@ import "./Landing.css"
 import { useContextData } from "../../Hooks/useContextData"
 import { useNavigate } from "react-router-dom"
 import Header from "../../Components/Header/Header"
+import Trails from "../../Components/Trails/Trails"
 
 const Landing = () => {
     const { setIsUserLoggedIn, setIsUserFaculty } = useContextData();
     const navigate = useNavigate();
     let currYear = new Date().getFullYear();
     // const StripCount = [1, 2]
-    const StripCount = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    // const StripCount = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
     const HandleStudentLogin = () => {
         setIsUserLoggedIn(true);
@@ -51,13 +52,7 @@ const Landing = () => {
                 </div>
             </div>
 
-            <div className="Landing-Clip">
-                <div className="Landing-StripHolder flex col gap2">
-                    {StripCount.map((item) => {
-                        return <div key={item} className="Landing-Strip flex"></div>
-                    })}
-                </div>
-            </div>
+            <Trails />
         </div>
     )
 }

@@ -2,7 +2,7 @@
     position: relative;
     overflow: hidden;
     height: 100vh;
-    padding: 2em;
+    padding: 1.5em 2em;
 }
 
 .Landing-Body{
@@ -56,92 +56,4 @@
 .Landing-Footer{
     color: var(--white);
     user-select: none;
-}
-
-.Landing-Clip{
-    position: absolute;
-    top: 5em;
-    right: -20em;
-    width: 100%;
-    height: 600px;
-    z-index: -1;
-    background-color: var(--primary);
-    transform: rotate(-45deg);
-    transform-origin: center;
-}
-
-.Landing-StripHolder{
-    position: relative;
-    width: 100%;
-    height: 100%;
-    justify-content: space-around;
-    padding: 2.5em 0;
-    /* background-color: red; */
-}
-
-.Landing-Strip{
-    position: relative;
-    left: 0;
-    width: 70%;
-    height: 20px;
-    border-radius: 0.5em;
-    background-color: var(--secondary);
-    z-index: 0;
-    animation: StripMove 5s linear  infinite;
-    left: 0;
-    transform: translateX(-150%);
-}
-
-.Landing-Strip:nth-child(1){
-    animation-delay: 1.5s;
-}
-.Landing-Strip:nth-child(2){
-    animation-delay: 2.5s;
-    background-color: var(--baseAlt);
-}
-.Landing-Strip:nth-child(3){
-    animation-delay: 0.5s;
-}
-.Landing-Strip:nth-child(4){
-    animation-delay: 3.5s;
-    background-color: var(--baseAlt);
-}
-.Landing-Strip:nth-child(5){
-    animation-delay: 0s;
-}
-.Landing-Strip:nth-child(6){
-    animation-delay: 4.5s;
-    background-color: var(--baseAlt);
-}
-.Landing-Strip:nth-child(7){
-    animation-delay: 1s;
-}
-.Landing-Strip:nth-child(8){
-    animation-delay: 4s;
-    background-color: var(--baseAlt);
-}
-.Landing-Strip:nth-child(9){
-    animation-delay: 2s;
-}
-.Landing-Strip:nth-child(10){
-    animation-delay: 3s;
-    background-color: var(--baseAlt);
-}
-
-@keyframes StripMove {
-    0% {
-        left: 0;
-        transform: translateX(-100%);
-      }
-      100% {
-        left: 100%;
-        transform: translateX(0);
-    }
-}
-
-@media (prefers-reduced-motion) {
-    .Landing-Strip{
-        animation: none;
-    }
-
 }
