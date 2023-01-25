@@ -7,6 +7,7 @@ import { useContextData } from './Hooks/useContextData'
 
 import Content from './Components/Content';
 import Landing from './Pages/Landing/Landing';
+import Login from './Pages/Login/Login';
 
 function App() {
   const { isUserLoggedIn, setIsUserLoggedIn, isUserFaculty, setIsUserFaculty, isDarkTheme } = useContextData();
@@ -38,6 +39,8 @@ function App() {
           </Route>}
 
           <Route path="/" element={!isUserLoggedIn ? <Landing /> : <Navigate to="/dashboard" />} />
+          <Route path="/login" element={!isUserLoggedIn ? <Login /> : <Navigate to="/dashboard" />} />
+          <Route path="/register" element={!isUserLoggedIn ? <Landing /> : <Navigate to="/dashboard" />} />
           <Route path="*" element={<h1>Error 404</h1>} />
         </Routes>
       </Browser>

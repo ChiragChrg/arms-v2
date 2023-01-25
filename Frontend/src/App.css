@@ -7,7 +7,7 @@
     --black: #0F0F0F;
     --text: #000;
     --textAlt: #FFF;
-    --grey: rgba(204, 204, 204, 0.3);
+    --grey: #808080;
     --greyDark: rgba(26, 26, 26, 0.3);
 }
 
@@ -20,7 +20,7 @@
     --black: #0F0F0F;
     --text: #FFF;
     --textAlt: #000;
-    --grey: rgba(204, 204, 204, 0.3);
+    --grey: #808080;
     --greyDark: rgba(26, 26, 26, 0.3);
 }
 
