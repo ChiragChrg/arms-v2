@@ -13,6 +13,17 @@
     justify-content: flex-start;
 }
 
+.Login-Title2{
+    font-size: 1.3em;
+    color: var(--text);
+    justify-content: flex-end;
+}
+
+.Login-Title h1 span,
+.Login-Title2 h1 span{
+    color: var(--primary);
+}
+
 .Login-Form{
     background-color: var(--base);
     width: fit-content;
@@ -25,10 +36,6 @@
     padding: 2em;
     padding-bottom: 0;
     border-radius: 0.4em;
-}
-
-.Login-Title h1 span{
-    color: var(--primary);
 }
 
 .Login-InputHolder{
@@ -49,6 +56,7 @@
 
 .Login-Input input{
     background-color: inherit;
+    color: var(--text);
     border: none;
     outline: none;
     min-width: 18em;

@@ -3,9 +3,9 @@ import { useState } from "react"
 import { Link } from "react-router-dom"
 
 import Header from "../../Components/Header/Header"
+import Trails from "../../Components/Trails/Trails"
 import { MdAlternateEmail } from 'react-icons/md'
 import { FiEye, FiEyeOff } from 'react-icons/fi'
-import Trails from "../../Components/Trails/Trails"
 
 const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
@@ -54,7 +54,11 @@ const Login = () => {
                 </div>
             </div>
 
-            <Trails angle={90} center />
+            <div className="Login-Title2 flex">
+                <h1>Let's get <span>Started</span></h1>
+            </div>
+
+            <Trails angle={90} position="center" />
         </div>
     )
 }

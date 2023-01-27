@@ -56,3 +56,8 @@ body{
 .gap2{
     gap: 2em;
 }
+
+/* Disable blue button click highlight */
+input, button, a, div {
+    -webkit-tap-highlight-color: transparent;
+}

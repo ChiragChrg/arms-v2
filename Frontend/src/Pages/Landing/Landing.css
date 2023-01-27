@@ -33,14 +33,15 @@
     border-radius: 0.4em;
     cursor: pointer;
     text-align: center;
-    color: var(--white);
-    background-color: var(--secondary);
-    /* border: 2px solid var(--white); */
+    color: var(--secondary);
+    /* background-color: var(--secondary); */
+    border: 1px solid var(--secondary);
     transition: 0.3s ease-in-out;
 }
 
 .Landing-Btn:hover{
-    background-color: var(--primary);
+    color: var(--white);
+    background-color: var(--secondary);
 }
 
 .Landing-Btn h3{
