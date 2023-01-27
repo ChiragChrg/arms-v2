@@ -84,3 +84,19 @@
         animation: none;
     }
 }
+
+[data-disableAnime = true]{
+    animation: none;
+}
+
+.Trails-Disable{
+    background-color: var(--base);
+    width: fit-content;
+    border: 1px solid var(--primary);
+    border-radius: 100%;
+    padding: 0.2em;
+    position: absolute;
+    bottom: 1.5em;
+    left: 2em;
+    cursor: pointer;
+}
