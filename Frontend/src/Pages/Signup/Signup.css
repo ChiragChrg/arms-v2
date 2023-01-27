@@ -1,0 +1,70 @@
+.Signup-Main{
+    padding: 1.5em 2em;
+    position: relative;
+    overflow: hidden;
+    height: 100vh;
+}
+
+.Signup-Title{
+    font-size: 1.3em;
+    color: var(--text);
+    justify-content: flex-end;
+    margin-top: 2em;
+}
+
+.Signup-Title h1 span{
+    color: var(--primary);
+}
+
+.Signup-toLogin{
+    position: absolute;
+    right: 7em;
+    top: 40%;
+    color: var(--text);
+    font-size: 0.9em;
+}
+
+.Signup-toLogin a{
+    text-decoration: none;
+    color: var(--primary);
+}
+
+.Signup-Form{
+    background-color: var(--base);
+    width: fit-content;
+    border-radius: 0.4em;
+    padding-bottom: 2em;
+    justify-content: flex-start;
+    margin-left: 10.5em;
+}
+
+.Signup-Form form{
+    padding: 1.5em 2em;
+    padding-bottom: 0;
+    border-radius: 0.4em;
+}
+
+.Signup-InputHolder{
+    align-items: flex-start;
+}
+
+.Signup-Input{
+    /* background-color: lime; */
+    padding: 0.4em 0.5em;
+    border-radius: 0.3em;
+    border: 1px solid var(--grey);
+}
+
+.Signup-InputHolder label{
+    font-size: 0.95em;
+    color: var(--text);
+}
+
+.Signup-Input input{
+    background-color: inherit;
+    color: var(--text);
+    border: none;
+    outline: none;
+    min-width: 18em;
+    font-size: 1em;
+}
