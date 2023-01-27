@@ -3,12 +3,12 @@ import { Link } from "react-router-dom"
 import { CgDarkMode } from 'react-icons/cg'
 import { useContextData } from "../../Hooks/useContextData"
 
-const Header = ({ dark }) => {
+const Header = ({ dark, altLogo }) => {
     const { setIsDarkTheme } = useContextData();
 
     return (
         <div className="Header-Main">
-            <div className="Header-Logo">
+            <div className="Header-Logo" style={{ color: altLogo ? "var(--white)" : "var(--primary)" }}>
                 ARMS
             </div>
 
