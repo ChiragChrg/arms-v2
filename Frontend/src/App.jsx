@@ -9,19 +9,20 @@ import Content from './Components/Content';
 import Landing from './Pages/Landing/Landing';
 import Login from './Pages/Login/Login';
 import Signup from './Pages/Signup/Signup';
+import Dashboard from './Pages/Dashboard/Dashboard';
 
 function App() {
-  const { isUserLoggedIn, setIsUserLoggedIn, isUserFaculty, setIsUserFaculty, isDarkTheme } = useContextData();
+  const { isUserLoggedIn, setIsUserLoggedIn, isUserFaculty, setIsUserFaculty } = useContextData();
 
   useEffect(() => {
-    const isFacultyLoggedIn = localStorage.getItem('arms-isFacultyLoggedIn');
-    isFacultyLoggedIn === 'true' ? setIsUserFaculty(true) : setIsUserFaculty(false);
+    const getFacultyLoggedIn = localStorage.getItem('arms-isFacultyLoggedIn');
+    getFacultyLoggedIn === 'true' ? setIsUserFaculty(true) : setIsUserFaculty(false);
 
-    const isUserLoggedIn = localStorage.getItem('arms-isUserLoggedIn');
-    isUserLoggedIn === 'true' ? setIsUserLoggedIn(true) : setIsUserLoggedIn(false);
+    const getUserLoggedIn = localStorage.getItem('arms-isUserLoggedIn');
+    getUserLoggedIn === 'true' ? setIsUserLoggedIn(true) : setIsUserLoggedIn(false);
 
     let getTheme = localStorage.getItem("arms-theme");
-    document.body.setAttribute("data-theme", getTheme);
+    document.body.setAttribute("data-theme", getTheme || "light");
   }, [])
 
   // console.log(isFacultyLoggedIn);
@@ -31,7 +32,7 @@ function App() {
       <Browser>
         <Routes>
           {isUserLoggedIn && <Route element={<Content />}>
-            <Route path="/dashboard" element={<h1>Dashboards</h1>} />
+            <Route path="/dashboard" element={<Dashboard />} />
           </Route>}
 
           <Route path="/" element={!isUserLoggedIn ? <Landing /> : <Navigate to="/dashboard" />} />

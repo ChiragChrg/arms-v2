@@ -12,52 +12,128 @@
 }
 
 [data-theme="dark"]{
-    --primary: #2d65ce;
-    --secondary: rgb(17, 63, 160);
-    --base: #0F0F0F;
-    --baseAlt: rgba(15, 15, 15, 0.65);
-    --white: #FAFAFA;
-    --black: #0F0F0F;
-    --text: #FFF;
-    --textAlt: #000;
-    --grey: #808080;
-    --greyDark: rgba(26, 26, 26, 0.3);
+  --primary: #2d65ce;
+  --secondary: rgb(17, 63, 160);
+  --base: #0F0F0F;
+  --baseAlt: rgba(15, 15, 15, 0.65);
+  --white: #FAFAFA;
+  --black: #0F0F0F;
+  --text: #FFF;
+  --textAlt: #000;
+  --grey: #808080;
+  --greyDark: rgba(26, 26, 26, 0.3);
 }
 
 *{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
 
 body{
-    background-color: var(--base);
+  background-color: var(--base);
 }
 
 .flex{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .col{
-    flex-direction: column;
+  flex-direction: column;
 }
 
 .gap{
-    gap: 1em;
+  gap: 1em;
 }
 
 .gap05{
-    gap: 0.5em;
+  gap: 0.5em;
 }
 
 .gap2{
-    gap: 2em;
+  gap: 2em;
+}
+
+.Content-Main{
+  position: relative;
+  padding: 1.5em 2em;
+}
+
+.Logout-Modal{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  z-index: 99;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+  
+.Logout-Card{
+  background-color: var(--secondary-alt);
+  justify-content: space-evenly;
+  padding: 1em 2em;
+  border-radius: 0.4em;
+  min-height: 10em;
+  gap: 1em;
+  z-index: 4;
+  letter-spacing: 1.5px;
+}
+
+.Logout-Buttons{
+  gap: 3em;
+}
+
+.Logout-Buttons button{
+  background-color: #fff;
+  border: none;
+  outline: none;
+  border-radius: 0.3em;
+  padding: 0.5em 1em;
+  font-size: 0.9em;
+  font-weight: bold;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+
+.Logout-Buttons .logout{
+  background-color: red;
+  color: var(--text);
+  transition: 0.2s ease-in-out;
+}
+
+.Logout-Buttons .logout:hover{
+  background-color: #fff;
+  color: red;
 }
 
 /* Disable blue button click highlight */
 input, button, a, div {
     -webkit-tap-highlight-color: transparent;
+}
+
+/* Custom ScrollBar */
+::-webkit-scrollbar {
+  width: 20px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--secondary);
+  border-radius: 20px;
+  border: 6px solid transparent;
+  background-clip: content-box;
+}
+
+@media (max-width: 750px){
+  .Content-Main{
+      padding: 1em;
+  }
 }
