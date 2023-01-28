@@ -2,7 +2,7 @@ import "./Trails.css"
 import { useState, useEffect, useRef } from "react"
 import { MdPlayArrow, MdPlayDisabled } from "react-icons/md"
 
-const Trails = ({ angle, position }) => {
+const Trails = ({ angle, position, top }) => {
     const [disableAnimation, setDisableAnimation] = useState(false);
     const TrailsRef = useRef();
 
@@ -12,7 +12,8 @@ const Trails = ({ angle, position }) => {
         if (angle) TrailsRef.current.style.transform = `rotate(${angle}deg)`;
         if (position == "center") TrailsRef.current.style.right = "0";
         if (position == "left") TrailsRef.current.style.right = "20%";
-    }, [angle, position])
+        if (top) TrailsRef.current.style.top = top;
+    }, [angle, position, top])
 
     return (
         <>

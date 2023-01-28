@@ -7,9 +7,8 @@ import Trails from "../../Components/Trails/Trails"
 const Landing = () => {
     const { setIsUserLoggedIn, setIsUserFaculty } = useContextData();
     const navigate = useNavigate();
+    let isMobile = window.innerWidth <= 750;
     let currYear = new Date().getFullYear();
-    // const StripCount = [1, 2]
-    // const StripCount = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
     const HandleStudentLogin = () => {
         setIsUserLoggedIn(true);
@@ -26,8 +25,12 @@ const Landing = () => {
             <div className="Landing-Body flex col gap2">
                 <div className="Landing-Intro col gap">
                     <h1><span>A</span>cademic <span>R</span>esource <span>M</span>anagement <span>S</span>ystem</h1>
-                    <p>ARMS is an open-source software developed for the Education system. <br />
-                        Students can easily find and download the study materials uploaded by the faculty.</p>
+                    {!isMobile ? <p>ARMS is an open-source software developed for students. <br />
+                        Students can easily find and download the study materials uploaded <br /> by the college faculty.</p>
+                        :
+                        <p>ARMS is an open-source software developed for students. <br />
+                            Students can easily find and download the study materials uploaded by the college faculty.</p>
+                    }
                 </div>
 
                 <div className="Landing-Start flex col">

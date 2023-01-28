@@ -73,7 +73,7 @@ const Signup = () => {
                 </form>
             </div>
 
-            {!isMobile && <Trails angle={45} position="left" />}
+            {!isMobile && <Trails angle={45} position="left" top="5em" />}
         </div>
     )
 }

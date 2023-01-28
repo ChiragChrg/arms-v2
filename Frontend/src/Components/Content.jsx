@@ -2,12 +2,13 @@ import { useState, useEffect, useRef } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import { useContextData } from "../Hooks/useContextData";
 
+import Sidebar from "./Sidebar/Sidebar";
+
 const Content = () => {
     const [userLogout, setUserLogout] = useState(false);
     const { onLogout, setOnLogout, setIsUserLoggedIn } = useContextData();
     const navigate = useNavigate();
     const ContentRef = useRef();
-
 
     useEffect(() => {
         if (onLogout) {
@@ -25,6 +26,7 @@ const Content = () => {
 
     return (
         <div className="Content-Main" ref={ContentRef}>
+            <Sidebar />
             <Outlet />
 
             {userLogout &&
