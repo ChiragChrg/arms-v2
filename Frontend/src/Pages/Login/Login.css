@@ -94,3 +94,27 @@
     text-decoration: none;
     color: var(--primary);
 }
+
+@media (max-width: 750px){
+    .Login-Main{
+        padding: 1em;
+    }
+
+    .Login-Form{
+        padding: 2em 0;
+    }
+
+    .Login-Form form{
+        padding: 0;
+        padding: 4em 0;
+    }
+
+    .Login-Input input{
+        width: 5em;
+    }
+
+    .Login-Title,
+    .Login-Title2{
+        font-size: 1em;
+    }
+}

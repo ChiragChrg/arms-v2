@@ -4,8 +4,9 @@ import { MdPlayArrow, MdPlayDisabled } from "react-icons/md"
 
 const Trails = ({ angle, position }) => {
     const [disableAnimation, setDisableAnimation] = useState(false);
-    const StripCount = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
     const TrailsRef = useRef();
+
+    const StripCount = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
     useEffect(() => {
         if (angle) TrailsRef.current.style.transform = `rotate(${angle}deg)`;
@@ -16,9 +17,9 @@ const Trails = ({ angle, position }) => {
     return (
         <>
             <div className="Trails-Main" ref={TrailsRef}>
-                <div className="Trails-Holder flex col gap2">
+                <div className="Trails-Holder flex col">
                     {StripCount.map((item) => {
-                        return <div key={item} data-disableAnime={disableAnimation} className="Trails-Trail flex"></div>
+                        return <div key={item} data-disableanime={disableAnimation} className="Trails-Trail flex"></div>
                     })}
                 </div>
             </div>

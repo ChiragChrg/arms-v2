@@ -11,10 +11,21 @@
 }
 
 .Landing-Intro{
-    padding: 1em;
+    padding: 0 1em;
+    display: flex;
+    justify-content: center;
     align-self: flex-start;
     color: var(--text);
     user-select: none;
+}
+
+.Landing-Intro h1 span{
+    color: var(--primary);
+    font-size: 1.3em;
+}
+
+.Landing-Intro p{
+    text-align: left;
 }
 
 .Landing-Start{
@@ -33,7 +44,7 @@
     border-radius: 0.4em;
     cursor: pointer;
     text-align: center;
-    color: var(--secondary);
+    color: var(--text);
     /* background-color: var(--secondary); */
     border: 1px solid var(--secondary);
     transition: 0.3s ease-in-out;
@@ -57,4 +68,26 @@
 .Landing-Footer{
     color: var(--white);
     user-select: none;
+}
+
+@media (max-width: 750px){
+    .Landing-Main{
+        padding: 1em;
+    }
+
+    .Landing-Body{
+        justify-content: flex-start;
+        padding-top: 1em;
+    }
+
+    .Landing-Start{
+        margin-right: 0;
+        /* background-color: red; */
+        padding: 1em;
+        align-self: center;
+    }
+
+    /* .Landing-Footer{
+        color: var(--text);
+    } */
 }

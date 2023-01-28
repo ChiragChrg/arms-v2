@@ -9,7 +9,15 @@ import { FiEye, FiEyeOff } from 'react-icons/fi'
 
 const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
-    const StripCount = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    let isMobile = window.innerWidth <= 750;
+
+    const HandleLogin = () => {
+        setIsUserLoggedIn(true);
+        setIsUserFaculty(true);
+        localStorage.setItem('arms-isUserLoggedIn', true);
+        localStorage.setItem('arms-isFacultyLoggedIn', true);
+        navigate('/dashboard');
+    }
 
     return (
         <div className="Login-Main">
@@ -20,7 +28,7 @@ const Login = () => {
             </div>
 
             <div className="Login-Form flex col gap2">
-                <form className="flex col gap">
+                <form className="flex col gap" onSubmit={HandleLogin}>
                     <div className="Login-InputHolder flex col">
                         <label htmlFor="email">Email</label>
                         <div className="Login-Input flex gap05">
@@ -58,7 +66,7 @@ const Login = () => {
                 <h1>Let's get <span>Started</span></h1>
             </div>
 
-            <Trails angle={90} position="center" />
+            {!isMobile && <Trails angle={90} position="center" />}
         </div>
     )
 }

@@ -68,3 +68,43 @@
     min-width: 18em;
     font-size: 1em;
 }
+
+.Signup-Submit{
+    background-color: var(--primary);
+    border:none;
+    outline: none;
+    border-radius: 0.3em;
+    width: 100%;
+    padding: 0.5em;
+    font-size: 1em;
+    color: var(--white);
+    cursor: pointer;
+}
+
+@media (max-width: 750px){
+    .Signup-Main{
+        padding: 1em;
+    }
+
+    .Signup-toLogin{
+        width: 100%;
+        top: 78%;
+        left: 0;
+        right: 0;
+        font-size: 0.8em;
+        text-align: center;
+    }
+
+    .Signup-Form{
+        margin: 0 auto;
+        padding: 2em 0;
+    }
+
+    .Signup-Form form{
+        padding: 0;
+    }
+
+    .Signup-Input input{
+        width: 5em;
+    }
+}

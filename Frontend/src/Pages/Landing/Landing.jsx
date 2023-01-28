@@ -23,9 +23,9 @@ const Landing = () => {
         <div className="Landing-Main">
             <Header />
 
-            <div className="Landing-Body flex col">
-                <div className="Landing-Intro flex col">
-                    <h1>Academic Resource Management System</h1>
+            <div className="Landing-Body flex col gap2">
+                <div className="Landing-Intro col gap">
+                    <h1><span>A</span>cademic <span>R</span>esource <span>M</span>anagement <span>S</span>ystem</h1>
                     <p>ARMS is an open-source software developed for the Education system. <br />
                         Students can easily find and download the study materials uploaded by the faculty.</p>
                 </div>

@@ -1,7 +1,7 @@
 .Trails-Main{
     position: absolute;
-    top: 5em;
-    right: -20em;
+    top: 10em;
+    right: -15em;
     width: 100%;
     height: 600px;
     z-index: -1;
@@ -16,6 +16,7 @@
     height: 100%;
     justify-content: space-around;
     padding: 2.5em 0;
+    gap: 2em;
     /* background-color: red; */
 }
 
@@ -27,44 +28,54 @@
     border-radius: 0.5em;
     background-color: var(--secondary);
     z-index: 0;
-    animation: StripMove 5s linear  infinite;
+    animation: StripMove 8s linear infinite;
     left: 0;
     transform: translateX(-150%);
 }
 
 .Trails-Trail:nth-child(1){
     animation-delay: 1.5s;
+    animation-duration: 6s;
 }
 .Trails-Trail:nth-child(2){
     animation-delay: 2.5s;
+    animation-duration: 5s;
     background-color: var(--baseAlt);
 }
 .Trails-Trail:nth-child(3){
     animation-delay: 0.5s;
+    /* animation-duration: 3s; */
 }
 .Trails-Trail:nth-child(4){
     animation-delay: 3.5s;
+    animation-duration: 7s;
     background-color: var(--baseAlt);
 }
 .Trails-Trail:nth-child(5){
     animation-delay: 0s;
+    animation-duration: 4s;
 }
 .Trails-Trail:nth-child(6){
     animation-delay: 4.5s;
+    animation-duration: 5s;
     background-color: var(--baseAlt);
 }
 .Trails-Trail:nth-child(7){
     animation-delay: 1s;
+    animation-duration: 4s;
 }
 .Trails-Trail:nth-child(8){
     animation-delay: 4s;
+    animation-duration: 6s;
     background-color: var(--baseAlt);
 }
 .Trails-Trail:nth-child(9){
     animation-delay: 2s;
+    animation-duration: 3s;
 }
 .Trails-Trail:nth-child(10){
     animation-delay: 3s;
+    animation-duration: 7s;
     background-color: var(--baseAlt);
 }
 
@@ -83,9 +94,13 @@
     .Trails-Trail{
         animation: none;
     }
+
+    .Trails-Disable{
+        display: none;
+    }
 }
 
-[data-disableAnime = true]{
+[data-disableanime = true]{
     animation: none;
 }
 
@@ -99,4 +114,27 @@
     bottom: 1.5em;
     left: 2em;
     cursor: pointer;
+}
+
+@media (max-width: 750px){
+    .Trails-Main{
+        top: 15.5em;
+        left: -15em;
+        width: 70em;
+        height: 400px;
+    }
+
+    .Trails-Trail{
+        height: 15px;
+    }
+
+    .Trails-Holder{
+        padding: 1em 0;
+        gap: 1em;
+    }
+
+    .Trails-Disable{
+        bottom: 8em;
+        left: 1em;
+    }
 }

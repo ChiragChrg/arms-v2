@@ -10,10 +10,11 @@ import { FiEye, FiEyeOff } from 'react-icons/fi'
 
 const Signup = () => {
     const [showPassword, setShowPassword] = useState(false);
+    let isMobile = window.innerWidth <= 750;
 
     return (
         <div className="Signup-Main">
-            <Header dark altLogo />
+            <Header dark altLogo={isMobile ? false : true} />
 
             <div className="Signup-Title flex">
                 <h1>Welcome new <span>Faculty</span></h1>
@@ -46,7 +47,7 @@ const Signup = () => {
                         <label htmlFor="password">Password</label>
                         <div className="Signup-Input flex gap05">
                             <input type={showPassword ? "text" : "password"} id="password" placeholder="Password" />
-                            <div className="Login-ShowPassToggle flex">
+                            <div className="Signup-ShowPassToggle flex">
                                 {showPassword ?
                                     <FiEye size={25} color="var(--grey)" onClick={() => setShowPassword(false)} />
                                     : <FiEyeOff size={25} color="var(--grey)" onClick={() => setShowPassword(true)} />
@@ -59,7 +60,7 @@ const Signup = () => {
                         <label htmlFor="confpassword">Confirm Password</label>
                         <div className="Signup-Input flex gap05">
                             <input type={showPassword ? "text" : "password"} id="confpassword" placeholder="Password" />
-                            <div className="Login-ShowPassToggle flex">
+                            <div className="Signup-ShowPassToggle flex">
                                 {showPassword ?
                                     <FiEye size={25} color="var(--grey)" onClick={() => setShowPassword(false)} />
                                     : <FiEyeOff size={25} color="var(--grey)" onClick={() => setShowPassword(true)} />
@@ -68,11 +69,11 @@ const Signup = () => {
                         </div>
                     </div>
 
-                    <button className="Login-Submit flex" type="submit">Login</button>
+                    <button className="Signup-Submit flex" type="submit">Login</button>
                 </form>
             </div>
 
-            <Trails angle={45} position="left" />
+            {!isMobile && <Trails angle={45} position="left" />}
         </div>
     )
 }
