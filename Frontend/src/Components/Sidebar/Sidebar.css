@@ -1,5 +1,74 @@
 .Sidebar-Main{
-    width: 300px;
+    width: 320px;
     height: 100vh;
-    background-color: grey;
+    background-color: var(--base);
+    justify-content: flex-start;
+    padding: 0.6em;
+}
+
+.Sidebar-Header{
+    width: 100%;
+    background-color: var(--secondary);
+    padding: 0.2em;
+    position: relative;
+    border-radius: 0.5em 0.5em 0 0;
+    padding: 0.5em;
+}
+
+.Sidebar-LogoTheme{
+    justify-content: space-between;
+    margin-right: 0.5em;
+    color: var(--white);
+}
+
+.Sidebar-NavLinks{
+    background-color: var(--secondary);
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    margin-top: -1px;
+}
+
+.Sidebar-Footer{
+    background-color: var(--secondary);
+    width: 100%;
+    padding: 0.5em;
+    padding-bottom: 0.7em;
+    border-radius: 0 0 0.5em 0.5em;
+}
+
+.Sidebar-FooterHolder{
+    justify-content: space-between;
+    background-color: var(--primary);
+    width: 100%;
+    padding: 0.5em;
+    border-radius: 0.5em;
+}
+
+.Sidebar-Profile{
+    justify-content: flex-start;
+    color: var(--white);
+}
+
+.Sidebar-ProfileImg{
+    padding: 0.5em;
+    border-radius: 100%;
+    background-color: var(--white);
+}
+
+.Sidebar-ProfileInfo{
+    font-size: 0.8em;
+    letter-spacing: 1.5px;
+}
+
+.Sidebar-Logout{
+    background-color: var(--secondary);
+    padding: 0.4em;
+    border-radius: 0.3em;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+}
+
+.Sidebar-Logout:hover{
+    background-color: red;
 }

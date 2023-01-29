@@ -27,7 +27,10 @@ const Content = () => {
     return (
         <div className="Content-Main" ref={ContentRef}>
             <Sidebar />
-            <Outlet />
+
+            <div className="Outlet-Main">
+                <Outlet />
+            </div>
 
             {userLogout &&
                 <div className="Logout-Modal flex">
