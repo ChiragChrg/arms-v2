@@ -6,6 +6,7 @@ const ContextProvider = ({ children }) => {
     const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
     const [isUserFaculty, setIsUserFaculty] = useState(false);
     const [onLogout, setOnLogout] = useState(false);
+    const [isReturningUser, setIsReturningUser] = useState(false);
 
     // isDarkTheme reverts back to false on refresh
     const [isDarkTheme, setIsDarkTheme] = useState(false);
@@ -28,6 +29,8 @@ const ContextProvider = ({ children }) => {
             setIsUserLoggedIn,
             isUserFaculty,
             setIsUserFaculty,
+            isReturningUser,
+            setIsReturningUser,
             isDarkTheme,
             setIsDarkTheme,
             onLogout,

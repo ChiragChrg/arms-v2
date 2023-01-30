@@ -12,7 +12,7 @@ import Signup from './Pages/Signup/Signup';
 import Dashboard from './Pages/Dashboard/Dashboard';
 
 function App() {
-  const { isUserLoggedIn, setIsUserLoggedIn, isUserFaculty, setIsUserFaculty } = useContextData();
+  const { isUserLoggedIn, setIsUserLoggedIn, isUserFaculty, setIsUserFaculty, setIsReturningUser } = useContextData();
 
   useEffect(() => {
     const getFacultyLoggedIn = localStorage.getItem('arms-isFacultyLoggedIn');
@@ -20,6 +20,10 @@ function App() {
 
     const getUserLoggedIn = localStorage.getItem('arms-isUserLoggedIn');
     getUserLoggedIn === 'true' ? setIsUserLoggedIn(true) : setIsUserLoggedIn(false);
+
+    if (getUserLoggedIn === 'true') {
+      setIsReturningUser(true);
+    }
 
     let getTheme = localStorage.getItem("arms-theme");
     document.body.setAttribute("data-theme", getTheme || "light");
@@ -33,6 +37,8 @@ function App() {
         <Routes>
           {isUserLoggedIn && <Route element={<Content />}>
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/about" element={<h1>About</h1>} />
+            <Route path="/contact" element={<h1>Contact</h1>} />
           </Route>}
 
           <Route path="/" element={!isUserLoggedIn ? <Landing /> : <Navigate to="/dashboard" />} />

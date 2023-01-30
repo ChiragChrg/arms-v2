@@ -21,7 +21,7 @@ const Header = ({ dark, altLogo }) => {
                 <div className={dark ? "Header-Nav flex gap2 darkTxt" : "Header-Nav flex gap2 lightTxt"}>
                     <Link to="/">Home</Link>
                     <a href="https://devbase.netlify.app/">DevBase</a>
-                    <a href="https://github.com/ChiragChrg/ARMS">GitHub</a>
+                    <a href="https://github.com/ChiragChrg/">GitHub</a>
 
                     <div className="Header-ThemeToggle flex" onClick={() => setIsDarkTheme(prev => !prev)}>
                         <CgDarkMode size={25} color="inherit" />

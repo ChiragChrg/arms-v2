@@ -9,7 +9,7 @@
     --text: #000;
     --textAlt: #FFF;
     --grey: #808080;
-    --greyDark: rgba(26, 26, 26, 0.3);
+    --greyDark: rgba(26, 26, 26, 0.5);
 }
 
 [data-theme="dark"]{
@@ -23,7 +23,7 @@
   --text: #FFF;
   --textAlt: #000;
   --grey: #808080;
-  --greyDark: rgba(26, 26, 26, 0.3);
+  --greyDark: rgba(26, 26, 26, 0.5);
 }
 
 *{

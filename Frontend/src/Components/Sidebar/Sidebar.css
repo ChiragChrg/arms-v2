@@ -17,8 +17,11 @@
 
 .Sidebar-LogoTheme{
     justify-content: space-between;
-    margin-right: 0.5em;
     color: var(--white);
+}
+
+.Sidebar-ThemeToggle{
+    cursor: pointer;
 }
 
 .Sidebar-NavLinks{
@@ -26,7 +29,26 @@
     width: 100%;
     height: 100%;
     z-index: 1;
-    margin-top: -1px;
+    padding: 0.8em;
+    padding-top: 2em;
+    justify-content: flex-start;
+}
+
+.Sidebar-NavLinks a{
+    text-decoration: none;
+    color: var(--white);
+    font-size: 1.1em;
+    background-color: var(--greyDark);
+    padding: 0.5em;
+    width: 100%;
+    border-radius: 0.4em;
+    justify-content: flex-start;
+}
+
+.Sidebar-NavLinks a.active{
+    background-color: var(--white);
+    color: var(--secondary);
+    font-weight: bold;
 }
 
 .Sidebar-Footer{
@@ -39,7 +61,7 @@
 
 .Sidebar-FooterHolder{
     justify-content: space-between;
-    background-color: var(--primary);
+    background-color: var(--greyDark);
     width: 100%;
     padding: 0.5em;
     border-radius: 0.5em;
@@ -53,7 +75,7 @@
 .Sidebar-ProfileImg{
     padding: 0.5em;
     border-radius: 100%;
-    background-color: var(--white);
+    background-color: var(--grey);
 }
 
 .Sidebar-ProfileInfo{
