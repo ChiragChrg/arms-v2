@@ -3,6 +3,7 @@ import { useState, useEffect, createContext } from 'react';
 export const Context = createContext();
 
 const ContextProvider = ({ children }) => {
+    const [userData, setUserData] = useState({});
     const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
     const [isUserFaculty, setIsUserFaculty] = useState(false);
     const [onLogout, setOnLogout] = useState(false);
@@ -25,6 +26,8 @@ const ContextProvider = ({ children }) => {
 
     return (
         <Context.Provider value={{
+            userData,
+            setUserData,
             isUserLoggedIn,
             setIsUserLoggedIn,
             isUserFaculty,

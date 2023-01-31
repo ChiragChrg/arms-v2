@@ -12,7 +12,7 @@ import Signup from './Pages/Signup/Signup';
 import Dashboard from './Pages/Dashboard/Dashboard';
 
 function App() {
-  const { isUserLoggedIn, setIsUserLoggedIn, isUserFaculty, setIsUserFaculty, setIsReturningUser } = useContextData();
+  const { setUserData, isUserLoggedIn, setIsUserLoggedIn, isUserFaculty, setIsUserFaculty, setIsReturningUser } = useContextData();
 
   useEffect(() => {
     const getFacultyLoggedIn = localStorage.getItem('arms-isFacultyLoggedIn');
@@ -24,6 +24,9 @@ function App() {
     if (getUserLoggedIn === 'true') {
       setIsReturningUser(true);
     }
+
+    const getLocalUser = localStorage.getItem('arms-user');
+    setUserData(JSON.parse(getLocalUser));
 
     let getTheme = localStorage.getItem("arms-theme");
     document.body.setAttribute("data-theme", getTheme || "light");

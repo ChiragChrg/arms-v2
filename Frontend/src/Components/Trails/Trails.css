@@ -28,9 +28,8 @@
     border-radius: 0.5em;
     background-color: var(--secondary);
     z-index: 0;
-    animation: StripMove 8s linear infinite;
-    left: 0;
     transform: translateX(-150%);
+    animation: StripMove 8s linear infinite;
 }
 
 .Trails-Trail:nth-child(1){
@@ -102,6 +101,7 @@
 
 [data-disableanime = true]{
     animation: none;
+    /* animation-play-state: paused; */
 }
 
 .Trails-Disable{

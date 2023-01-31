@@ -1,7 +1,5 @@
 import "./Sidebar.css"
-import { useState, useEffect } from "react"
 import { NavLink } from "react-router-dom"
-import axios from "axios"
 import { useContextData } from "../../Hooks/useContextData"
 
 import { FaRegUser } from "react-icons/fa"
@@ -12,15 +10,7 @@ import { BsInfoCircleFill } from 'react-icons/bs'
 import { RiContactsBookLine } from 'react-icons/ri'
 
 const Sidebar = () => {
-    const { setOnLogout, setIsDarkTheme, isUserFaculty } = useContextData();
-    const userEmail = "chiruchirag2001@gmail.com"
-    useEffect(() => {
-        // const getProfileImg = async () => {
-        //     const {data} = await axios.get(`https://www.gravatar.com/avatar/${userEmail}?d=identicon&s=200}`)
-        //     console.log(data)
-        // }
-        // getProfileImg()
-    }, [])
+    const { userData, setOnLogout, setIsDarkTheme, isUserFaculty } = useContextData();
 
     return (
         <div className="Sidebar-Main flex col">
@@ -45,15 +35,18 @@ const Sidebar = () => {
                 </NavLink>
             </div>
 
-            <div className="Sidebar-Footer flex">
+            <div className="Sidebar-Footer flex col gap">
                 <div className="Sidebar-FooterHolder flex">
                     <div className="Sidebar-Profile flex gap05">
-                        <div className="Sidebar-ProfileImg flex">
-                            <FaRegUser size={30} color="var(--white)" />
-                        </div>
+                        {!isUserFaculty ?
+                            <div className="Sidebar-ProfileImg flex">
+                                <FaRegUser size={30} color="var(--white)" />
+                            </div>
+                            : <img src={userData.avatar} alt={userData.username} className="Sidebar-Avatar" />
+                        }
 
                         <div className="Sidebar-ProfileInfo">
-                            <h3>{isUserFaculty || "Anonymous"}</h3>
+                            <h3>{userData.username || "Anonymous"}</h3>
                             <p>{isUserFaculty ? "Faculty" : "Student"}</p>
                         </div>
                     </div>

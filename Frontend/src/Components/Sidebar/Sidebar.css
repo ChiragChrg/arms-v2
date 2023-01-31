@@ -78,6 +78,13 @@
     background-color: var(--grey);
 }
 
+.Sidebar-Avatar{
+    width: 46px;
+    aspect-ratio: 1;
+    border-radius: 100%;
+    object-fit: cover;
+}
+
 .Sidebar-ProfileInfo{
     font-size: 0.8em;
     letter-spacing: 1.5px;
