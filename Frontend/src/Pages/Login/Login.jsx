@@ -1,6 +1,9 @@
 import "./Login.css"
-import { useState } from "react"
-import { Link } from "react-router-dom"
+import { useState, useRef } from "react"
+import { Link, useNavigate } from "react-router-dom"
+import { useContextData } from "../../Hooks/useContextData"
+import { toast } from "react-toastify"
+import axios from "axios"
 
 import Header from "../../Components/Header/Header"
 import Trails from "../../Components/Trails/Trails"
@@ -9,14 +12,33 @@ import { FiEye, FiEyeOff } from 'react-icons/fi'
 
 const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
+    const { setIsUserLoggedIn, setIsUserFaculty, setUserData } = useContextData();
+    const navigate = useNavigate();
     let isMobile = window.innerWidth <= 750;
 
-    const HandleLogin = () => {
-        setIsUserLoggedIn(true);
-        setIsUserFaculty(true);
-        localStorage.setItem('arms-isUserLoggedIn', true);
-        localStorage.setItem('arms-isFacultyLoggedIn', true);
-        navigate('/dashboard');
+    const emailRef = useRef();
+    const passwordRef = useRef();
+
+    const HandleLogin = async (e) => {
+        e.preventDefault();
+
+        const email = emailRef.current.value.toLowerCase();
+        const password = passwordRef.current.value;
+
+        try {
+            const result = await axios.post("/api/login", { email, password });
+            toast.success(result.data.message);
+            setUserData(result.data.user);
+            localStorage.setItem('arms-user', JSON.stringify(result.data.user));
+
+            setIsUserLoggedIn(true);
+            localStorage.setItem('arms-isUserLoggedIn', true);
+            setIsUserFaculty(true);
+            localStorage.setItem('arms-isFacultyLoggedIn', true);
+            navigate("/dashboard");
+        } catch (err) {
+            toast.error(err.response.data.message || "Something went wrong!");
+        }
     }
 
     return (
@@ -32,7 +54,7 @@ const Login = () => {
                     <div className="Login-InputHolder flex col">
                         <label htmlFor="email">Email</label>
                         <div className="Login-Input flex gap05">
-                            <input type="text" id="email" placeholder="Enter your email" />
+                            <input type="text" id="email" placeholder="Enter your email" ref={emailRef} required />
                             <MdAlternateEmail size={25} color="var(--grey)" />
                         </div>
                     </div>
@@ -40,7 +62,7 @@ const Login = () => {
                     <div className="Login-InputHolder flex col">
                         <label htmlFor="password">Password</label>
                         <div className="Login-Input flex gap05">
-                            <input type={showPassword ? "text" : "password"} id="password" placeholder="Password" />
+                            <input type={showPassword ? "text" : "password"} id="password" placeholder="Password" ref={passwordRef} required />
                             <div className="Login-ShowPassToggle flex">
                                 {showPassword ?
                                     <FiEyeOff size={25} color="var(--grey)" onClick={() => setShowPassword(false)} />
