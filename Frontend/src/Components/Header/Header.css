@@ -5,10 +5,15 @@
 }
 
 .Header-Logo{
-    /* color: var(--primary); */
-    font-size: 1.5em;
+    font-size: 2em;
     font-weight: bold;
     user-select: none;
+    align-items: flex-end;
+    gap: 0.2em;
+}
+
+.Header-Logo p{
+    line-height: 32px;
 }
 
 .Header-Nav.darkTxt{

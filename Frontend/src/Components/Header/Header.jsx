@@ -2,6 +2,8 @@ import "./Header.css"
 import { useState } from "react"
 import { Link } from "react-router-dom"
 import { useContextData } from "../../Hooks/useContextData"
+
+import ArmsLogo from "../../Assets/ArmsLogo"
 import { CgDarkMode, CgClose } from 'react-icons/cg'
 import { BsFilterLeft } from 'react-icons/bs'
 
@@ -13,8 +15,9 @@ const Header = ({ dark, altLogo }) => {
 
     return (
         <div className="Header-Main">
-            <div className="Header-Logo" style={{ color: altLogo ? "var(--white)" : "var(--primary)" }}>
-                ARMS
+            <div className="Header-Logo flex" style={{ color: altLogo ? "var(--white)" : "var(--primary)" }}>
+                {altLogo ? <ArmsLogo size={35} fill="var(--white)" stroke="var(--primary)" /> : <ArmsLogo size={35} />}
+                <p>ARMS</p>
             </div>
 
             {deviceWidth > 750 ?

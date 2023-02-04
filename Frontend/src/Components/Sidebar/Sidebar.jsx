@@ -46,7 +46,7 @@ const Sidebar = () => {
                         }
 
                         <div className="Sidebar-ProfileInfo">
-                            <h3>{userData.username || "Anonymous"}</h3>
+                            <h3>{userData?.username || "Anonymous"}</h3>
                             <p>{isUserFaculty ? "Faculty" : "Student"}</p>
                         </div>
                     </div>
