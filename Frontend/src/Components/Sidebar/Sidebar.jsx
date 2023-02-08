@@ -2,10 +2,12 @@ import "./Sidebar.css"
 import { NavLink } from "react-router-dom"
 import { useContextData } from "../../Hooks/useContextData"
 
+import ArmsLogo from "../../Assets/ArmsLogo"
 import { FaRegUser } from "react-icons/fa"
 import { FiLogOut } from 'react-icons/fi'
 import { CgDarkMode } from 'react-icons/cg'
-import { MdDashboard } from 'react-icons/md'
+// import { MdDashboard } from 'react-icons/md'
+import { HiOutlineHome } from 'react-icons/hi'
 import { BsInfoCircleFill } from 'react-icons/bs'
 import { RiContactsBookLine } from 'react-icons/ri'
 
@@ -14,18 +16,20 @@ const Sidebar = () => {
 
     return (
         <div className="Sidebar-Main flex col">
-            <div className="Sidebar-Header">
-                <div className="Sidebar-LogoTheme flex">
-                    <h1>ARMS</h1>
-                    <div className="Sidebar-ThemeToggle flex" onClick={() => setIsDarkTheme(prev => !prev)}>
-                        <CgDarkMode size={30} color="inherit" />
-                    </div>
+            <div className="Sidebar-Header flex">
+                <div className="Sidebar-Logo flex">
+                    <ArmsLogo size={35} fill="var(--white)" stroke="var(--secondary)" />
+                    <p>ARMS</p>
+                </div>
+
+                <div className="Sidebar-ThemeToggle flex" onClick={() => setIsDarkTheme(prev => !prev)}>
+                    <CgDarkMode size={30} color="inherit" />
                 </div>
             </div>
 
             <div className="Sidebar-NavLinks flex col gap">
                 <NavLink to="/dashboard" className="flex gap">
-                    <MdDashboard size={25} color="inherit" />Dashboard
+                    <HiOutlineHome size={25} color="inherit" />Dashboard
                 </NavLink>
                 <NavLink to="/about" className="flex gap">
                     <BsInfoCircleFill size={25} color="inherit" />About
