@@ -10,6 +10,7 @@ import Landing from './Pages/Landing/Landing';
 import Login from './Pages/Login/Login';
 import Signup from './Pages/Signup/Signup';
 import Dashboard from './Pages/Dashboard/Dashboard';
+import About from './Pages/About/About';
 
 function App() {
   const { setUserData, isUserLoggedIn, setIsUserLoggedIn, isUserFaculty, setIsUserFaculty, setIsReturningUser } = useContextData();
@@ -40,7 +41,7 @@ function App() {
         <Routes>
           {isUserLoggedIn && <Route element={<Content />}>
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/about" element={<h1>About</h1>} />
+            <Route path="/about" element={<About />} />
             <Route path="/contact" element={<h1>Contact</h1>} />
           </Route>}
 

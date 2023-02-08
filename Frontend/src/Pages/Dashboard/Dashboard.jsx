@@ -1,19 +1,29 @@
 import "./Dashboard.css"
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useContextData } from "../../Hooks/useContextData"
+
+import NavRoute from "../../Components/NavRoute/NavRoute";
 
 const Dashboard = () => {
     const { isReturningUser, userData } = useContextData();
-    let welcomeTxt = "Welcome to ARMS";
+    const [welcomeTxt, setWelcomeTxt] = useState("Welcome to ARMS");
 
     useEffect(() => {
-        if (isReturningUser)
-            userData?.username ? welcomeTxt = `Welcome back, ${userData.username}` : welcomeTxt = "Welcome back, User"
+        console.log("isReturningUser: ", isReturningUser)
+        if (isReturningUser) {
+            userData?.username ? setWelcomeTxt(`Welcome back, ${userData.username}`) : setWelcomeTxt("Welcome back, User")
+        }
     }, [isReturningUser, userData])
 
+    const routes = [
+        "Ganja",
+        "About",
+        "Contact"
+    ]
 
     return (
         <div className="Dashboard-Main">
+            <NavRoute routes={routes} />
             <h1>{welcomeTxt}</h1>
         </div>
     )
