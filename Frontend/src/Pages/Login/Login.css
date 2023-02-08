@@ -6,17 +6,23 @@
     position: relative;
 }
 
+.Login-Container{
+    width: 100%;
+    height: 100%;
+}
+
 .Login-Title{
-    margin-top: 3em;
     font-size: 1.3em;
     color: var(--text);
-    justify-content: flex-start;
+    gap: 6em;
+    margin-bottom: 2em;
 }
 
 .Login-Title2{
     font-size: 1.3em;
     color: var(--text);
-    justify-content: flex-end;
+    gap: 6em;
+    margin-bottom: 2em;
 }
 
 .Login-Title h1 span,

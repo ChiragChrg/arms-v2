@@ -28,6 +28,12 @@
     text-align: left;
 }
 
+.Landing-Vector{
+    position: absolute;
+    top: 16em;
+    left: 2em;
+}
+
 .Landing-Start{
     align-self: flex-end;
     gap: 2em;

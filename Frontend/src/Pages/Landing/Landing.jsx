@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom"
 import Header from "../../Components/Header/Header"
 import Trails from "../../Components/Trails/Trails"
 
+import { FolderSVG } from "../../Assets"
+
 const Landing = () => {
     const { setIsUserLoggedIn, setIsUserFaculty } = useContextData();
     const navigate = useNavigate();
@@ -33,6 +35,8 @@ const Landing = () => {
                     }
                 </div>
 
+                <img className="Landing-Vector" src={FolderSVG} alt="FolderSVG" width="400px" height="auto" />
+
                 <div className="Landing-Start flex col">
                     <h2>Lets get started</h2>
 
@@ -56,7 +60,7 @@ const Landing = () => {
             </div>
 
             <Trails />
-        </div>
+        </div >
     )
 }
 
