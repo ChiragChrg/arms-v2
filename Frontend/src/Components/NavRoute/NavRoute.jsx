@@ -1,4 +1,5 @@
 import "./NavRoute.css"
+import { Fragment } from 'react'
 import { NavLink } from "react-router-dom"
 import { HiOutlineHome } from 'react-icons/hi'
 import { IoIosArrowForward } from 'react-icons/io'
@@ -19,12 +20,12 @@ const NavRoute = ({ routes }) => {
 
             {routes.map((item, index) => {
                 return (
-                    <>
+                    <Fragment key={index}>
                         <IoIosArrowForward size={18} color="var(--grey)" />
-                        <NavLink to={`/${item}`} key={index}>
+                        <NavLink to={`/${item}`}>
                             <span>{item}</span>
                         </NavLink>
-                    </>
+                    </Fragment>
                 )
             }
             )}
