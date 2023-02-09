@@ -9,7 +9,6 @@ const Dashboard = () => {
     const [welcomeTxt, setWelcomeTxt] = useState("Welcome to ARMS");
 
     useEffect(() => {
-        console.log("isReturningUser: ", isReturningUser)
         if (isReturningUser) {
             userData?.username ? setWelcomeTxt(`Welcome back, ${userData.username}`) : setWelcomeTxt("Welcome back, User")
         }

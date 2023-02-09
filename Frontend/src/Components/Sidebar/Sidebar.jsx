@@ -1,4 +1,5 @@
 import "./Sidebar.css"
+import { useState, useEffect } from "react"
 import { NavLink } from "react-router-dom"
 import { useContextData } from "../../Hooks/useContextData"
 
@@ -12,7 +13,14 @@ import { BsInfoCircleFill } from 'react-icons/bs'
 import { RiContactsBookLine } from 'react-icons/ri'
 
 const Sidebar = () => {
-    const { userData, setOnLogout, setIsDarkTheme, isUserFaculty } = useContextData();
+    const { userData, setOnLogout, setIsDarkTheme, isUserFaculty, isAdmin } = useContextData();
+    const [role, setRole] = useState("Student");
+
+    useEffect(() => {
+        if (isUserFaculty) {
+            isAdmin ? setRole("Admin") : setRole("Faculty")
+        }
+    }, [isUserFaculty, isAdmin])
 
     return (
         <div className="Sidebar-Main flex col">
@@ -51,7 +59,7 @@ const Sidebar = () => {
 
                         <div className="Sidebar-ProfileInfo">
                             <h3>{userData?.username || "Anonymous"}</h3>
-                            <p>{isUserFaculty ? "Faculty" : "Student"}</p>
+                            <p>{role}</p>
                         </div>
                     </div>
 
