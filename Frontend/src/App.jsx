@@ -1,11 +1,12 @@
 import './App.css'
-import { useState, useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import { BrowserRouter as Browser, Routes, Route, Navigate } from 'react-router-dom'
-import { toast, ToastContainer } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useContextData } from './Hooks/useContextData'
 
 import Content from './Components/Content';
+import AdminDash from './Components/AdminDash/AdminDash';
 import Landing from './Pages/Landing/Landing';
 import Login from './Pages/Login/Login';
 import Signup from './Pages/Signup/Signup';
@@ -13,7 +14,7 @@ import Dashboard from './Pages/Dashboard/Dashboard';
 import About from './Pages/About/About';
 
 function App() {
-  const { setUserData, isUserLoggedIn, setIsUserLoggedIn, isUserFaculty, setIsUserFaculty, setIsReturningUser } = useContextData();
+  const { setUserData, isAdmin, isUserLoggedIn, setIsUserLoggedIn, setIsUserFaculty, setIsReturningUser } = useContextData();
 
   useEffect(() => {
     const getFacultyLoggedIn = localStorage.getItem('arms-isFacultyLoggedIn');
@@ -40,7 +41,7 @@ function App() {
       <Browser>
         <Routes>
           {isUserLoggedIn && <Route element={<Content />}>
-            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/dashboard" element={!isAdmin ? <Dashboard /> : <AdminDash />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<h1>Contact</h1>} />
           </Route>}
@@ -48,7 +49,7 @@ function App() {
           <Route path="/" element={!isUserLoggedIn ? <Landing /> : <Navigate to="/dashboard" />} />
           <Route path="/login" element={!isUserLoggedIn ? <Login /> : <Navigate to="/dashboard" />} />
           <Route path="/signup" element={!isUserLoggedIn ? <Signup /> : <Navigate to="/dashboard" />} />
-          <Route path="*" element={<h1>Error 404</h1>} />
+          <Route path="*" element={<h1 style={{ color: "var(--text)" }}>Error 404</h1>} />
         </Routes>
       </Browser>
 
@@ -63,7 +64,7 @@ function App() {
         limit={3}
         theme="dark"
       />
-    </div>
+    </div >
   )
 }
 

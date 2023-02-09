@@ -6,7 +6,7 @@ import Sidebar from "./Sidebar/Sidebar";
 
 const Content = () => {
     const [userLogout, setUserLogout] = useState(false);
-    const { onLogout, setOnLogout, setIsUserLoggedIn, setIsUserFaculty, setIsReturningUser, setUserData } = useContextData();
+    const { onLogout, setOnLogout, setIsUserLoggedIn, setIsUserFaculty, setIsReturningUser, setUserData, setIsAdmin } = useContextData();
     const navigate = useNavigate();
     const ContentRef = useRef();
 
@@ -23,6 +23,7 @@ const Content = () => {
         setIsUserFaculty(false);
         setIsReturningUser(false);
         setUserData({});
+        setIsAdmin(false);
         localStorage.clear();
         navigate("/");
     }

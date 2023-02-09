@@ -4,6 +4,7 @@ export const Context = createContext();
 
 const ContextProvider = ({ children }) => {
     const [userData, setUserData] = useState({});
+    const [isAdmin, setIsAdmin] = useState(false);
     const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
     const [isUserFaculty, setIsUserFaculty] = useState(false);
     const [onLogout, setOnLogout] = useState(false);
@@ -12,22 +13,27 @@ const ContextProvider = ({ children }) => {
     // isDarkTheme reverts back to false on refresh
     const [isDarkTheme, setIsDarkTheme] = useState(false);
     // So skip useEffect theme block for the first render
-    const [initialRender, setInitialRender] = useState(false);
+    const [initialRenderDone, setInitialRenderDone] = useState(false);
 
 
     useEffect(() => {
-        if (initialRender) {
+        if (initialRenderDone) {
             document.body.setAttribute("data-theme", isDarkTheme ? "dark" : "light");
             localStorage.setItem("arms-theme", isDarkTheme ? "dark" : "light");
         } else {
-            setInitialRender(true);
+            setInitialRenderDone(true);
         }
-    }, [isDarkTheme])
+
+        if (userData?.uid === "63d82313decb38179e993edc") setIsAdmin(true);
+
+    }, [isDarkTheme, userData])
 
     return (
         <Context.Provider value={{
             userData,
             setUserData,
+            isAdmin,
+            setIsAdmin,
             isUserLoggedIn,
             setIsUserLoggedIn,
             isUserFaculty,

@@ -65,6 +65,12 @@ body{
   display: flex;
 }
 
+@media (max-width: 750px){
+  .Content-Main{
+      padding: 1em;
+  }
+}
+
 .Outlet-Main{
   padding: 0.6em;
   color: var(--text);
@@ -140,8 +146,11 @@ input, button, a, div {
   background-clip: content-box;
 }
 
-@media (max-width: 750px){
-  .Content-Main{
-      padding: 1em;
-  }
+/* Remove White bg from input auto-fill */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000000s ease-in-out 0s;
+    -webkit-text-fill-color: var(--text) !important;
 }
