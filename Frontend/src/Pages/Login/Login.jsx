@@ -7,13 +7,18 @@ import axios from "axios"
 
 import Header from "../../Components/Header/Header"
 import Trails from "../../Components/Trails/Trails"
+import LoaderBtn from "../../Components/LoaderBtn/LoaderBtn"
+
 import { PeopleSVG, UploadSVG } from "../../Assets"
 import { MdAlternateEmail } from 'react-icons/md'
 import { FiEye, FiEyeOff } from 'react-icons/fi'
 
 const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [alertMsg, setAlertMsg] = useState("");
     const { setIsUserLoggedIn, setIsUserFaculty, setUserData } = useContextData();
+
     const navigate = useNavigate();
     let isMobile = window.innerWidth <= 750;
 
@@ -27,8 +32,11 @@ const Login = () => {
         const password = passwordRef.current.value;
 
         try {
+            setLoading(true);
+            setAlertMsg("");
             const result = await axios.post("/api/login", { email, password });
-            toast.success(result.data.message);
+            result.status === 200 && setLoading(false);
+
             setUserData(result.data.user);
             localStorage.setItem('arms-user', JSON.stringify(result.data.user));
 
@@ -38,6 +46,8 @@ const Login = () => {
             localStorage.setItem('arms-isFacultyLoggedIn', true);
             navigate("/dashboard");
         } catch (err) {
+            setLoading(false);
+            setAlertMsg("Invalid Credentials! Please try again.");
             toast.error(err.response.data.message || "Something went wrong!");
         }
     }
@@ -53,7 +63,9 @@ const Login = () => {
                 </div>
 
 
-                <div className="Login-Form flex col gap2">
+                <div className="Login-Form flex col gap">
+                    {alertMsg !== "" && <p className="Login-Alert">{alertMsg}</p>}
+
                     <form className="flex col gap" onSubmit={HandleLogin}>
                         <div className="Login-InputHolder flex col">
                             <label htmlFor="email">Email</label>
@@ -80,7 +92,8 @@ const Login = () => {
                             </div>
                         </div>
 
-                        <button className="Login-Submit flex" type="submit">Login</button>
+                        {/* <button className="Login-Submit flex" type="submit">Login</button> */}
+                        <LoaderBtn className="Login-Submit flex" type="submit" loading={loading} text="Login" />
                     </form>
 
                     <div className="Login-toSignup">

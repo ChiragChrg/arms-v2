@@ -6,6 +6,8 @@ import { toast } from "react-toastify"
 
 import Header from "../../Components/Header/Header"
 import Trails from "../../Components/Trails/Trails"
+import LoaderBtn from "../../Components/LoaderBtn/LoaderBtn"
+
 import { FaRegUser } from 'react-icons/fa'
 import { MdAlternateEmail } from 'react-icons/md'
 import { FiEye, FiEyeOff } from 'react-icons/fi'
@@ -13,6 +15,8 @@ import { GroupSVG } from "../../Assets"
 
 const Signup = () => {
     const [showPassword, setShowPassword] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [alertMsg, setAlertMsg] = useState("");
     const navigate = useNavigate();
     let isMobile = window.innerWidth <= 750;
 
@@ -31,14 +35,21 @@ const Signup = () => {
 
         if (password !== confPassword) {
             toast.error("Passwords do not match!");
+            setAlertMsg("Passwords do not match!");
             return;
         }
 
         try {
+            setLoading(true);
+            setAlertMsg("");
             const result = await axios.post("/api/signup", { username, email, password });
+            result.status === 200 && setLoading(false);
+
             toast.success(result.data.message);
             navigate("/login");
         } catch (err) {
+            setLoading(false);
+            setAlertMsg(err.response.data.message || "Something went wrong!");
             toast.error(err.response.data.message || "Something went wrong!");
         }
     }
@@ -48,12 +59,14 @@ const Signup = () => {
             <Header dark altLogo={isMobile ? false : true} />
 
             <div className="Signup-Container flex">
-                <div className="Signup-Form flex">
+                <div className="Signup-Form flex col gap05">
+                    {alertMsg !== "" && <p className="Signup-Alert">{alertMsg}</p>}
+
                     <form className="flex col gap" onSubmit={HandleSubmit}>
                         <div className="Signup-InputHolder flex col">
                             <label htmlFor="username">Username</label>
                             <div className="Signup-Input flex gap05">
-                                <input type="text" id="username" placeholder="Username" ref={usernameRef} />
+                                <input type="text" id="username" placeholder="Username" ref={usernameRef} required />
                                 <FaRegUser size={25} color="var(--grey)" />
                             </div>
                         </div>
@@ -61,7 +74,7 @@ const Signup = () => {
                         <div className="Signup-InputHolder flex col">
                             <label htmlFor="email">Email</label>
                             <div className="Signup-Input flex gap05">
-                                <input type="text" id="email" placeholder="Enter your email" ref={emailRef} />
+                                <input type="text" id="email" placeholder="Enter your email" ref={emailRef} required />
                                 <MdAlternateEmail size={25} color="var(--grey)" />
                             </div>
                         </div>
@@ -69,7 +82,7 @@ const Signup = () => {
                         <div className="Signup-InputHolder flex col">
                             <label htmlFor="password">Password</label>
                             <div className="Signup-Input flex gap05">
-                                <input type={showPassword ? "text" : "password"} id="password" placeholder="Password" ref={passwordRef} />
+                                <input type={showPassword ? "text" : "password"} id="password" placeholder="Password" ref={passwordRef} required />
                                 <div className="Signup-ShowPassToggle flex">
                                     {showPassword ?
                                         <FiEye size={25} color="var(--grey)" onClick={() => setShowPassword(false)} />
@@ -82,7 +95,7 @@ const Signup = () => {
                         <div className="Signup-InputHolder flex col">
                             <label htmlFor="confpassword">Confirm Password</label>
                             <div className="Signup-Input flex gap05">
-                                <input type={showPassword ? "text" : "password"} id="confpassword" placeholder="Password" ref={confPasswordRef} />
+                                <input type={showPassword ? "text" : "password"} id="confpassword" placeholder="Password" ref={confPasswordRef} required />
                                 <div className="Signup-ShowPassToggle flex">
                                     {showPassword ?
                                         <FiEye size={25} color="var(--grey)" onClick={() => setShowPassword(false)} />
@@ -92,7 +105,8 @@ const Signup = () => {
                             </div>
                         </div>
 
-                        <button className="Signup-Submit flex" type="submit">Signup</button>
+                        {/* <button className="Signup-Submit flex" type="submit">Signup</button> */}
+                        <LoaderBtn className="Login-Submit flex" type="submit" loading={loading} text="Signup" />
                     </form>
                 </div>
 

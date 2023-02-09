@@ -39,14 +39,19 @@
     background-color: var(--base);
     width: fit-content;
     border-radius: 0.4em;
-    padding-bottom: 2em;
+    padding: 1.5em 0;
     justify-content: flex-start;
-    margin-left: 9em;
+    margin-left: 9.5em;
+}
+
+.Signup-Alert{
+    background-color: rgba(255, 0, 0, 0.5);
+    padding: 0.2em 1em;
+    border-radius: 0.4em;
 }
 
 .Signup-Form form{
-    padding: 1.5em 2em;
-    padding-bottom: 0;
+    padding: 0 1.5em;
     border-radius: 0.4em;
 }
 

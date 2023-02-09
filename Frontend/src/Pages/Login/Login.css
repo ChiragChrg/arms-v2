@@ -35,12 +35,17 @@
     width: fit-content;
     margin: 0 auto;
     border-radius: 0.4em;
-    padding-bottom: 2em;
+    padding: 2em 0;
 }
 
 .Login-Form form{
-    padding: 2em;
-    padding-bottom: 0;
+    padding: 0 2em;
+    border-radius: 0.4em;
+}
+
+.Login-Alert{
+    background-color: rgba(255, 0, 0, 0.5);
+    padding: 0.2em 1em;
     border-radius: 0.4em;
 }
 
@@ -63,11 +68,16 @@
 .Login-Input input{
     background-color: inherit;
     color: var(--text);
+    background: none;
     border: none;
     outline: none;
     min-width: 18em;
     font-size: 1em;
 }
+/* 
+.Login-Input input:focus, .Login-Input input:active {
+    background: transparent;
+} */
 
 .Login-ForgotPass{
     align-self: flex-end;
