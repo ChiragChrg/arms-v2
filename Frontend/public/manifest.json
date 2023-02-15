@@ -1,0 +1,43 @@
+{
+    "short_name": "ARMS",
+    "name": "ARMS | ChiragChrg",
+    "icons": [
+        {
+            "src": "./Icons/144.png",
+            "sizes": "144x144",
+            "type": "image/png",
+            "purpose": "maskable"
+        },
+        {
+            "src": "./Icons/192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "./Icons/384.png",
+            "sizes": "384x384",
+            "type": "image/png"
+        },
+        {
+            "src": "./Icons/512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "start_url": ".",
+    "display": "standalone",
+    "theme_color": "var(--base)",
+    "background_color": "var(--base)",
+    "description": "Academic Resource Management System (ARMS) is a software which is developed for the Education system. Teachers can upload study materials and Students can download those files.",
+    "dir": "ltr",
+    "lang": "en",
+    "orientation": "portrait",
+    "display_override": [],
+    "categories": [
+        "productivity",
+        "education",
+        "social"
+    ],
+    "prefer_related_applications": false
+}
