@@ -3,8 +3,20 @@
 
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/ArmsLogo.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <meta name="theme-color" content="var(--base)" />
+  <meta name="description"
+    content="Academic Resource Management System (ARMS) is a software which is developed for the Education system. Teachers can upload study materials and Students can download those files." />
+  <meta name="robots" content="index, follow" />
+  <meta name="google-site-verification" content="YRAUUyc8TP4QJ1s53KAdLxcON9xifQf33BnLeP-F_5Y" />
+  <meta name="keywords"
+    content="chiragchrg, chirag, ChiragChrg1, chrg, DevBase, Dev Base, ARMS, Armsv2, ARMS2.0, Academic, Resource, Management, System, arms2" />
+
+  <link rel="icon" type="image/svg+xml" href="/ArmsLogo.svg" />
+  <!-- <link rel="apple-touch-icon" href="/Icons/192.png" /> -->
+  <!-- <link rel="manifest" href="/manifest.json" /> -->
+
   <title>ARMS | Academic Resource Management System</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -15,6 +27,23 @@
 <body>
   <div id="root"></div>
   <script type="module" src="/src/main.jsx"></script>
+
+  <!-- PWA Service Worker Script -->
+  <!-- <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker
+          .register("/ServiceWorker.js")
+          .then((Reg) => {
+            console.log("SW Registered: ", Reg.scope);
+          })
+          .catch((RegErr) => {
+            console.log("SW Registration failed: ", RegErr);
+          });
+      });
+    }
+  </script> -->
+  <!-- PWA Service Worker Script -->
 </body>
 
 </html>
