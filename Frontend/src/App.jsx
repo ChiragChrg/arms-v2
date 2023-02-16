@@ -14,7 +14,7 @@ import Dashboard from './Pages/Dashboard/Dashboard';
 import About from './Pages/About/About';
 
 function App() {
-  const { setUserData, isAdmin, isUserLoggedIn, setIsUserLoggedIn, setIsUserFaculty, setIsReturningUser } = useContextData();
+  const { setUserData, isAdmin, isUserLoggedIn, setIsUserLoggedIn, setIsUserFaculty, setIsReturningUser, setIsDarkTheme } = useContextData();
 
   useEffect(() => {
     const getFacultyLoggedIn = localStorage.getItem('arms-isFacultyLoggedIn');
@@ -32,6 +32,7 @@ function App() {
 
     let getTheme = localStorage.getItem("arms-theme");
     document.body.setAttribute("data-theme", getTheme || "light");
+    getTheme === "dark" ? setIsDarkTheme(true) : setIsDarkTheme(false);
   }, [])
 
   // console.log(isFacultyLoggedIn);
