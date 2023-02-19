@@ -19,9 +19,11 @@ const ContextProvider = ({ children }) => {
     useEffect(() => {
         if (initialRenderDone) {
             document.body.setAttribute("data-theme", isDarkTheme ? "dark" : "light");
+            document.querySelector('meta[name="theme-color"]')?.setAttribute('content', isDarkTheme ? "#0F0F0F" : "#FAFAFA");
             localStorage.setItem("arms-theme", isDarkTheme ? "dark" : "light");
         } else {
             setInitialRenderDone(true);
+            document.querySelector('meta[name="theme-color"]')?.setAttribute('content', isDarkTheme ? "#0F0F0F" : "#FAFAFA");
         }
 
         if (userData?.uid === import.meta.env.VITE_ARMS_ADMIN_UID) setIsAdmin(true);
