@@ -24,7 +24,7 @@ const ContextProvider = ({ children }) => {
             setInitialRenderDone(true);
         }
 
-        if (userData?.uid === "63d82313decb38179e993edc") setIsAdmin(true);
+        if (userData?.uid === import.meta.env.VITE_ARMS_ADMIN_UID) setIsAdmin(true);
 
     }, [isDarkTheme, userData])
 
