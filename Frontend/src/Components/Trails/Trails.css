@@ -22,7 +22,7 @@
 
 .Trails-Trail{
     position: relative;
-    left: 0;
+    /* left: 0; */
     width: 70%;
     height: 20px;
     border-radius: 0.5em;

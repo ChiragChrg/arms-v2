@@ -86,6 +86,10 @@
         padding-top: 1em;
     }
 
+    .Landing-Vector{
+        display: none;
+    }
+
     .Landing-Start{
         margin-right: 0;
         /* background-color: red; */
