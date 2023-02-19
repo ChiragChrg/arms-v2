@@ -1,0 +1,21 @@
+.AdminDash-Main{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    /* background-color: red; */
+}
+
+.AdminDash-Cards{
+    width: 100%;
+}
+
+.AdminDash-Card{
+    background-color: var(--base);
+    color: var(--primary);
+    padding: 0.3em 1em;
+    border-radius: 0.4em;
+}
+
+.AdminDash-Card:hover{
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}

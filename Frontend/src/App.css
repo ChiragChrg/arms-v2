@@ -74,6 +74,7 @@ body{
 .Outlet-Main{
   padding: 0.6em;
   color: var(--text);
+  width: 77%;
 }
 
 .Logout-Modal{
