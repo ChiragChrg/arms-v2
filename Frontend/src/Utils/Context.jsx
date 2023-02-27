@@ -7,6 +7,7 @@ const ContextProvider = ({ children }) => {
     const [isAdmin, setIsAdmin] = useState(false);
     const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
     const [isUserFaculty, setIsUserFaculty] = useState(false);
+    const [authorizedUser, setAuthorizedUser] = useState(false);
     const [onLogout, setOnLogout] = useState(false);
     const [isReturningUser, setIsReturningUser] = useState(false);
 
@@ -28,7 +29,12 @@ const ContextProvider = ({ children }) => {
 
         if (userData?.uid === import.meta.env.VITE_ARMS_ADMIN_UID) setIsAdmin(true);
 
-    }, [isDarkTheme, userData])
+        if (isAdmin || isUserFaculty) {
+            setAuthorizedUser(true);
+        } else {
+            setAuthorizedUser(false);
+        }
+    }, [isDarkTheme, userData, isAdmin, isUserFaculty])
 
     return (
         <Context.Provider value={{
@@ -40,6 +46,8 @@ const ContextProvider = ({ children }) => {
             setIsUserLoggedIn,
             isUserFaculty,
             setIsUserFaculty,
+            authorizedUser,
+            setAuthorizedUser,
             isReturningUser,
             setIsReturningUser,
             isDarkTheme,

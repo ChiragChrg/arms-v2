@@ -7,6 +7,8 @@ import { useContextData } from './Hooks/useContextData'
 
 import Content from './Components/Content';
 import AdminDash from './Components/AdminDash/AdminDash';
+import FileUpload from './Components/FileUpload/FileUpload';
+
 import Landing from './Pages/Landing/Landing';
 import Login from './Pages/Login/Login';
 import Signup from './Pages/Signup/Signup';
@@ -14,7 +16,7 @@ import Dashboard from './Pages/Dashboard/Dashboard';
 import About from './Pages/About/About';
 
 function App() {
-  const { setUserData, isAdmin, isUserLoggedIn, setIsUserLoggedIn, setIsUserFaculty, setIsReturningUser, setIsDarkTheme } = useContextData();
+  const { setUserData, isAdmin, isUserLoggedIn, authorizedUser, setIsUserLoggedIn, setIsUserFaculty, setIsReturningUser, setIsDarkTheme } = useContextData();
 
   useEffect(() => {
     const getFacultyLoggedIn = localStorage.getItem('arms-isFacultyLoggedIn');
@@ -45,6 +47,7 @@ function App() {
             <Route path="/dashboard" element={!isAdmin ? <Dashboard /> : <AdminDash />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<h1>Contact</h1>} />
+            <Route path="/upload" element={authorizedUser ? <FileUpload /> : <h1>User Not Authorized</h1>} />
           </Route>}
 
           <Route path="/" element={!isUserLoggedIn ? <Landing /> : <Navigate to="/dashboard" />} />

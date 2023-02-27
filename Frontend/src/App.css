@@ -9,8 +9,11 @@
     --text: #000;
     --textAlt: #FFF;
     --grey: #808080;
+    --greyLite: rgba(200, 200, 200, 0.5);
     --greyDark: rgba(26, 26, 26, 0.5);
     --primaryLite: rgba(45, 101, 206, 0.15);
+    --green: rgb(1, 150, 1);
+    --red: rgb(211, 2, 2);
 }
 
 [data-theme="dark"]{
@@ -24,7 +27,11 @@
   --text: #FFF;
   --textAlt: #000;
   --grey: #808080;
+  --greyLite: rgba(40, 40, 40, 0.5);
   --greyDark: rgba(26, 26, 26, 0.5);
+  --primaryLite: rgba(45, 101, 206, 0.15);
+  --green: rgb(1, 150, 1);
+  --red: rgb(211, 2, 2);
 }
 
 *{
@@ -63,6 +70,7 @@ body{
 .Content-Main{
   position: relative;
   display: flex;
+  overflow: hidden;
 }
 
 @media (max-width: 750px){
@@ -75,6 +83,7 @@ body{
   padding: 0.6em;
   color: var(--text);
   width: 77%;
+  overflow: auto;
 }
 
 .Logout-Modal{
