@@ -1,0 +1,107 @@
+.FileUpload-Main{
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.FileUpload-Form{
+    padding: 1em;
+}
+
+.FileUpload-Row{
+    justify-content: flex-start;
+    margin-bottom: 1em;
+}
+
+.FileUpload-Row.alignBottom{
+    align-items: flex-end;
+}
+
+.FileUpload-InputHolder{
+    align-items: flex-start;
+}
+
+.FileUpload-Input{
+    padding: 0.4em 0.5em;
+    border-radius: 0.3em;
+    border: 1px solid var(--grey);
+}
+
+.FileUpload-InputHolder label{
+    font-size: 0.95em;
+    color: var(--text);
+}
+
+.FileUpload-Input input{
+    background-color: inherit;
+    color: var(--text);
+    background: none;
+    border: none;
+    outline: none;
+    min-width: 18em;
+    font-size: 1em;
+}
+
+.FileUpload-Input .SelectTag-Main{
+    background-color: inherit;
+    color: var(--text);
+    background: none;
+    border: none;
+    outline: none;
+    min-width: 18em;
+    font-size: 1em;
+}
+
+.FileUpload-FilePicker{
+    justify-content: space-around;
+    background-color: inherit;
+    color: var(--text);
+    background: none;
+    border: none;
+    outline: none;
+    min-width: 21.2em;
+    font-size: 1em;
+    padding: 0.4em 0.5em;
+    border-radius: 0.3em;
+    border: 1px solid var(--grey);
+    cursor: pointer;
+}
+
+.FileUpload-Submit{
+    background-color: var(--primary);
+    min-width: 21.2em;
+    font-size: 1em;
+    border-radius: 0.25em;
+    padding: 0.44em 0.5em;
+    color: var(--white);
+    cursor: pointer;
+}
+
+.FileUpload-FileList{
+    min-width: 44.4em;
+    padding: 0.2em 1em;
+    border-radius: 0.4em;
+    margin-left: 1em;
+}
+
+.FileUpload-FileList thead{
+    background-color: var(--greyLite);
+}
+
+.FileUpload-FileList thead th{
+    border-right: 1px solid var(--grey);
+    padding: 0.1em 0.5em;
+}
+
+.FileUpload-FileList thead th:last-child{
+    border-right: none;
+}
+
+.FileUpload-TableRow{
+    border-bottom: 1px solid var(--greyLite);
+}
+
+.FileUpload-TableRow td{
+    padding: 0.4em 1em;
+    text-align: center;
+}
