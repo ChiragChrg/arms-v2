@@ -30,9 +30,17 @@ const docsSchema = new mongoose.Schema({
                         type: String,
                         required: true,
                     },
+                    docSize: {
+                        type: String,
+                        required: true,
+                    },
                     docLink: {
                         type: String,
                         required: true,
+                    },
+                    docCreated: {
+                        type: Date,
+                        default: Date.now,
                     },
                 }],
             }],

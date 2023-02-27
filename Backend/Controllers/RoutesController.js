@@ -1,7 +1,11 @@
 const User = require('../Model/UserModel');
+const Docs = require('../Model/DocsModel');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const md5 = require('md5');
+const { Readable } = require('stream');
+const { google } = require('googleapis');
+const path = require('path');
 
 exports.RegisterUser = async (req, res) => {
     const { username, email, password } = req.body;
@@ -62,3 +66,75 @@ exports.LoginUser = async (req, res) => {
         res.status(500).json({ message: 'Internal server error' });
     }
 };
+
+exports.UploadToDrive = async (req, res) => {
+    const { institution, course, semester, subject } = req.body;
+    const fileList = req.files;
+
+    fileList.forEach((obj, index) => {
+        const { originalname, mimetype, buffer, size } = obj;
+        const stream = Readable.from(buffer);
+
+        let fileMeta = {
+            name: originalname,
+            parents: [process.env.GOOGLE_DRIVE_PARENT_ID]
+        }
+
+        let media = {
+            mimeType: mimetype,
+            body: stream
+        }
+
+        async function UploadFiles() {
+            // GOOGLE DRIVE API SERVICE
+            const KEYFILE = path.join(__dirname, "../credentials.json");
+            const SCOPE = ['https://www.googleapis.com/auth/drive'];
+            let auth = new google.auth.GoogleAuth({
+                keyFile: KEYFILE,
+                scopes: SCOPE,
+            })
+            const driveService = google.drive({ version: "v3", auth });
+            try {
+                let result = await driveService.files.create({
+                    resource: fileMeta,
+                    media: media,
+                    fields: 'id, name, size, webContentLink'
+                });
+                console.log("MAIN", result.data)
+            } catch (err) {
+                console.log(err)
+                res.status(500);
+            }
+        }
+        UploadFiles()
+    })
+    res.status(200).json({ message: "Files Uploaded Successfully!" });
+}
+
+
+exports.DownloadFromDrive = async (req, res) => {
+    const { fileId } = req.body;
+
+    // GOOGLE DRIVE API SERVICE
+    const KEYFILE = path.join(__dirname, "../credentials.json");
+    const SCOPE = ['https://www.googleapis.com/auth/drive'];
+    const auth = new google.auth.GoogleAuth({
+        keyFile: KEYFILE,
+        scopes: SCOPE,
+    })
+    const driveService = google.drive({ version: "v3", auth });
+
+    try {
+        let result = await driveService.files.get({
+            fileId: fileId,
+            fields: "id, name, originalFilename, size, webContentLink"
+        })
+
+        console.log(result)
+
+        res.status(200).send(result.data)
+    } catch (err) {
+        console.log(err)
+        res.status(500)
+    }
+}
