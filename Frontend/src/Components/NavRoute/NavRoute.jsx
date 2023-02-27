@@ -22,7 +22,7 @@ const NavRoute = ({ routes }) => {
                 return (
                     <Fragment key={index}>
                         <IoIosArrowForward size={18} color="var(--grey)" />
-                        <NavLink to={`/${item}`}>
+                        <NavLink to={`/${item.toLowerCase()}`}>
                             <span>{item}</span>
                         </NavLink>
                     </Fragment>
