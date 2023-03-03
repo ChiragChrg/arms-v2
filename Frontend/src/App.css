@@ -41,7 +41,8 @@
   font-family: "Poppins", sans-serif;
 }
 
-body{
+html,body{
+  height: 100%;
   background-color: var(--base);
 }
 
@@ -71,6 +72,7 @@ body{
   position: relative;
   display: flex;
   overflow: hidden;
+  height: 100vh;
 }
 
 @media (max-width: 750px){

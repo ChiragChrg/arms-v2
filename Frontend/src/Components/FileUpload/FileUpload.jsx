@@ -5,6 +5,7 @@ import axios from "axios"
 import { partial } from "filesize";
 import NavRoute from "../NavRoute/NavRoute"
 
+import { UploadSVG } from "../../Assets"
 import { BsBuilding, BsCalendar3 } from "react-icons/bs"
 import { HiOutlineDocumentDuplicate, HiOutlineBookOpen } from "react-icons/hi"
 import { TbBooks, TbFileUpload, TbRuler } from "react-icons/tb"
@@ -19,44 +20,83 @@ const FileUpload = () => {
     const [loading, setLoading] = useState(false);
     const [isUploading, setIsUploading] = useState('idle');
     const [file, setFile] = useState();
+    const [enableUpload, setEnableUpload] = useState(false);
     // const [fileArray, setFileArray] = useState();
 
     const FilePickerRef = useRef();
     //fetch list of courses for curr dept when page loads
 
-    const ArrList = ["yolos", "djsfsdf", "sdjfisf", "sjidfijif"]
+    const ArrList = ["Java", "HTML", "CSS", "React"]
     const ArrSem = [1, 2, 3, 4, 5, 6]
     const size = partial({ base: 10 });
+
+    useEffect(() => {
+        if (file) setEnableUpload(true);
+        if (isUploading === "done") setEnableUpload(false)
+    })
 
 
     const handleFileSelection = (e) => {
         const files = e.target.files;
         setFile(files ? [...files] : [])
+        setIsUploading("idle")
     }
 
     const HandleUpload = async (e) => {
         e.preventDefault();
-        if (file === false) return;
+        if (file === false || !enableUpload) return;
 
         setLoading(true);
         setIsUploading("loading")
 
         let formData = new FormData();
-        formData.append("institution", "Srinivas University");
-        formData.append("course", course);
-        formData.append("semester", semester);
-        formData.append("subject", subject);
+        formData.append("collegeId", "63fe29f74837fb0bc1d01b25");
+        formData.append("courseId", "64005921d1d856e54e4385f6");
+        formData.append("subjectId", "6401c77f69697cb940707d6b");
+        formData.append("uploadedBy", "ChrgDocsAdmin");
 
         file.forEach((obj) => {
             formData.append("files", obj, obj.name);
         })
 
         try {
-            console.log(file, formData)
-            // const res = await axios.post('/api/upload', formData);
-            // console.log(res)
+            // console.log(file, formData)
+            const res = await axios.post('/api/upload', formData);
+            // const res = await axios.post('/api/createinstitute', { userName: "Chirag" });
+            // const res = await axios.post('/api/createcourse', {
+            //     collegeId: "63fe29f74837fb0bc1d01b25",
+            //     courseName: "MCA",
+            //     courseCreator: "ChrgADMIN",
+            // });
+            // const res = await axios.post('/api/createsubject', {
+            //     collegeId: "63fe29f74837fb0bc1d01b25",
+            //     courseId: "64005921d1d856e54e4385f6",
+            //     subjectArr: [{
+            //         subjectName: "Subject 1",
+            //         subjectCreator: "AdminChrgYO"
+            //     },
+            //     {
+            //         subjectName: "Subject 2",
+            //         subjectCreator: "AdminChrgYO"
+            //     },
+            //     {
+            //         subjectName: "Subject 3",
+            //         subjectCreator: "AdminChrgYO"
+            //     }]
+            // });
+            console.log(res)
+
+            if (res.status === 200) {
+                // setFile(null)
+                setLoading(false)
+                setIsUploading("done")
+
+            }
         } catch (err) {
             console.log(err)
+            setFile(null)
+            setLoading(false)
+            setIsUploading("error")
         }
     }
 
@@ -68,6 +108,8 @@ const FileUpload = () => {
                     100% { transform: rotate(360deg); }
                 }
             `}</style>
+
+            <img src={UploadSVG} alt="PeopleSVG" className="FileUpload-Vector" width={280} height="auto" />
 
             <NavRoute routes={["Institution", "Upload"]} />
             <h1>Upload Document {course} {semester}</h1>
@@ -115,9 +157,12 @@ const FileUpload = () => {
                             <HiOutlineDocumentDuplicate size={25} color="var(--grey)" />
                             <span>{file ? `${file.length} files Selected` : "Select Documents"}</span>
                         </div>
-                        <MdRotateRight size={25} color="var(--grey)" title="Select New Files" />
+                        {file && <div className="FileUpload-NewFiles flex gap05" title="Select New Files">
+                            <MdRotateRight size={25} color="var(--text)" />
+                            <span>New</span>
+                        </div>}
                     </div>
-                    <div className="FileUpload-Submit flex gap05" onClick={HandleUpload}>
+                    <div className="FileUpload-Submit flex gap05" style={enableUpload ? { backgroundColor: "var(--primary)" } : { backgroundColor: "var(--grey)", cursor: "not-allowed" }} onClick={HandleUpload}>
                         {!loading ?
                             <>
                                 <TbFileUpload size={25} color="var(--white)" />
@@ -133,10 +178,12 @@ const FileUpload = () => {
             {file &&
                 <table border="0" className="FileUpload-FileList" style={{ borderCollapse: "collapse" }}>
                     <thead>
-                        <th>File Name</th>
-                        <th>File Type</th>
-                        <th>Size</th>
-                        <th>Status</th>
+                        <tr>
+                            <th>File Name</th>
+                            <th>File Type</th>
+                            <th>Size</th>
+                            <th>Status</th>
+                        </tr>
                     </thead>
                     <tbody>
                         {file.map((obj, index) => {

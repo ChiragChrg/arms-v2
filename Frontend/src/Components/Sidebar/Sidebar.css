@@ -1,5 +1,6 @@
 .Sidebar-Main{
-    width: 320px;
+    /* width: 320px; */
+    width: 23%;
     height: 100vh;
     background-color: var(--base);
     justify-content: flex-start;

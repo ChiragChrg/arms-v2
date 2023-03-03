@@ -67,10 +67,80 @@ exports.LoginUser = async (req, res) => {
     }
 };
 
+exports.CreateInstitute = async (req, res) => {
+    const { userName } = req.body;
+    console.log("Creating New Docs", userName)
+    try {
+        const newDocs = new Docs({
+            collegeName: "Mangalore University",
+            description: "Mangalore University is a Test college for ARMS",
+            registeredBy: userName,
+        });
+        await newDocs.save();
+        res.status(200).json({ newDocs, message: "Institute Registered Successfully!" });
+
+    } catch (err) {
+        console.log(err)
+        res.status(500).json({ message: 'Internal server error' });
+    }
+}
+
+exports.CreateCourse = async (req, res) => {
+    const { collegeId, courseName, courseCreator } = req.body;
+
+    const DocsDB = await Docs.findOne({ "_id": collegeId });
+    if (!DocsDB) return res.status(400).json({ message: 'Institute does not exist!' });
+
+    try {
+        const CourseDB = DocsDB.course;
+        CourseDB.push({
+            courseName: courseName,
+            courseCreator: courseCreator
+        })
+
+        const savedCourse = await DocsDB.save();
+        res.status(200).json({ savedCourse, message: "Course Created Successfully!" });
+
+    } catch (err) {
+        console.log(err)
+        res.status(500).json({ message: 'Internal server error' });
+    }
+}
+
+exports.CreateSubject = async (req, res) => {
+    const { collegeId, courseId, subjectArr } = req.body;
+
+    const [DocsDB] = await Docs.find({ "_id": collegeId }, { course: 1 })
+    if (!DocsDB) return res.status(400).json({ message: 'Institute does not exist!' });
+
+    try {
+        DocsDB.course.forEach((obj) => {
+            if (obj._id == courseId) {
+                subjectArr.forEach((sub) => {
+                    obj.subjects.push({
+                        subjectName: sub.subjectName,
+                        subjectCreator: sub.subjectCreator,
+                    })
+                })
+            }
+        })
+
+        const savedSubject = await DocsDB.save();
+        res.status(200).json({ savedSubject, message: "Subjects Created Successfully!" });
+    } catch (err) {
+        console.log(err)
+        res.status(500).json({ message: 'Internal server error' });
+    }
+}
+
 exports.UploadToDrive = async (req, res) => {
-    const { institution, course, semester, subject } = req.body;
+    const { collegeId, courseId, subjectId, uploadedBy } = req.body;
     const fileList = req.files;
 
+    const DocsDB = await Docs.findOne({ "_id": collegeId }, { course: 1 })
+    if (!DocsDB) return res.status(400).json({ message: 'Invalid Entry, Check entered details.' });
+
+    let indexCount = 1;
     fileList.forEach((obj, index) => {
         const { originalname, mimetype, buffer, size } = obj;
         const stream = Readable.from(buffer);
@@ -100,7 +170,29 @@ exports.UploadToDrive = async (req, res) => {
                     media: media,
                     fields: 'id, name, size, webContentLink'
                 });
-                console.log("MAIN", result.data)
+                // console.log("MAIN", result.data)
+
+                DocsDB.course.forEach((obj) => {
+                    if (obj._id == courseId) {
+                        obj.subjects.forEach((sub) => {
+                            if (sub._id == subjectId) {
+                                sub.subjectDocs.push({
+                                    docId: result.data.id,
+                                    docName: result.data.name,
+                                    docSize: result.data.size,
+                                    docLink: result.data.webContentLink,
+                                    docUploader: uploadedBy,
+                                })
+                            }
+                        })
+                    }
+                })
+
+                if (indexCount === fileList.length) {
+                    await DocsDB.save();
+                } else {
+                    indexCount = indexCount + 1;
+                }
             } catch (err) {
                 console.log(err)
                 res.status(500);
@@ -108,9 +200,11 @@ exports.UploadToDrive = async (req, res) => {
         }
         UploadFiles()
     })
+
+    // const savedDocs = await DocsDB.save();
+    // await DocsDB.save();
     res.status(200).json({ message: "Files Uploaded Successfully!" });
 }
-
 
 exports.DownloadFromDrive = async (req, res) => {
     const { fileId } = req.body;

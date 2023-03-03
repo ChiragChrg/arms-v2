@@ -10,39 +10,57 @@ const docsSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    registeredBy: {
+        type: String,
+        required: true,
+    },
+    createdOn: {
+        type: Date,
+        default: Date.now,
+    },
     course: [{
         courseName: {
             type: String,
             required: true,
         },
-        semesters: [{
-            semesterName: {
+        courseCreator: {
+            type: String,
+            required: true,
+        },
+        subjects: [{
+            subjectName: {
                 type: String,
                 required: true,
             },
-            subjects: [{
-                subjectName: {
+            subjectCreator: {
+                type: String,
+                required: true,
+            },
+            subjectDocs: [{
+                docId: {
                     type: String,
                     required: true,
                 },
-                subjectDocs: [{
-                    docName: {
-                        type: String,
-                        required: true,
-                    },
-                    docSize: {
-                        type: String,
-                        required: true,
-                    },
-                    docLink: {
-                        type: String,
-                        required: true,
-                    },
-                    docCreated: {
-                        type: Date,
-                        default: Date.now,
-                    },
-                }],
+                docName: {
+                    type: String,
+                    required: true,
+                },
+                docSize: {
+                    type: String,
+                    required: true,
+                },
+                docLink: {
+                    type: String,
+                    required: true,
+                },
+                docCreated: {
+                    type: Date,
+                    default: Date.now,
+                },
+                docUploader: {
+                    type: String,
+                    required: true,
+                },
             }],
         }],
     }],

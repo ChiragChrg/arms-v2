@@ -5,6 +5,9 @@ const RoutesController = require('../Controllers/RoutesController');
 router.post('/signup', RoutesController.RegisterUser);
 router.post('/login', RoutesController.LoginUser);
 
+router.post('/createinstitute', RoutesController.CreateInstitute)
+router.post('/createcourse', RoutesController.CreateCourse)
+router.post('/createsubject', RoutesController.CreateSubject)
 router.post('/upload', upload.array("files", 10), RoutesController.UploadToDrive)
 // router.post('/download', RoutesController.DownloadFromDrive)
 

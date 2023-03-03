@@ -4,6 +4,13 @@
     position: relative;
 }
 
+.FileUpload-Vector{
+    position: absolute;
+    top: 2em;
+    right: 0;
+    z-index: -1;
+}
+
 .FileUpload-Form{
     padding: 1em;
 }
@@ -61,14 +68,23 @@
     outline: none;
     min-width: 21.2em;
     font-size: 1em;
-    padding: 0.4em 0.5em;
+    padding: 0.35em 0.5em;
     border-radius: 0.3em;
     border: 1px solid var(--grey);
     cursor: pointer;
 }
 
+.FileUpload-NewFiles{
+    background-color: var(--greyLite);
+    padding: 0.15em 0.3em;
+    border-radius: 0.3em;
+}
+
+.FileUpload-NewFiles:hover{
+    background-color: var(--primaryLite);
+}
+
 .FileUpload-Submit{
-    background-color: var(--primary);
     min-width: 21.2em;
     font-size: 1em;
     border-radius: 0.25em;
@@ -99,9 +115,20 @@
 
 .FileUpload-TableRow{
     border-bottom: 1px solid var(--greyLite);
+    background-color: var(--base);
 }
 
 .FileUpload-TableRow td{
+    height: 2.830em;
     padding: 0.4em 1em;
     text-align: center;
+}
+
+.FileUpload-TableRow td:first-child{
+    overflow: hidden;
+    width: 24.396em;
+}
+
+.FileUpload-TableRow:last-child{
+    border-bottom: 2em solid var(--base);
 }
