@@ -54,7 +54,6 @@
 }
 
 .Login-Input{
-    /* background-color: lime; */
     padding: 0.4em 0.5em;
     border-radius: 0.3em;
     border: 1px solid var(--grey);
