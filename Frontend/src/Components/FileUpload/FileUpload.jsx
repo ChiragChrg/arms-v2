@@ -33,7 +33,7 @@ const FileUpload = () => {
     useEffect(() => {
         if (file) setEnableUpload(true);
         if (isUploading === "done") setEnableUpload(false)
-    })
+    }, [file, isUploading])
 
 
     const handleFileSelection = (e) => {

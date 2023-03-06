@@ -60,22 +60,23 @@ const AdminDash = () => {
 
             <div className="AdminDash-Controler flex col gap">
                 <h2>Admin Control Panel</h2>
-                <Link to="/upload" className="AdminDash-Control Upload flex gap05">
-                    <TbFileUpload size={25} />
-                    <h3>Upload Documents</h3>
+                <Link to="/institution" className="AdminDash-Control flex gap05">
+                    <BsBuilding size={25} />
+                    <h3>Manage Institutions</h3>
                 </Link>
 
                 <div className="flex gap">
-                    <div className="AdminDash-Control flex gap05">
+                    <Link to="/upload" className="AdminDash-Control Upload flex gap05">
+                        <TbFileUpload size={25} />
+                        <h3>Upload Documents</h3>
+                    </Link>
+
+                    <Link to="/approve" className="AdminDash-Control flex gap05">
                         <FiPlus size={25} />
                         <h3>Approve Faculty</h3>
-                    </div>
-
-                    <div className="AdminDash-Control flex gap05">
-                        <FiPlus size={25} />
-                        <h3>Upload Documents</h3>
-                    </div>
+                    </Link>
                 </div>
+
             </div>
         </div>
     )

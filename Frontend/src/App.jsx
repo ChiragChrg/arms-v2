@@ -4,6 +4,7 @@ import { BrowserRouter as Browser, Routes, Route, Navigate } from 'react-router-
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useContextData } from './Hooks/useContextData'
+import axios from 'axios';
 
 import Content from './Components/Content';
 import AdminDash from './Components/AdminDash/AdminDash';
@@ -14,6 +15,10 @@ import Login from './Pages/Login/Login';
 import Signup from './Pages/Signup/Signup';
 import Dashboard from './Pages/Dashboard/Dashboard';
 import About from './Pages/About/About';
+import Institution from './Pages/Institution/Institution';
+import NewInstitute from './Pages/Institution/NewInstitute';
+import InstituteInfo from './Pages/Institution/InstituteInfo/InstituteInfo';
+import NewCourse from './Pages/Institution/InstituteInfo/NewCourse';
 
 function App() {
   const { setUserData, isAdmin, isUserLoggedIn, authorizedUser, setIsUserLoggedIn, setIsUserFaculty, setIsReturningUser, setIsDarkTheme } = useContextData();
@@ -30,7 +35,9 @@ function App() {
     }
 
     const getLocalUser = localStorage.getItem('arms-user');
-    setUserData(JSON.parse(getLocalUser));
+    const LocalUser = JSON.parse(getLocalUser)
+    setUserData(LocalUser);
+    axios.defaults.headers.common['Authorization'] = LocalUser.token;
 
     let getTheme = localStorage.getItem("arms-theme");
     document.body.setAttribute("data-theme", getTheme || "light");
@@ -48,6 +55,11 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<h1>Contact</h1>} />
             <Route path="/upload" element={authorizedUser ? <FileUpload /> : <h1>User Not Authorized</h1>} />
+            <Route path="/institution" element={<Institution />} />
+            <Route path="/institution/new" element={<NewInstitute />} />
+            <Route path="/institution/:instituteId" element={<InstituteInfo />} />
+            <Route path="/institution/:instituteId/new" element={<NewCourse />} />
+            <Route path="/institution/:instituteId/:course" element={<NewCourse />} />
           </Route>}
 
           <Route path="/" element={!isUserLoggedIn ? <Landing /> : <Navigate to="/dashboard" />} />
@@ -66,7 +78,7 @@ function App() {
         draggable
         pauseOnHover
         limit={3}
-        theme="dark"
+        theme="colored"
       />
     </div >
   )
