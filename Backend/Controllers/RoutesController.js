@@ -47,7 +47,7 @@ exports.LoginUser = async (req, res) => {
         if (!CheckPassword) return res.status(400).json({ message: 'Email or password is incorrect!' });
 
         const token = jwt.sign({
-            id: CheckUser._id,
+            uid: CheckUser._id,
             email: CheckUser.email,
             username: CheckUser.username,
         }, process.env.JWT_SECRET);
@@ -67,18 +67,26 @@ exports.LoginUser = async (req, res) => {
     }
 };
 
+exports.GetInstitutions = async (req, res) => {
+    try {
+        const DocsDB = await Docs.find({})
+        res.status(200).json({ DocsDB })
+    } catch (err) {
+        console.log(err)
+        res.status(500).json({ message: "Failed to get Institutions" })
+    }
+}
+
 exports.CreateInstitute = async (req, res) => {
-    const { userName } = req.body;
-    console.log("Creating New Docs", userName)
+    const { collegeName, description, userName } = req.body;
     try {
         const newDocs = new Docs({
-            collegeName: "Mangalore University",
-            description: "Mangalore University is a Test college for ARMS",
+            collegeName: collegeName,
+            description: description,
             registeredBy: userName,
         });
         await newDocs.save();
         res.status(200).json({ newDocs, message: "Institute Registered Successfully!" });
-
     } catch (err) {
         console.log(err)
         res.status(500).json({ message: 'Internal server error' });

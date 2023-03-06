@@ -5,14 +5,12 @@ const bodyParser = require('body-parser');
 require('dotenv').config();
 
 const route = require('./Routes/routes');
-const docsRoute = require('./Routes/docsRoute');
 
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
 app.use('/api/', route);
-// app.use('/docs/', docsRoute);
 
 mongoose.set("strictQuery", false);
 // mongoose.connect(process.env.MONGO_LOCAL_URL, {
