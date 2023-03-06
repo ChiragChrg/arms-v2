@@ -1,0 +1,66 @@
+.Institution-Main{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    padding: 0.2em 0.5em;
+}
+
+.Institution-Header{
+    padding: 0.2em 0;
+    justify-content: space-between !important;
+}
+
+.Institution-NotFound{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    color: var(--grey);
+    justify-content: center;
+    align-items: center;
+}
+
+.Institution-Create{
+    background-color: var(--primary);
+    padding: 0.4em 0.6em;
+    padding-right: 0.8em;
+    font-size: 1em;
+    border-radius: 0.3em;
+    color: var(--white);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.Institution-Cards{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.2em;
+    margin-top: 2em;
+    padding-bottom: 2em;
+}
+
+.Institution-Card{
+    background-color: var(--primaryLite);
+    color: var(--text);
+    padding: 1em;
+    border-radius: 0.4em;
+    cursor: pointer;
+    text-align: center;
+    min-height: 11em;
+    min-width: 20em;
+    text-decoration: none;
+    overflow: hidden;
+    transition: 0.3s ease-in-out;
+}
+
+.Institution-Card:hover{
+    scale: 1.05;
+}
+
+.Institution-Icon{
+    background-color: var(--primary);
+    width: fit-content;
+    padding: 1em;
+    border-radius: 100%;
+    margin-bottom: 0.5em;
+}
