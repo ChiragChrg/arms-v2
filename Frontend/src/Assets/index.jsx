@@ -4,6 +4,8 @@ import PeopleSVG from './People.svg';
 import UploadSVG from './Upload.svg';
 import GroupSVG from './Group.svg';
 import BooksSVG from './Books.svg';
+import CourseSVG from './Course.svg';
+import SubjectSVG from './Subject.svg';
 
 export {
     Logo,
@@ -12,4 +14,6 @@ export {
     UploadSVG,
     GroupSVG,
     BooksSVG,
+    CourseSVG,
+    SubjectSVG,
 };
