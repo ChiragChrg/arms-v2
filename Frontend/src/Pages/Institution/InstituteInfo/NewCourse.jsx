@@ -47,7 +47,13 @@ const NewCourse = () => {
     }
     return (
         <div className="NewCourse-Main">
-            <NavRoute state={state} routes={["Institution", `institution/${state?.collegeName?.replaceAll(" ", "-")}`, `institution/${state?.collegeName?.replaceAll(" ", "-")}/New`]} />
+            <NavRoute
+                routes={[
+                    { path: "Institution" },
+                    { path: `institution/${state?.collegeName?.replaceAll(" ", "-")}`, state: state },
+                    { path: `institution/${state?.collegeName?.replaceAll(" ", "-")}/New`, state: state }
+                ]}
+            />
 
             <h1>Create new <span style={{ color: "var(--primary)" }}>Course</span></h1>
 

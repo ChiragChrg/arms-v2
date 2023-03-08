@@ -46,7 +46,7 @@ const NewInstitute = () => {
     }
     return (
         <div className="NewInstitute-Main">
-            <NavRoute routes={["Institution", "Institution/New"]} />
+            <NavRoute routes={[{ path: "Institution" }, { path: "Institution/New" }]} />
             <h1>Create a new <span style={{ color: "var(--primary)" }}>Institute</span></h1>
 
             <div className="NewInstitute-Container flex">

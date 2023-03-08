@@ -37,7 +37,7 @@ const Institution = () => {
 
     return (
         <div className="Institution-Main">
-            <NavRoute routes={["Institution"]} />
+            <NavRoute routes={[{ path: "Institution" }]} />
             <div className="Institution-Header flex">
                 <h1>Institutions</h1>
 

@@ -46,7 +46,7 @@ const InstituteInfo = () => {
 
     return (
         <div className="InstituteInfo-Main">
-            <NavRoute state={state} routes={["institution", `institution/${collegeInfo?.collegeName?.replaceAll(" ", "-")}`]} />
+            <NavRoute routes={[{ path: "Institution" }, { path: `institution/${collegeInfo?.collegeName?.replaceAll(" ", "-")}`, state: state }]} />
 
             <div className="InstituteInfo-Header flex gap">
                 <div className="InstituteInfo-Icon flex">
@@ -81,7 +81,7 @@ const InstituteInfo = () => {
 
             <div className="InstituteInfo-CourseList">
                 {courseList.map((obj, index) => {
-                    return <Link to={obj?.courseName.toLowerCase()} state={obj} className="InstituteInfo-CourseCard flex col" key={index}>
+                    return <Link to={obj?.courseName.toLowerCase()} state={{ data: obj, collegeInfo }} className="InstituteInfo-CourseCard flex col" key={index}>
                         <TbBooks size={50} color="var(--white)" />
                         <h1>{obj?.courseName}</h1>
                         <p>Subjects: {obj?.subjects?.length}</p>

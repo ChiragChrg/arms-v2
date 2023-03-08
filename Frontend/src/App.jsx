@@ -19,6 +19,7 @@ import Institution from './Pages/Institution/Institution';
 import NewInstitute from './Pages/Institution/NewInstitute';
 import InstituteInfo from './Pages/Institution/InstituteInfo/InstituteInfo';
 import NewCourse from './Pages/Institution/InstituteInfo/NewCourse';
+import CourseInfo from './Pages/Institution/CourseInfo/CourseInfo';
 
 function App() {
   const { setUserData, isAdmin, isUserLoggedIn, authorizedUser, setIsUserLoggedIn, setIsUserFaculty, setIsReturningUser, setIsDarkTheme } = useContextData();
@@ -59,7 +60,7 @@ function App() {
             <Route path="/institution/new" element={<NewInstitute />} />
             <Route path="/institution/:instituteId" element={<InstituteInfo />} />
             <Route path="/institution/:instituteId/new" element={<NewCourse />} />
-            <Route path="/institution/:instituteId/:course" element={<NewCourse />} />
+            <Route path="/institution/:instituteId/:course" element={<CourseInfo />} />
           </Route>}
 
           <Route path="/" element={!isUserLoggedIn ? <Landing /> : <Navigate to="/dashboard" />} />
