@@ -16,14 +16,19 @@ const InstituteInfo = () => {
     const [docsCount, setDocsCount] = useState(0);
     const [initialRender, setInitialRender] = useState(false)
 
-    const { state } = useLocation()
+    const { state, pathname } = useLocation()
     const { instituteStateData } = useContextData()
     const CollegeData = instituteStateData.length !== 0 ? instituteStateData : state;
 
     useEffect(() => {
-        setCollegeInfo(CollegeData)
-        setCourseList(CollegeData?.course)
-        // console.log("ClgInfo", CollegeData)
+        const CollegePathname = pathname.replaceAll("-", " ").split("/").pop().toLowerCase();
+        if (instituteStateData.length !== 0 && CollegePathname === instituteStateData.collegeName.toLowerCase()) {
+            setCollegeInfo(instituteStateData)
+            setCourseList(instituteStateData?.course)
+        } else {
+            setCollegeInfo(state)
+            setCourseList(state?.course)
+        }
 
         if (!initialRender) {
             //Runs only once on first render
@@ -55,11 +60,11 @@ const InstituteInfo = () => {
                         <p>{collegeInfo?.description}</p>
 
                         <div className="InstituteInfo-Chips flex gap">
-                            <div className="InstituteInfo-Chip">Registered On: {moment(collegeInfo?.createdOn).locale('es').format('LL')}</div>
-                            <div className="InstituteInfo-Chip">Registered By: {collegeInfo?.registeredBy}</div>
                             <div className="InstituteInfo-Chip">Courses : {collegeInfo?.course?.length}</div>
                             <div className="InstituteInfo-Chip">Subjects : {subjectCount}</div>
                             <div className="InstituteInfo-Chip">Documents : {docsCount}</div>
+                            <div className="InstituteInfo-Chip">Registered On: {moment(collegeInfo?.createdOn).locale('es').format('LL')}</div>
+                            <div className="InstituteInfo-Chip">Registered By: {collegeInfo?.registeredBy}</div>
                         </div>
                     </div>
                 </div>

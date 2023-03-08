@@ -1,5 +1,5 @@
 import "./Institution.css"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
 import NavRoute from "../../Components/NavRoute/NavRoute"
 import { useContextData } from "../../Hooks/useContextData"
 import axios from "axios"
@@ -13,6 +13,7 @@ import { BsBuilding } from "react-icons/bs"
 const Institution = () => {
     const [institutions, setInstitutions] = useState([]);
     const [loading, setLoading] = useState(false);
+    const { setInstituteStateData } = useContextData()
 
     useEffect(() => {
         const GetInstitutions = async () => {
@@ -29,6 +30,9 @@ const Institution = () => {
             }
         }
         GetInstitutions()
+
+        //Resetting Temp Course State 
+        setInstituteStateData([])
     }, [])
 
     return (
