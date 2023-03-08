@@ -12,7 +12,7 @@ import { FiUser } from "react-icons/fi"
 
 const NewCourse = () => {
     const [loading, setLoading] = useState(false);
-    const { userData } = useContextData()
+    const { userData, setInstituteStateData } = useContextData()
 
     const navigate = useNavigate();
     const { state } = useLocation();
@@ -30,11 +30,13 @@ const NewCourse = () => {
 
         try {
             const res = await axios.post('/api/createcourse', data)
-            console.log(res)
+            // console.log(res)
 
             if (res.status == 200) {
                 setLoading(false)
                 toast.success(res.data.message)
+                //setInstituteStateData sends state back to InstituteInfo to update courses list
+                setInstituteStateData(res.data.savedCourse)
                 navigate(-1)
             }
         } catch (err) {

@@ -1,6 +1,7 @@
 import "./Institution.css"
 import { useState, useEffect } from "react"
 import NavRoute from "../../Components/NavRoute/NavRoute"
+import { useContextData } from "../../Hooks/useContextData"
 import axios from "axios"
 import { Link } from "react-router-dom"
 
@@ -27,7 +28,7 @@ const Institution = () => {
                 setLoading(false);
             }
         }
-        GetInstitutions();
+        GetInstitutions()
     }, [])
 
     return (

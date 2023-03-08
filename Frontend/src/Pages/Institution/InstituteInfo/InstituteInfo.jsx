@@ -7,6 +7,7 @@ import NavRoute from "../../../Components/NavRoute/NavRoute"
 import { BsBuilding } from "react-icons/bs"
 import { TbBooks } from "react-icons/tb"
 import { FiPlus } from "react-icons/fi"
+import { useContextData } from "../../../Hooks/useContextData"
 
 const InstituteInfo = () => {
     const [collegeInfo, setCollegeInfo] = useState([]);
@@ -16,7 +17,8 @@ const InstituteInfo = () => {
     const [initialRender, setInitialRender] = useState(false)
 
     const { state } = useLocation()
-    const CollegeData = state;
+    const { instituteStateData } = useContextData()
+    const CollegeData = instituteStateData.length !== 0 ? instituteStateData : state;
 
     useEffect(() => {
         setCollegeInfo(CollegeData)
@@ -24,6 +26,8 @@ const InstituteInfo = () => {
         // console.log("ClgInfo", CollegeData)
 
         if (!initialRender) {
+            //Runs only once on first render
+            //else subjectCount, docsCount doubles up :|
             setInitialRender(true)
             CollegeData?.course?.forEach(obj => {
                 setSubjectCount(prev => prev + obj?.subjects?.length)

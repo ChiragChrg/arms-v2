@@ -10,12 +10,12 @@ const ContextProvider = ({ children }) => {
     const [authorizedUser, setAuthorizedUser] = useState(false);
     const [onLogout, setOnLogout] = useState(false);
     const [isReturningUser, setIsReturningUser] = useState(false);
+    const [instituteStateData, setInstituteStateData] = useState([])
 
     // isDarkTheme reverts back to false on refresh
     const [isDarkTheme, setIsDarkTheme] = useState(false);
     // So skip useEffect theme block for the first render
     const [initialRenderDone, setInitialRenderDone] = useState(false);
-
 
     useEffect(() => {
         if (initialRenderDone) {
@@ -53,7 +53,9 @@ const ContextProvider = ({ children }) => {
             isDarkTheme,
             setIsDarkTheme,
             onLogout,
-            setOnLogout
+            setOnLogout,
+            instituteStateData,
+            setInstituteStateData,
         }}>
             {children}
         </Context.Provider>
