@@ -86,7 +86,7 @@ exports.CreateInstitute = async (req, res) => {
             registeredBy: userName,
         });
         await newDocs.save();
-        res.status(200).json({ newDocs, message: "Institute Registered Successfully!" });
+        res.status(201).json({ newDocs, message: "Institute Registered Successfully!" });
     } catch (err) {
         console.log(err)
         res.status(500).json({ message: 'Internal server error' });
@@ -94,7 +94,7 @@ exports.CreateInstitute = async (req, res) => {
 }
 
 exports.CreateCourse = async (req, res) => {
-    const { collegeId, courseName, courseCreator } = req.body;
+    const { collegeId, courseName, courseDesc, courseCreator } = req.body;
 
     const DocsDB = await Docs.findOne({ "_id": collegeId });
     if (!DocsDB) return res.status(400).json({ message: 'Institute does not exist!' });
@@ -103,11 +103,12 @@ exports.CreateCourse = async (req, res) => {
         const CourseDB = DocsDB.course;
         CourseDB.push({
             courseName: courseName,
+            courseDesc: courseDesc,
             courseCreator: courseCreator
         })
 
         const savedCourse = await DocsDB.save();
-        res.status(200).json({ savedCourse, message: "Course Created Successfully!" });
+        res.status(201).json({ savedCourse, message: "Course Created Successfully!" });
 
     } catch (err) {
         console.log(err)
@@ -116,25 +117,24 @@ exports.CreateCourse = async (req, res) => {
 }
 
 exports.CreateSubject = async (req, res) => {
-    const { collegeId, courseId, subjectArr } = req.body;
+    const { collegeId, courseId, subjectName, subjectDesc, subjectCreator } = req.body;
 
-    const [DocsDB] = await Docs.find({ "_id": collegeId }, { course: 1 })
+    const [DocsDB] = await Docs.find({ "_id": collegeId })
     if (!DocsDB) return res.status(400).json({ message: 'Institute does not exist!' });
 
     try {
         DocsDB.course.forEach((obj) => {
             if (obj._id == courseId) {
-                subjectArr.forEach((sub) => {
-                    obj.subjects.push({
-                        subjectName: sub.subjectName,
-                        subjectCreator: sub.subjectCreator,
-                    })
+                obj.subjects.push({
+                    subjectName: subjectName,
+                    subjectDesc: subjectDesc,
+                    subjectCreator: subjectCreator,
                 })
             }
         })
 
         const savedSubject = await DocsDB.save();
-        res.status(200).json({ savedSubject, message: "Subjects Created Successfully!" });
+        res.status(201).json({ savedSubject, message: "Subject Created Successfully!" });
     } catch (err) {
         console.log(err)
         res.status(500).json({ message: 'Internal server error' });
@@ -211,7 +211,7 @@ exports.UploadToDrive = async (req, res) => {
 
     // const savedDocs = await DocsDB.save();
     // await DocsDB.save();
-    res.status(200).json({ message: "Files Uploaded Successfully!" });
+    res.status(201).json({ message: "Files Uploaded Successfully!" });
 }
 
 exports.DownloadFromDrive = async (req, res) => {

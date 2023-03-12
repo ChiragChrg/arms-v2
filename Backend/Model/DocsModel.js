@@ -23,12 +23,20 @@ const docsSchema = new mongoose.Schema({
             type: String,
             required: true,
         },
+        courseDesc: {
+            type: String,
+            required: true,
+        },
         courseCreator: {
             type: String,
             required: true,
         },
         subjects: [{
             subjectName: {
+                type: String,
+                required: true,
+            },
+            subjectDesc: {
                 type: String,
                 required: true,
             },
