@@ -111,7 +111,7 @@ const FileUpload = () => {
 
             <img src={UploadSVG} alt="PeopleSVG" className="FileUpload-Vector" width={280} height="auto" />
 
-            <NavRoute routes={["Institution", "Upload"]} />
+            {/* <NavRoute routes={["Institution", "Upload"]} /> */}
             <h1>Upload Document {course} {semester}</h1>
 
             <form className="FileUpload-Form">

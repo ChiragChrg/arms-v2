@@ -11,6 +11,7 @@ const ContextProvider = ({ children }) => {
     const [onLogout, setOnLogout] = useState(false);
     const [isReturningUser, setIsReturningUser] = useState(false);
     const [instituteStateData, setInstituteStateData] = useState([])
+    const [courseStateData, setCourseStateData] = useState([])
 
     // isDarkTheme reverts back to false on refresh
     const [isDarkTheme, setIsDarkTheme] = useState(false);
@@ -56,6 +57,8 @@ const ContextProvider = ({ children }) => {
             setOnLogout,
             instituteStateData,
             setInstituteStateData,
+            courseStateData,
+            setCourseStateData,
         }}>
             {children}
         </Context.Provider>

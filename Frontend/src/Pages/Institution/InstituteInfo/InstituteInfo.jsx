@@ -81,7 +81,7 @@ const InstituteInfo = () => {
 
             <div className="InstituteInfo-CourseList">
                 {courseList.map((obj, index) => {
-                    return <Link to={obj?.courseName.toLowerCase()} state={{ data: obj, collegeInfo }} className="InstituteInfo-CourseCard flex col" key={index}>
+                    return <Link to={obj?.courseName.replaceAll(" ", "-").toLowerCase()} state={{ data: obj, collegeInfo }} className="InstituteInfo-CourseCard flex col" key={index}>
                         <TbBooks size={50} color="var(--white)" />
                         <h1>{obj?.courseName}</h1>
                         <p>Subjects: {obj?.subjects?.length}</p>

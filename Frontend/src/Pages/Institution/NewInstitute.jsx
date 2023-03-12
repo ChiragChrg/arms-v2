@@ -33,7 +33,7 @@ const NewInstitute = () => {
 
         try {
             const result = await axios.post("/api/createinstitute", data)
-            if (result.status == 200) {
+            if (result.status == 201) {
                 setLoading(false)
                 toast.success(result.data.message)
                 navigate('/institution')

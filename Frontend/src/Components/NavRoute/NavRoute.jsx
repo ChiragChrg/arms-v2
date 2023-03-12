@@ -3,7 +3,7 @@ import { Fragment } from 'react'
 import { Link } from "react-router-dom"
 import { IoIosArrowForward } from 'react-icons/io'
 
-const NavRoute = ({ routes, defaultRoute = "Dashboard" }) => {
+const NavRoute = ({ routes = [{ path: "", state: {} }], defaultRoute = "Dashboard" }) => {
     //Custome made Route Map
     //Default Root Path is "Dashboard", can be changed using @defaultRoute prop 
 

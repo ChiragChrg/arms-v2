@@ -13,7 +13,7 @@ import { BsBuilding } from "react-icons/bs"
 const Institution = () => {
     const [institutions, setInstitutions] = useState([]);
     const [loading, setLoading] = useState(false);
-    const { setInstituteStateData } = useContextData()
+    const { setInstituteStateData, setCourseStateData } = useContextData()
 
     useEffect(() => {
         const GetInstitutions = async () => {
@@ -33,6 +33,7 @@ const Institution = () => {
 
         //Resetting Temp Course State 
         setInstituteStateData([])
+        setCourseStateData([])
     }, [])
 
     return (

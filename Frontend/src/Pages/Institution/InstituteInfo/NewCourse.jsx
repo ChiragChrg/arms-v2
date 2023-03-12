@@ -9,6 +9,7 @@ import { toast } from 'react-toastify'
 import { CourseSVG } from "../../../Assets";
 import { TbBooks } from "react-icons/tb"
 import { FiUser } from "react-icons/fi"
+import { MdShortText } from "react-icons/md"
 
 const NewCourse = () => {
     const [loading, setLoading] = useState(false);
@@ -17,6 +18,7 @@ const NewCourse = () => {
     const navigate = useNavigate();
     const { state } = useLocation();
     const CourseRef = useRef();
+    const CourseDescRef = useRef();
 
     const HandleSubmit = async (e) => {
         e.preventDefault();
@@ -25,6 +27,7 @@ const NewCourse = () => {
         const data = {
             collegeId: state._id,
             courseName: CourseRef.current.value,
+            courseDesc: CourseDescRef.current.value,
             courseCreator: userData.username,
         }
 
@@ -32,7 +35,7 @@ const NewCourse = () => {
             const res = await axios.post('/api/createcourse', data)
             // console.log(res)
 
-            if (res.status == 200) {
+            if (res.status == 201) {
                 setLoading(false)
                 toast.success(res.data.message)
                 //setInstituteStateData sends state back to InstituteInfo to update courses list
@@ -62,8 +65,16 @@ const NewCourse = () => {
                     <div className="NewCourse-InputHolder flex col">
                         <label htmlFor="email">Course Name</label>
                         <div className="NewCourse-Input flex gap05">
-                            <input type="text" maxLength={30} placeholder="Enter Course Name" ref={CourseRef} required />
+                            <input type="text" maxLength={30} placeholder="Enter Course short name" ref={CourseRef} required />
                             <TbBooks size={25} color="var(--grey)" />
+                        </div>
+                    </div>
+
+                    <div className="NewInstitute-InputHolder flex col">
+                        <label htmlFor="email">Course Description</label>
+                        <div className="NewInstitute-Input flex gap05">
+                            <textarea rows={3} maxLength={60} placeholder="Enter Course fullname / description" ref={CourseDescRef} required />
+                            <MdShortText size={25} color="var(--grey)" />
                         </div>
                     </div>
 
