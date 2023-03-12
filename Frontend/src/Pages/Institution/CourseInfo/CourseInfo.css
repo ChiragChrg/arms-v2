@@ -1,0 +1,59 @@
+.CourseInfo-Main{
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.CourseInfo-Header{
+    background-color: var(--primaryLite);
+    margin: 1em;
+    margin-top: 2em;
+    margin-left: 0.5em;
+    padding: 1em;
+    border-radius: 0.4em;
+    justify-content: flex-start;
+}
+
+.CourseInfo-Icon{
+    background-color: var(--secondary);
+    width: fit-content;
+    padding: 1.5em;
+    border-radius: 100%;
+}
+
+.CourseInfo-HeadInfo{
+    width: 100%;
+}
+.CourseInfo-Title{
+    width: 100%;
+    border-bottom: 1px solid var(--grey);
+}
+
+.CourseInfo-Header h1{
+    font-size: 2.5em;
+    width: 100%;
+    text-align: center;
+}
+
+.CourseInfo-HeadDetails{
+    width: 100%;
+}
+
+.CourseInfo-Chips{
+    font-size: 0.9em;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1em;
+}
+
+.CourseInfo-Chip{
+    background-color: var(--primaryLite);
+    padding: 0.3em;
+    border-radius: 0.3em;
+}
+
+.CourseInfo-SubjectHeader{
+    justify-content: space-between;
+    margin: 1em;
+    margin-left: 0.5em;
+}
