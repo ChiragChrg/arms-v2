@@ -21,6 +21,7 @@ import InstituteInfo from './Pages/Institution/InstituteInfo/InstituteInfo';
 import NewCourse from './Pages/Institution/InstituteInfo/NewCourse';
 import CourseInfo from './Pages/Institution/CourseInfo/CourseInfo';
 import NewSubject from './Pages/Institution/CourseInfo/NewSubject';
+import SubjectInfo from './Pages/Institution/SubjectInfo/SubjectInfo';
 
 function App() {
   const { setUserData, isAdmin, isUserLoggedIn, authorizedUser, setIsUserLoggedIn, setIsUserFaculty, setIsReturningUser, setIsDarkTheme } = useContextData();
@@ -59,10 +60,11 @@ function App() {
             <Route path="/upload" element={authorizedUser ? <FileUpload /> : <h1>User Not Authorized</h1>} />
             <Route path="/institution" element={<Institution />} />
             <Route path="/institution/new" element={<NewInstitute />} />
-            <Route path="/institution/:instituteId" element={<InstituteInfo />} />
-            <Route path="/institution/:instituteId/new" element={<NewCourse />} />
-            <Route path="/institution/:instituteId/:course" element={<CourseInfo />} />
-            <Route path="/institution/:instituteId/:course/new" element={<NewSubject />} />
+            <Route path="/institution/:institute" element={<InstituteInfo />} />
+            <Route path="/institution/:institute/new" element={<NewCourse />} />
+            <Route path="/institution/:institute/:course" element={<CourseInfo />} />
+            <Route path="/institution/:institute/:course/new" element={<NewSubject />} />
+            <Route path="/institution/:institute/:course/:subject" element={<SubjectInfo />} />
           </Route>}
 
           <Route path="/" element={!isUserLoggedIn ? <Landing /> : <Navigate to="/dashboard" />} />
