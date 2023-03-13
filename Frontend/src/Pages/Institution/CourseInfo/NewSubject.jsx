@@ -1,4 +1,4 @@
-import "./NewSubject.css"
+// import "./NewSubject.css" // Styles from NewInstitute.css
 import { useState, useEffect, useRef } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
 import { useContextData } from "../../../Hooks/useContextData"
@@ -65,11 +65,11 @@ const NewSubject = () => {
 
             <h1>Create new <span style={{ color: "var(--primary)" }}>Subject</span></h1>
 
-            <div className="NewSubject-Container flex">
-                <form className="NewSubject-Form flex col gap" onSubmit={HandleSubmit}>
-                    <div className="NewCourse-InputHolder flex col">
+            <div className="NewInstitute-Container flex">
+                <form className="NewInstitute-Form flex col gap" onSubmit={HandleSubmit}>
+                    <div className="NewInstitute-InputHolder flex col">
                         <label htmlFor="email">Subject Name</label>
-                        <div className="NewCourse-Input flex gap05">
+                        <div className="NewInstitute-Input flex gap05">
                             <input type="text" maxLength={30} placeholder="Enter Subject short name" ref={SubjectRef} required />
                             <IoBookOutline size={25} color="var(--grey)" />
                         </div>
@@ -83,15 +83,15 @@ const NewSubject = () => {
                         </div>
                     </div>
 
-                    <div className="NewCourse-InputHolder flex col">
+                    <div className="NewInstitute-InputHolder flex col">
                         <label htmlFor="email">Subject Creator</label>
-                        <div className="NewCourse-Input flex gap05">
+                        <div className="NewInstitute-Input flex gap05">
                             <input type="text" style={{ color: "var(--grey)" }} defaultValue={userData.username} disabled required />
                             <FiUser size={25} color="var(--grey)" />
                         </div>
                     </div>
 
-                    <LoaderBtn type="submit" loading={loading} text="Create" iconType="plus" className="NewCourse-Submit" />
+                    <LoaderBtn type="submit" loading={loading} text="Create" iconType="plus" className="NewInstitute-Submit" />
                 </form>
 
                 <img src={SubjectSVG} className="NewInstitute-Vector" alt="BooksSVG" width={400} />

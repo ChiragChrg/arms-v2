@@ -1,3 +1,5 @@
+.CourseInfo-Main,
+.SubjectInfo-Main,
 .InstituteInfo-Main{
     width: 100%;
     height: 100%;
@@ -26,15 +28,27 @@
     width: 100%;
 }
 
-.InstituteInfo-Header h1{
+.InstituteInfo-HeadInfo{
+    width: 100%;
+}
+
+.InstituteInfo-Title{
+    width: 100%;
+    border-bottom: 1px solid var(--grey);
+}
+
+/* .InstituteInfo-Header h1{
     font-size: 2.5em;
     width: 100%;
     border-bottom: 1px solid var(--grey);
     text-align: center;
-}
+} */
 
 .InstituteInfo-Chips{
     font-size: 0.9em;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1em;
 }
 
 .InstituteInfo-Chip{
@@ -43,7 +57,7 @@
     border-radius: 0.3em;
 }
 
-.InstituteInfo-CourseHeader{
+.InstituteInfo-SubHeader{
     justify-content: space-between;
     margin: 1em;
     margin-left: 0.5em;
@@ -80,4 +94,49 @@
 .InstituteInfo-CourseCard:hover{
     scale: 1.025;
     /* box-shadow: 1px 2px 20px 0px rgba(0, 0, 0, 0.5); */
+}
+
+.SubjectInfo-TableContainer{
+    width: 100%;
+    padding: 0 1em;
+    padding-left: 0.5em;
+}
+
+.SubjectInfo-Table{
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--primaryLite);
+}
+
+.SubjectInfo-Table thead{
+    background-color: var(--greyLite);
+}
+
+.SubjectInfo-Table thead th{
+    border-right: 1px solid var(--grey);
+    padding: 0.1em 0.5em;
+}
+
+.SubjectInfo-Table thead th:last-child{
+    border-right: none;
+}
+
+.SubjectInfo-TableRow{
+    border-bottom: 1px solid var(--greyLite);
+    background-color: var(--base);
+}
+
+.SubjectInfo-TableRow td{
+    height: 2.830em;
+    padding: 0.4em 1em;
+    text-align: center;
+}
+
+.SubjectInfo-TableRow td:first-child{
+    overflow: hidden;
+    width: 24.396em;
+}
+
+.SubjectInfo-TableRow:last-child{
+    border-bottom: 2em solid var(--base);
 }

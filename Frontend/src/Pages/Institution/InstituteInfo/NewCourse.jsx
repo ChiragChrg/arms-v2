@@ -1,4 +1,4 @@
-import "./NewCourse.css"
+// import "./NewCourse.css" // Styles from NewInstitute.css
 import { useState, useRef } from "react";
 import axios from 'axios'
 import { useContextData } from "../../../Hooks/useContextData";
@@ -60,11 +60,11 @@ const NewCourse = () => {
 
             <h1>Create new <span style={{ color: "var(--primary)" }}>Course</span></h1>
 
-            <div className="NewCourse-Container flex">
-                <form className="NewCourse-Form flex col gap" onSubmit={HandleSubmit}>
-                    <div className="NewCourse-InputHolder flex col">
+            <div className="NewInstitute-Container flex">
+                <form className="NewInstitute-Form flex col gap" onSubmit={HandleSubmit}>
+                    <div className="NewInstitute-InputHolder flex col">
                         <label htmlFor="email">Course Name</label>
-                        <div className="NewCourse-Input flex gap05">
+                        <div className="NewInstitute-Input flex gap05">
                             <input type="text" maxLength={30} placeholder="Enter Course short name" ref={CourseRef} required />
                             <TbBooks size={25} color="var(--grey)" />
                         </div>
@@ -78,15 +78,15 @@ const NewCourse = () => {
                         </div>
                     </div>
 
-                    <div className="NewCourse-InputHolder flex col">
+                    <div className="NewInstitute-InputHolder flex col">
                         <label htmlFor="email">Course Creator</label>
-                        <div className="NewCourse-Input flex gap05">
+                        <div className="NewInstitute-Input flex gap05">
                             <input type="text" style={{ color: "var(--grey)" }} defaultValue={userData.username} disabled required />
                             <FiUser size={25} color="var(--grey)" />
                         </div>
                     </div>
 
-                    <LoaderBtn type="submit" loading={loading} className="NewCourse-Submit" iconType="plus" text="Create" />
+                    <LoaderBtn type="submit" loading={loading} className="NewInstitute-Submit" iconType="plus" text="Create" />
                 </form>
 
                 <img src={CourseSVG} className="NewInstitute-Vector" alt="BooksSVG" width={400} />

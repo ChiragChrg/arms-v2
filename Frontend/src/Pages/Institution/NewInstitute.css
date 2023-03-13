@@ -1,10 +1,15 @@
-.NewInstitute-Main{
+/* Single CSS for all New page Components */
+.NewInstitute-Main,
+.NewCourse-Main,
+.NewSubject-Main{
     width: 100%;
     height: 100%;
     position: relative;
 }
 
-.NewInstitute-Main h1{
+.NewInstitute-Main h1,
+.NewCourse-Main h1,
+.NewSubject-Main h1{
     padding: 0.2em 0;
 }
 

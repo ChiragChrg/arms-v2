@@ -54,23 +54,22 @@ const InstituteInfo = () => {
                 </div>
 
                 <div className="InstituteInfo-HeadInfo flex col">
-                    <h1>{collegeInfo?.collegeName}</h1>
-
-                    <div className="InstituteInfo-HeadDetails flex col gap">
+                    <div className="InstituteInfo-Title flex col">
+                        <h1>{collegeInfo?.collegeName}</h1>
                         <p>{collegeInfo?.description}</p>
+                    </div>
 
-                        <div className="InstituteInfo-Chips flex gap">
-                            <div className="InstituteInfo-Chip">Courses : {collegeInfo?.course?.length}</div>
-                            <div className="InstituteInfo-Chip">Subjects : {subjectCount}</div>
-                            <div className="InstituteInfo-Chip">Documents : {docsCount}</div>
-                            <div className="InstituteInfo-Chip">Registered On: {moment(collegeInfo?.createdOn).locale('es').format('LL')}</div>
-                            <div className="InstituteInfo-Chip">Registered By: {collegeInfo?.registeredBy}</div>
-                        </div>
+                    <div className="InstituteInfo-Chips flex gap">
+                        <div className="InstituteInfo-Chip">Courses : {collegeInfo?.course?.length}</div>
+                        <div className="InstituteInfo-Chip">Subjects : {subjectCount}</div>
+                        <div className="InstituteInfo-Chip">Documents : {docsCount}</div>
+                        <div className="InstituteInfo-Chip">Registered On: {moment(collegeInfo?.createdOn).format('LL')}</div>
+                        <div className="InstituteInfo-Chip">Registered By: {collegeInfo?.registeredBy}</div>
                     </div>
                 </div>
             </div>
 
-            <div className="InstituteInfo-CourseHeader flex">
+            <div className="InstituteInfo-SubHeader flex">
                 <h2>Courses</h2>
 
                 <Link to="new" state={collegeInfo} className="InstituteInfo-Create flex gap05">
