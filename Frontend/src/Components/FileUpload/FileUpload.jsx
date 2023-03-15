@@ -1,38 +1,45 @@
 import "./FileUpload.css"
 import { useState, useEffect, useRef } from 'react'
-import SelectTag from "../SelectTag/SelectTag"
+import { useLocation } from "react-router-dom"
+import { useContextData } from "../../Hooks/useContextData"
 import axios from "axios"
 import { partial } from "filesize";
 import NavRoute from "../NavRoute/NavRoute"
 
-import { UploadSVG } from "../../Assets"
-import { BsBuilding, BsCalendar3 } from "react-icons/bs"
+import { BsBuilding } from "react-icons/bs"
 import { HiOutlineDocumentDuplicate, HiOutlineBookOpen } from "react-icons/hi"
-import { TbBooks, TbFileUpload, TbRuler } from "react-icons/tb"
-import { FiLoader } from 'react-icons/fi'
+import { TbBooks, TbFileUpload } from "react-icons/tb"
+import { FiUser, FiLoader } from 'react-icons/fi'
 import { FaExclamation } from 'react-icons/fa'
 import { MdCloudDone, MdRotateRight } from 'react-icons/md'
+import { toast } from "react-toastify"
 
 const FileUpload = () => {
-    const [course, setCourse] = useState("");
-    const [semester, setSemester] = useState("");
-    const [subject, setSubject] = useState("");
+    const [infoData, setInfoData] = useState({});
     const [loading, setLoading] = useState(false);
     const [isUploading, setIsUploading] = useState('idle');
     const [file, setFile] = useState();
     const [enableUpload, setEnableUpload] = useState(false);
-    // const [fileArray, setFileArray] = useState();
 
     const FilePickerRef = useRef();
-    //fetch list of courses for curr dept when page loads
+    const { state } = useLocation();
+    const { userData, setDocsStateData } = useContextData()
 
-    const ArrList = ["Java", "HTML", "CSS", "React"]
-    const ArrSem = [1, 2, 3, 4, 5, 6]
     const size = partial({ base: 10 });
 
     useEffect(() => {
         if (file) setEnableUpload(true);
         if (isUploading === "done") setEnableUpload(false)
+
+        const data = {
+            collegeName: state?.collegeInfo?.collegeName,
+            courseName: state?.courseInfo?.courseName,
+            subjectName: state?.data?.subjectName,
+            collegeId: state?.collegeInfo?._id,
+            courseId: state?.courseInfo?._id,
+            subjectId: state?.data?._id,
+        }
+        setInfoData(data)
     }, [file, isUploading])
 
 
@@ -50,52 +57,40 @@ const FileUpload = () => {
         setIsUploading("loading")
 
         let formData = new FormData();
-        formData.append("collegeId", "63fe29f74837fb0bc1d01b25");
-        formData.append("courseId", "64005921d1d856e54e4385f6");
-        formData.append("subjectId", "6401c77f69697cb940707d6b");
-        formData.append("uploadedBy", "ChrgDocsAdmin");
+        formData.append("collegeId", infoData?.collegeId);
+        formData.append("courseId", infoData?.courseId);
+        formData.append("subjectId", infoData?.subjectId);
+        formData.append("uploadedBy", userData?.username);
 
         file.forEach((obj) => {
             formData.append("files", obj, obj.name);
         })
 
         try {
-            // console.log(file, formData)
             const res = await axios.post('/api/upload', formData);
-            // const res = await axios.post('/api/createinstitute', { userName: "Chirag" });
-            // const res = await axios.post('/api/createcourse', {
-            //     collegeId: "63fe29f74837fb0bc1d01b25",
-            //     courseName: "MCA",
-            //     courseCreator: "ChrgADMIN",
-            // });
-            // const res = await axios.post('/api/createsubject', {
-            //     collegeId: "63fe29f74837fb0bc1d01b25",
-            //     courseId: "64005921d1d856e54e4385f6",
-            //     subjectArr: [{
-            //         subjectName: "Subject 1",
-            //         subjectCreator: "AdminChrgYO"
-            //     },
-            //     {
-            //         subjectName: "Subject 2",
-            //         subjectCreator: "AdminChrgYO"
-            //     },
-            //     {
-            //         subjectName: "Subject 3",
-            //         subjectCreator: "AdminChrgYO"
-            //     }]
-            // });
             console.log(res)
 
-            if (res.status === 200) {
+            if (res.status === 201) {
+                res.data.savedDocs.course.forEach(itm => {
+                    if (itm._id == infoData?.courseId) {
+                        itm.subjects.forEach(sub => {
+                            if (sub._id == infoData?.subjectId) {
+                                setDocsStateData(sub)
+                            }
+                        })
+                    }
+                })
+
                 // setFile(null)
                 setLoading(false)
                 setIsUploading("done")
-
+                toast.success("Files Uploaded Successfully!")
             }
         } catch (err) {
             console.log(err)
             setFile(null)
             setLoading(false)
+            toast.error(err.message)
             setIsUploading("error")
         }
     }
@@ -109,17 +104,23 @@ const FileUpload = () => {
                 }
             `}</style>
 
-            <img src={UploadSVG} alt="PeopleSVG" className="FileUpload-Vector" width={280} height="auto" />
+            {/* <img src={UploadSVG} alt="PeopleSVG" className="FileUpload-Vector" width={280} height="auto" /> */}
 
-            {/* <NavRoute routes={["Institution", "Upload"]} /> */}
-            <h1>Upload Document {course} {semester}</h1>
+            <NavRoute routes={[
+                { path: "Institution" },
+                { path: `institution/${infoData?.collegeName?.replaceAll(" ", "-")}`, state: state.collegeInfo },
+                { path: `institution/${infoData?.collegeName?.replaceAll(" ", "-")}/${infoData?.courseName?.replaceAll(" ", "-")}`, state: { data: state.courseInfo, collegeInfo: state.collegeInfo } },
+                { path: `institution/${infoData?.collegeName?.replaceAll(" ", "-")}/${infoData?.courseName?.replaceAll(" ", "-")}/${infoData?.subjectName?.replaceAll(" ", "-")}`, state: state },
+                { path: `institution/${infoData?.collegeName?.replaceAll(" ", "-")}/${infoData?.courseName?.replaceAll(" ", "-")}/${infoData?.subjectName?.replaceAll(" ", "-")}/Upload`, state: state }
+            ]} />
+            <h1>Upload new <span style={{ color: "var(--primary)" }}>Documents</span></h1>
 
-            <form className="FileUpload-Form">
+            <form className="FileUpload-Form flex col">
                 <div className="FileUpload-Row flex gap2">
                     <div className="FileUpload-InputHolder flex col">
                         <label htmlFor="email">Institution</label>
                         <div className="FileUpload-Input flex gap05" >
-                            <input type="text" id="email" style={{ color: "var(--grey)" }} defaultValue="Srinivas University" disabled required />
+                            <input type="text" id="email" style={{ color: "var(--grey)" }} defaultValue={infoData?.collegeName} disabled required />
                             <BsBuilding size={25} color="var(--grey)" />
                         </div>
                     </div>
@@ -127,7 +128,7 @@ const FileUpload = () => {
                     <div className="FileUpload-InputHolder flex col">
                         <label htmlFor="email">Course</label>
                         <div className="FileUpload-Input flex gap05">
-                            <SelectTag defaultOption="Select Course" optionArray={ArrList} returnValue={(value) => setCourse(value)} />
+                            <input type="text" id="email" style={{ color: "var(--grey)" }} defaultValue={infoData?.courseName} disabled required />
                             <TbBooks size={25} color="var(--grey)" />
                         </div>
                     </div>
@@ -135,17 +136,17 @@ const FileUpload = () => {
 
                 <div className="FileUpload-Row flex gap2">
                     <div className="FileUpload-InputHolder flex col">
-                        <label htmlFor="email">Semester</label>
+                        <label htmlFor="email">Subject</label>
                         <div className="FileUpload-Input flex gap05">
-                            <SelectTag defaultOption="Select Semester" optionArray={ArrSem} returnValue={(value) => setSemester(value)} />
-                            <BsCalendar3 size={25} color="var(--grey)" />
+                            <input type="text" id="email" style={{ color: "var(--grey)" }} defaultValue={infoData?.subjectName} disabled required />
+                            <HiOutlineBookOpen size={25} color="var(--grey)" />
                         </div>
                     </div>
                     <div className="FileUpload-InputHolder flex col">
-                        <label htmlFor="email">Subject</label>
+                        <label htmlFor="email">Document Uploader</label>
                         <div className="FileUpload-Input flex gap05">
-                            <SelectTag defaultOption="Select Semester" optionArray={ArrList} returnValue={(value) => setSubject(value)} />
-                            <HiOutlineBookOpen size={25} color="var(--grey)" />
+                            <input type="text" id="email" style={{ color: "var(--grey)" }} defaultValue={userData?.username} disabled required />
+                            <FiUser size={25} color="var(--grey)" />
                         </div>
                     </div>
                 </div>
@@ -158,7 +159,7 @@ const FileUpload = () => {
                             <span>{file ? `${file.length} files Selected` : "Select Documents"}</span>
                         </div>
                         {file && <div className="FileUpload-NewFiles flex gap05" title="Select New Files">
-                            <MdRotateRight size={25} color="var(--text)" />
+                            <MdRotateRight size={25} color="inherit" />
                             <span>New</span>
                         </div>}
                     </div>
@@ -176,30 +177,33 @@ const FileUpload = () => {
             </form>
 
             {file &&
-                <table border="0" className="FileUpload-FileList" style={{ borderCollapse: "collapse" }}>
-                    <thead>
-                        <tr>
-                            <th>File Name</th>
-                            <th>File Type</th>
-                            <th>Size</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {file.map((obj, index) => {
-                            let fSize = size(obj.size)
-                            return (<tr className="FileUpload-TableRow" key={index}>
-                                <td>{obj.name}</td>
-                                <td>{obj.type === "application/pdf" ? "PDF" : obj.type}</td>
-                                <td>{fSize}</td>
-                                {isUploading === "idle" && <td>-</td>}
-                                {isUploading === "loading" && <td><FiLoader size={25} color="var(--grey)" style={{ animation: "spin 2s linear infinite" }} /></td>}
-                                {isUploading === "done" && <td><MdCloudDone size={25} color="var(--green)" /></td>}
-                                {isUploading === "error" && <td><FaExclamation size={25} color="var(--red)" /></td>}
-                            </tr>)
-                        })}
-                    </tbody>
-                </table>}
+                <div className="FileUpload-FileListContainer">
+                    <table border="0" className="FileUpload-FileList" style={{ borderCollapse: "collapse" }}>
+                        <thead>
+                            <tr>
+                                <th>File Name</th>
+                                <th>File Type</th>
+                                <th>Size</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {file.map((obj, index) => {
+                                let fSize = size(obj.size)
+                                return (<tr className="FileUpload-TableRow" key={index}>
+                                    <td>{obj.name}</td>
+                                    <td>{obj.type === "application/pdf" ? "PDF" : obj.type}</td>
+                                    <td>{fSize}</td>
+                                    {isUploading === "idle" && <td>-</td>}
+                                    {isUploading === "loading" && <td><FiLoader size={25} color="var(--grey)" style={{ animation: "spin 2s linear infinite" }} /></td>}
+                                    {isUploading === "done" && <td><MdCloudDone size={25} color="var(--green)" /></td>}
+                                    {isUploading === "error" && <td><FaExclamation size={25} color="var(--red)" /></td>}
+                                </tr>)
+                            })}
+                        </tbody>
+                    </table>
+                </div>
+            }
         </div >
     )
 }

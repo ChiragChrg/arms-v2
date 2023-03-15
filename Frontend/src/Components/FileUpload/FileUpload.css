@@ -4,6 +4,10 @@
     position: relative;
 }
 
+.FileUpload-Main h1{
+    padding: 0.4em 0;
+}
+
 .FileUpload-Vector{
     position: absolute;
     top: 2em;
@@ -61,9 +65,9 @@
 
 .FileUpload-FilePicker{
     justify-content: space-around;
-    background-color: inherit;
+    background-color: var(--primaryLite);
     color: var(--text);
-    background: none;
+    /* background: none; */
     border: none;
     outline: none;
     min-width: 21.2em;
@@ -75,13 +79,15 @@
 }
 
 .FileUpload-NewFiles{
-    background-color: var(--greyLite);
+    background-color: var(--primaryLite);
     padding: 0.15em 0.3em;
     border-radius: 0.3em;
+    transition: 0.2s ease-in-out;
 }
 
 .FileUpload-NewFiles:hover{
-    background-color: var(--primaryLite);
+    background-color: var(--primary);
+    color: var(--white);
 }
 
 .FileUpload-Submit{
@@ -93,11 +99,17 @@
     cursor: pointer;
 }
 
+.FileUpload-FileListContainer{
+    padding: 0 3em;
+    padding-bottom: 1em;
+}
+
 .FileUpload-FileList{
-    min-width: 44.4em;
+    /* min-width: 44.4em; */
+    width: 100%;
     padding: 0.2em 1em;
     border-radius: 0.4em;
-    margin-left: 1em;
+    /* margin-left: 1em; */
 }
 
 .FileUpload-FileList thead{
@@ -126,7 +138,7 @@
 
 .FileUpload-TableRow td:first-child{
     overflow: hidden;
-    width: 24.396em;
+    width: 35em;
 }
 
 .FileUpload-TableRow:last-child{
