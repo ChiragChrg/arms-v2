@@ -5,7 +5,7 @@ import axios from 'axios'
 import moment from 'moment'
 import NavRoute from "../../../Components/NavRoute/NavRoute"
 import { BsBuilding } from "react-icons/bs"
-import { TbBooks } from "react-icons/tb"
+import { TbBooks, TbFileUpload } from "react-icons/tb"
 import { FiPlus } from "react-icons/fi"
 import { useContextData } from "../../../Hooks/useContextData"
 
@@ -72,10 +72,17 @@ const InstituteInfo = () => {
             <div className="InstituteInfo-SubHeader flex">
                 <h2>Courses</h2>
 
-                <Link to="new" state={collegeInfo} className="InstituteInfo-Create flex gap05">
-                    <FiPlus size={25} color="inherit" />
-                    <span>New Course</span>
-                </Link>
+                <div className="flex gap">
+                    <Link to="new" state={collegeInfo} className="InstituteInfo-Create flex gap05">
+                        <FiPlus size={25} color="inherit" />
+                        <span>New Course</span>
+                    </Link>
+
+                    {/* <Link to="upload" state={{ collegeInfo, autoField: false }} className="InstituteInfo-Create flex gap05">
+                        <TbFileUpload size={25} color="inherit" />
+                        <span>Upload Docs</span>
+                    </Link> */}
+                </div>
             </div>
 
             <div className="InstituteInfo-CourseList">

@@ -100,25 +100,33 @@
     width: 100%;
     padding: 0 1em;
     padding-left: 0.5em;
+    padding-bottom: 3em;
 }
 
 .SubjectInfo-Table{
     width: 100%;
     border-collapse: collapse;
-    background-color: var(--primaryLite);
+    /* background-color: var(--primaryLite); */
 }
 
 .SubjectInfo-Table thead{
     background-color: var(--greyLite);
+    border-radius: 0.3em;
 }
 
 .SubjectInfo-Table thead th{
-    border-right: 1px solid var(--grey);
+    border-right: 1px solid var(--white);
     padding: 0.1em 0.5em;
+}
+
+
+.SubjectInfo-Table thead th:first-child{
+    border-radius: 0.3em 0 0 0.3em;
 }
 
 .SubjectInfo-Table thead th:last-child{
     border-right: none;
+    border-radius: 0 0.3em 0.3em 0;
 }
 
 .SubjectInfo-TableRow{
@@ -134,9 +142,15 @@
 
 .SubjectInfo-TableRow td:first-child{
     overflow: hidden;
-    width: 24.396em;
+    width: 24em;
 }
 
 .SubjectInfo-TableRow:last-child{
     border-bottom: 2em solid var(--base);
+}
+
+.SubjectInfo-TableRow td a{
+    text-decoration: none;
+    color: var(--primary);
+    font-weight: bold;
 }

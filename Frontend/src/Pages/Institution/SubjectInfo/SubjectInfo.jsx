@@ -1,25 +1,37 @@
 // import "./SubjectInfo.css" // Styles from InstituteInfo.css
 import { useState, useEffect } from "react"
 import { useLocation, Link } from "react-router-dom"
+import { useContextData } from "../../../Hooks/useContextData"
 import { partial } from "filesize";
 import moment from 'moment'
 
 import NavRoute from "../../../Components/NavRoute/NavRoute"
 import { IoBookOutline } from "react-icons/io5"
 import { FiPlus } from "react-icons/fi"
-import { HiOutlineDocumentDuplicate } from "react-icons/hi"
+// import { HiOutlineDocumentDuplicate } from "react-icons/hi"
 
 const SubjectInfo = () => {
     const [subjectData, setSubjectData] = useState([])
     const [docsList, setDocsList] = useState([])
-    const { state } = useLocation()
+    const { state, pathname } = useLocation()
+    const { isAdmin, docsStateData } = useContextData()
     const size = partial({ base: 10 })
 
     useEffect(() => {
-        setSubjectData(state?.data)
-        setDocsList(state?.data?.subjectDocs)
+        const SubjectPathname = pathname.replaceAll("-", " ").split("/").pop().toLowerCase();
+        if (docsStateData.length !== 0 && SubjectPathname === docsStateData.subjectName.toLowerCase()) {
+            setSubjectData(docsStateData)
+            setDocsList(docsStateData?.subjectDocs)
+        } else {
+            setSubjectData(state?.data)
+            setDocsList(state?.data?.subjectDocs)
+        }
         console.log(state)
     }, [])
+
+    const HandleDocDelete = async () => {
+        console.log("Delete")
+    }
 
     return (
         <div className="SubjectInfo-Main">
@@ -55,7 +67,7 @@ const SubjectInfo = () => {
             <div className="InstituteInfo-SubHeader flex">
                 <h2>Documents</h2>
 
-                <Link to="new" className="InstituteInfo-Create flex gap05">
+                <Link to="upload" state={state} className="InstituteInfo-Create flex gap05">
                     <FiPlus size={25} color="inherit" />
                     <span>Upload Docs</span>
                 </Link>
@@ -70,16 +82,21 @@ const SubjectInfo = () => {
                             <th>Uploader</th>
                             <th>Created</th>
                             <th>Download</th>
+                            {isAdmin && <th>Delete</th>}
                         </tr>
                     </thead>
                     <tbody>
                         {docsList.map((obj, index) => {
-                            return (<tr className="SubjectInfo-TableRow">
+                            return (<tr key={index} className="SubjectInfo-TableRow">
                                 <td>{obj?.docName}</td>
                                 <td>{size(obj?.docSize)}</td>
                                 <td>{obj?.docUploader}</td>
                                 <td>{moment(obj?.docCreated).format('LL')}</td>
                                 <td><a href={obj?.docLink}>Download</a></td>
+                                {isAdmin &&
+                                    <td style={{ color: "var(--red)", fontWeight: "bold", cursor: "pointer" }}
+                                        onClick={HandleDocDelete}
+                                    >Delete</td>}
                             </tr>)
                         })}
                     </tbody>
