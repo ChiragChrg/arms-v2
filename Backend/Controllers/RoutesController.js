@@ -197,7 +197,8 @@ exports.UploadToDrive = async (req, res) => {
                 })
 
                 if (indexCount === fileList.length) {
-                    await DocsDB.save();
+                    const savedDocs = await DocsDB.save();
+                    res.status(201).json({ savedDocs, message: "Files Uploaded Successfully!" });
                 } else {
                     indexCount = indexCount + 1;
                 }
@@ -209,9 +210,7 @@ exports.UploadToDrive = async (req, res) => {
         UploadFiles()
     })
 
-    // const savedDocs = await DocsDB.save();
-    // await DocsDB.save();
-    res.status(201).json({ message: "Files Uploaded Successfully!" });
+    // res.status(201).json({ message: "Files Uploaded Successfully!" });
 }
 
 exports.DownloadFromDrive = async (req, res) => {
