@@ -18,25 +18,20 @@ const CourseInfo = () => {
     const { courseStateData, setManageDelete } = useContextData()
 
     useEffect(() => {
-        console.log("STATO", state)
         const CountDocs = (array) => {
             if (!initialRender) {
                 setInitialRender(true)
 
                 array.forEach(itm => {
-                    console.log(itm)
                     setDocsCount(prev => prev + itm?.subjectDocs?.length)
                 })
             }
         }
 
         if (courseStateData.length !== 0) {
-            console.log("toooo", courseStateData, state)
             if (courseStateData?.course) {
-                console.log("running length")
                 courseStateData.course.forEach(obj => {
                     if (obj._id == state.data._id) {
-                        console.log("running corus")
                         setCourseData(obj)
                         setSubjectList(obj.subjects)
                         CountDocs(obj.subjects)
@@ -46,11 +41,9 @@ const CourseInfo = () => {
                 setCourseData(courseStateData[0])
                 setSubjectList(courseStateData[0].subjects)
                 CountDocs(courseStateData[0].subjects)
-                console.log("running arr")
             }
         }
         else {
-            console.log("running state")
             setCourseData(state?.data)
             setSubjectList(state?.data?.subjects)
             CountDocs(state?.data?.subjects)

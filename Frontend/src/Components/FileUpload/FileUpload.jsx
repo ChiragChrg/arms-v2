@@ -72,7 +72,7 @@ const FileUpload = () => {
 
         try {
             const res = await axios.post('/api/upload', formData);
-            console.log(res)
+            // console.log(res)
 
             if (res.status === 201) {
                 setInstituteStateData(res.data.savedDocs)

@@ -51,16 +51,14 @@ const Content = () => {
             //Delete Subject
             try {
                 const res = await axios.post('/api/deletesubject', manageDelete)
-                console.log(res)
+                // console.log(res)
 
                 if (res.status == 200) {
                     setLoading(false)
-                    console.log("Content", res.data?.deletedSub)
                     setInstituteStateData(res.data?.deletedSub)
                     setCourseStateData(res.data?.deletedSub)
                     toast.success(manageDelete.title + " Deleted Sucessfully!")
                     setManageDelete(null)
-                    console.log(manageDelete.backPath)
                     navigate(manageDelete.backPath, {
                         state: {
                             data: manageDelete.backState.courseInfo,
@@ -77,16 +75,14 @@ const Content = () => {
             //Delete Course
             try {
                 const res = await axios.post('/api/deletecourse', manageDelete)
-                console.log(res)
+                // console.log(res)
 
                 if (res.status == 200) {
                     setLoading(false)
-                    console.log("Content", res.data?.deletedCourse)
                     setInstituteStateData(res.data?.deletedCourse)
                     setCourseStateData(res.data?.deletedCourse)
                     toast.success(manageDelete.title + " Deleted Sucessfully!")
                     setManageDelete(null)
-                    console.log(manageDelete.backPath)
                     navigate(manageDelete.backPath, { state: manageDelete.backState })
                 }
             } catch (err) {
@@ -95,19 +91,15 @@ const Content = () => {
                 toast.error(err.message)
             }
         } else if (manageDelete.title == "Institute") {
-            //Delete Course
+            //Delete Institute
             try {
                 const res = await axios.post('/api/deleteinstitute', manageDelete)
-                console.log(res)
+                // console.log(res)
 
                 if (res.status == 200) {
                     setLoading(false)
-                    console.log("Content", res.data?.deletedCourse)
-                    // setInstituteStateData(res.data?.deletedCourse)
-                    // setCourseStateData(res.data?.deletedCourse)
                     toast.success(manageDelete.title + " Deleted Sucessfully!")
                     setManageDelete(null)
-                    console.log(manageDelete.backPath)
                     navigate(manageDelete.backPath)
                 }
             } catch (err) {

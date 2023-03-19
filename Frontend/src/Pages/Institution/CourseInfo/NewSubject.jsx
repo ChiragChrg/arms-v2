@@ -1,5 +1,5 @@
 // import "./NewSubject.css" // Styles from NewInstitute.css
-import { useState, useEffect, useRef } from "react"
+import { useState, useRef } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
 import { useContextData } from "../../../Hooks/useContextData"
 import axios from "axios"
@@ -21,10 +21,6 @@ const NewSubject = () => {
     const SubjectRef = useRef()
     const SubjectDesc = useRef()
 
-    useEffect(() => {
-        console.log(state)
-    }, [])
-
     const HandleSubmit = async (e) => {
         e.preventDefault()
         setLoading(true)
@@ -39,7 +35,7 @@ const NewSubject = () => {
 
         try {
             const res = await axios.post('/api/createsubject', data)
-            console.log("RES", res)
+            // console.log("RES", res)
 
             if (res.status === 201) {
                 setCourseStateData(res.data.savedSubject)

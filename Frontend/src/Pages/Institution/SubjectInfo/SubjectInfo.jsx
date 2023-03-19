@@ -30,7 +30,6 @@ const SubjectInfo = () => {
             setSubjectData(state?.data)
             setDocsList(state?.data?.subjectDocs)
         }
-        console.log(state)
     }, [state, pathname, docsStateData])
 
     const HandleDocDelete = async (fileId, index) => {
@@ -43,7 +42,7 @@ const SubjectInfo = () => {
                 subjectId: state?.data?._id
             }
             const res = await axios.post('/api/deletedoc', data)
-            console.log(res)
+            // console.log(res)
             if (res.status == 200) {
                 setLoading(false)
 
@@ -64,14 +63,12 @@ const SubjectInfo = () => {
 
                                 cSub[sIndex] = { ...newSub[0] }
                                 mainObj.course[cIndex] = { ...mainObj.course[cIndex], subjects: cSub }
-                                console.log("DSUB", mainObj)
                                 setCourseStateData(mainObj)
                                 setInstituteStateData(mainObj)
                             }
                         })
                     }
                 })
-
 
                 toast.success(res.data.message)
             }
