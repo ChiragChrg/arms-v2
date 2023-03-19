@@ -69,6 +69,42 @@ exports.LoginUser = async (req, res) => {
 };
 
 //Get Routes
+exports.GetCountUp = async (req, res) => {
+    let institute = 0;
+    let course = 0;
+    let subject = 0;
+    let document = 0;
+
+    try {
+        const DocsDB = await Docs.find({})
+
+        DocsDB.forEach(obj => {
+            institute++;
+            obj.course?.forEach(itm => {
+                course++;
+                itm.subjects?.forEach(sub => {
+                    subject++;
+                    sub.subjectDocs?.forEach(doc => {
+                        document++;
+                    })
+                })
+            })
+        })
+
+        let Count = {
+            institute,
+            course,
+            subject,
+            document
+        }
+
+        res.status(200).json({ Count })
+    } catch (err) {
+        console.log(err)
+        res.status(500).json({ message: "Failed to get Institutions" })
+    }
+}
+
 exports.GetInstitutions = async (req, res) => {
     try {
         const DocsDB = await Docs.find({})
