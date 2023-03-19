@@ -24,7 +24,7 @@ import NewSubject from './Pages/Institution/CourseInfo/NewSubject';
 import SubjectInfo from './Pages/Institution/SubjectInfo/SubjectInfo';
 
 function App() {
-  const { setUserData, isAdmin, isUserLoggedIn, authorizedUser, setIsUserLoggedIn, setIsUserFaculty, setIsReturningUser, setIsDarkTheme } = useContextData();
+  const { userData, setUserData, isAdmin, isUserLoggedIn, authorizedUser, setIsUserLoggedIn, setIsUserFaculty, setIsReturningUser, setIsDarkTheme } = useContextData();
 
   useEffect(() => {
     const getFacultyLoggedIn = localStorage.getItem('arms-isFacultyLoggedIn');
@@ -40,7 +40,7 @@ function App() {
     const getLocalUser = localStorage.getItem('arms-user');
     const LocalUser = JSON.parse(getLocalUser)
     setUserData(LocalUser);
-    axios.defaults.headers.common['Authorization'] = LocalUser?.token;
+    axios.defaults.headers.common['Authorization'] = userData?.token;
 
     let getTheme = localStorage.getItem("arms-theme");
     document.body.setAttribute("data-theme", getTheme || "light");
