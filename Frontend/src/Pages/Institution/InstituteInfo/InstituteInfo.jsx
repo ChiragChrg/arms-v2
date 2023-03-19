@@ -14,10 +14,11 @@ const InstituteInfo = () => {
     const [courseList, setCourseList] = useState([]);
     const [subjectCount, setSubjectCount] = useState(0);
     const [docsCount, setDocsCount] = useState(0);
+    const [isAuthorized, setIsAuthorized] = useState(false)
     const [initialRender, setInitialRender] = useState(false)
 
     const { state, pathname } = useLocation()
-    const { instituteStateData, setManageDelete } = useContextData()
+    const { instituteStateData, setManageDelete, userData, authorizedUser } = useContextData()
     const CollegeData = instituteStateData.length !== 0 ? instituteStateData : state;
 
     useEffect(() => {
@@ -44,6 +45,12 @@ const InstituteInfo = () => {
         }
     }, [state])
 
+    useEffect(() => {
+        if (collegeInfo.registeredBy === userData.username && authorizedUser) {
+            setIsAuthorized(true)
+        }
+    }, [collegeInfo])
+
     return (
         <div className="InstituteInfo-Main">
             <NavRoute routes={[{ path: "Institution" }, { path: `institution/${collegeInfo?.collegeName?.replaceAll(" ", "-")}`, state: state }]} />
@@ -53,7 +60,7 @@ const InstituteInfo = () => {
                     <BsBuilding size={70} color="var(--white)" />
                 </div>
 
-                <div className="InstituteInfo-Settings flex gap05" onClick={() => setManageDelete({
+                {isAuthorized && <div className="InstituteInfo-Settings flex gap05" onClick={() => setManageDelete({
                     title: "Institute",
                     name: collegeInfo?.collegeName,
                     collegeId: collegeInfo?._id,
@@ -61,7 +68,7 @@ const InstituteInfo = () => {
                 })}>
                     <MdSettings size={25} color="inherit" />
                     <span>Manage</span>
-                </div>
+                </div>}
 
                 <div className="InstituteInfo-HeadInfo flex col">
                     <div className="InstituteInfo-Title flex col">
@@ -82,17 +89,10 @@ const InstituteInfo = () => {
             <div className="InstituteInfo-SubHeader flex">
                 <h2>Courses</h2>
 
-                <div className="flex gap">
-                    <Link to="new" state={collegeInfo} className="InstituteInfo-Create flex gap05">
-                        <FiPlus size={25} color="inherit" />
-                        <span>New Course</span>
-                    </Link>
-
-                    {/* <Link to="upload" state={{ collegeInfo, autoField: false }} className="InstituteInfo-Create flex gap05">
-                        <TbFileUpload size={25} color="inherit" />
-                        <span>Upload Docs</span>
-                    </Link> */}
-                </div>
+                {authorizedUser && <Link to="new" state={collegeInfo} className="InstituteInfo-Create flex gap05">
+                    <FiPlus size={25} color="inherit" />
+                    <span>New Course</span>
+                </Link>}
             </div>
 
             <div className="InstituteInfo-CourseList">

@@ -43,9 +43,6 @@ function App() {
   }, [])
 
   useEffect(() => {
-    const getLocalUser = localStorage.getItem('arms-user');
-    const LocalUser = JSON.parse(getLocalUser)
-    setUserData(LocalUser);
     axios.defaults.headers.common['Authorization'] = userData?.token;
   }, [userData])
 

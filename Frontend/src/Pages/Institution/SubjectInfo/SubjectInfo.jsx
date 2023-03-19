@@ -15,9 +15,10 @@ import { MdSettings } from "react-icons/md"
 const SubjectInfo = () => {
     const [subjectData, setSubjectData] = useState([])
     const [docsList, setDocsList] = useState([])
+    const [isAuthorized, setIsAuthorized] = useState(false)
     const [loading, setLoading] = useState(false)
     const { state, pathname } = useLocation()
-    const { isAdmin, docsStateData, setDocsStateData, setCourseStateData, setManageDelete, setInstituteStateData } = useContextData()
+    const { authorizedUser, userData, docsStateData, setDocsStateData, setCourseStateData, setManageDelete, setInstituteStateData } = useContextData()
     const size = partial({ base: 10 })
 
     useEffect(() => {
@@ -31,6 +32,12 @@ const SubjectInfo = () => {
             setDocsList(state?.data?.subjectDocs)
         }
     }, [state, pathname, docsStateData])
+
+    useEffect(() => {
+        if (subjectData.subjectCreator === userData.username && authorizedUser) {
+            setIsAuthorized(true)
+        }
+    }, [subjectData])
 
     const HandleDocDelete = async (fileId, index) => {
         setLoading(index)
@@ -100,7 +107,7 @@ const SubjectInfo = () => {
                     <IoBookOutline size={60} color="var(--white)" />
                 </div>
 
-                <div className="InstituteInfo-Settings flex gap05" onClick={() => setManageDelete({
+                {isAuthorized && <div className="InstituteInfo-Settings flex gap05" onClick={() => setManageDelete({
                     title: "Subject",
                     name: subjectData?.subjectName,
                     collegeId: state?.collegeInfo?._id,
@@ -111,7 +118,7 @@ const SubjectInfo = () => {
                 })}>
                     <MdSettings size={25} color="inherit" />
                     <span>Manage</span>
-                </div>
+                </div>}
 
                 <div className="InstituteInfo-HeadInfo flex col">
                     <div className="InstituteInfo-Title flex col">
@@ -133,10 +140,10 @@ const SubjectInfo = () => {
             <div className="InstituteInfo-SubHeader flex">
                 <h2>Documents</h2>
 
-                <Link to="upload" state={state} className="InstituteInfo-Create flex gap05">
+                {authorizedUser && <Link to="upload" state={state} className="InstituteInfo-Create flex gap05">
                     <FiPlus size={25} color="inherit" />
                     <span>Upload Docs</span>
-                </Link>
+                </Link>}
             </div>
 
             <div className="SubjectInfo-TableContainer">
@@ -148,7 +155,7 @@ const SubjectInfo = () => {
                             <th>Uploader</th>
                             <th>Created</th>
                             <th>Download</th>
-                            {isAdmin && <th>Delete</th>}
+                            {authorizedUser && <th>Delete</th>}
                         </tr>
                     </thead>
                     <tbody>
@@ -160,13 +167,20 @@ const SubjectInfo = () => {
                                 <td>{obj?.docUploader}</td>
                                 <td>{moment(obj?.docCreated).format('LL')}</td>
                                 <td><a href={obj?.docLink}>Download</a></td>
-                                {isAdmin &&
-                                    <td style={{ color: "var(--red)", fontWeight: "bold", cursor: "pointer" }}
-                                        onClick={() => HandleDocDelete(fileId, index)}>
-                                        {loading === index ?
-                                            <FiLoader size={25} color="inherit" style={{ animation: "spin 2s linear infinite" }} />
-                                            : "Delete"}
-                                    </td>}
+                                {authorizedUser &&
+                                    <td>
+                                        {obj?.docUploader === userData.username ? <div style={{ color: "var(--red)", fontWeight: "bold", cursor: "pointer" }}
+                                            onClick={() => HandleDocDelete(fileId, index)}>
+                                            {loading === index ?
+                                                <FiLoader size={25} color="inherit" style={{ animation: "spin 2s linear infinite" }} />
+                                                :
+                                                <span>Delete</span>}
+                                        </div>
+                                            :
+                                            <span style={{ color: "var(--grey)" }}>NA</span>
+                                        }
+                                    </td>
+                                }
                             </tr>)
                         })}
                     </tbody>

@@ -13,9 +13,10 @@ const CourseInfo = () => {
     const [courseData, setCourseData] = useState([])
     const [subjectList, setSubjectList] = useState([])
     const [initialRender, setInitialRender] = useState(false)
+    const [isAuthorized, setIsAuthorized] = useState(false)
     const [docsCount, setDocsCount] = useState(0)
     const { state } = useLocation()
-    const { courseStateData, setManageDelete } = useContextData()
+    const { courseStateData, setManageDelete, userData, authorizedUser } = useContextData()
 
     useEffect(() => {
         const CountDocs = (array) => {
@@ -50,6 +51,12 @@ const CourseInfo = () => {
         }
     }, [courseStateData, state])
 
+    useEffect(() => {
+        if (courseData.courseCreator === userData.username && authorizedUser) {
+            setIsAuthorized(true)
+        }
+    }, [courseData])
+
     return (
         <div className="CourseInfo-Main">
             <NavRoute
@@ -65,7 +72,7 @@ const CourseInfo = () => {
                     <TbBooks size={60} color="var(--white)" />
                 </div>
 
-                <div className="InstituteInfo-Settings flex gap05" onClick={() => setManageDelete({
+                {isAuthorized && <div className="InstituteInfo-Settings flex gap05" onClick={() => setManageDelete({
                     title: "Course",
                     name: courseData?.courseName,
                     collegeId: state?.collegeInfo?._id,
@@ -75,7 +82,7 @@ const CourseInfo = () => {
                 })}>
                     <MdSettings size={25} color="inherit" />
                     <span>Manage</span>
-                </div>
+                </div>}
 
                 <div className="InstituteInfo-HeadInfo flex col">
                     <div className="InstituteInfo-Title flex col">
@@ -97,10 +104,10 @@ const CourseInfo = () => {
             <div className="InstituteInfo-SubHeader flex">
                 <h2>Subjects</h2>
 
-                <Link to="new" state={{ collegeInfo: state?.collegeInfo, data: courseData }} className="InstituteInfo-Create flex gap05">
+                {authorizedUser && <Link to="new" state={{ collegeInfo: state?.collegeInfo, data: courseData }} className="InstituteInfo-Create flex gap05">
                     <FiPlus size={25} color="inherit" />
                     <span>New Subject</span>
-                </Link>
+                </Link>}
             </div>
 
             <div className="InstituteInfo-CourseList">
