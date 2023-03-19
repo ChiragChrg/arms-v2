@@ -4,6 +4,7 @@ import NavRoute from "../../Components/NavRoute/NavRoute"
 import { useContextData } from "../../Hooks/useContextData"
 import axios from "axios"
 import { Link } from "react-router-dom"
+import { toast } from "react-toastify"
 
 // import { FolderSVG } from "../../Assets"
 import Skeleton from '@mui/material/Skeleton';
@@ -26,6 +27,7 @@ const Institution = () => {
                 }
             } catch (err) {
                 console.log(err)
+                toast.error(err.message + ". Try again later.")
                 setLoading(false);
             }
         }

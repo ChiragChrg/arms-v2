@@ -14,6 +14,7 @@
     padding: 1em;
     border-radius: 0.4em;
     justify-content: flex-start;
+    position: relative;
 }
 
 .InstituteInfo-Icon{
@@ -21,6 +22,22 @@
     width: fit-content;
     padding: 2em;
     border-radius: 100%;
+}
+
+.InstituteInfo-Settings{
+    position: absolute;
+    top: 0.8em;
+    right: 1em;
+    background-color: var(--primaryLite);
+    padding: 0.3em 0.5em;
+    border-radius: 0.3em;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+.InstituteInfo-Settings:hover{
+    background-color: var(--primary);
+    color: var(--white);
 }
 
 .InstituteInfo-HeadInfo{
