@@ -14,7 +14,7 @@ import { MdShortText } from "react-icons/md"
 
 const NewSubject = () => {
     const [loading, setLoading] = useState(false)
-    const { userData, setCourseStateData } = useContextData()
+    const { userData, setCourseStateData, setInstituteStateData } = useContextData()
 
     const navigate = useNavigate()
     const { state } = useLocation()
@@ -39,10 +39,11 @@ const NewSubject = () => {
 
         try {
             const res = await axios.post('/api/createsubject', data)
-            // console.log("RES", res)
+            console.log("RES", res)
 
             if (res.status === 201) {
                 setCourseStateData(res.data.savedSubject)
+                setInstituteStateData(res.data.savedSubject)
                 toast.success(res.data.message)
                 setLoading(false)
                 navigate(-1)

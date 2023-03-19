@@ -23,7 +23,7 @@ const FileUpload = () => {
 
     const FilePickerRef = useRef();
     const { state } = useLocation();
-    const { userData, setDocsStateData } = useContextData()
+    const { userData, setDocsStateData, setInstituteStateData, setCourseStateData } = useContextData()
 
     const size = partial({ base: 10 });
 
@@ -45,8 +45,12 @@ const FileUpload = () => {
 
     const handleFileSelection = (e) => {
         const files = e.target.files;
-        setFile(files ? [...files] : [])
-        setIsUploading("idle")
+        if (files.length > 10) {
+            toast.error("Max File Limit is 10!")
+        } else {
+            setFile(files ? [...files] : [])
+            setIsUploading("idle")
+        }
     }
 
     const HandleUpload = async (e) => {
@@ -71,11 +75,13 @@ const FileUpload = () => {
             console.log(res)
 
             if (res.status === 201) {
+                setInstituteStateData(res.data.savedDocs)
+                setCourseStateData(res.data.savedDocs)
                 res.data.savedDocs.course.forEach(itm => {
                     if (itm._id == infoData?.courseId) {
                         itm.subjects.forEach(sub => {
                             if (sub._id == infoData?.subjectId) {
-                                setDocsStateData(sub)
+                                setDocsStateData([sub])
                             }
                         })
                     }
