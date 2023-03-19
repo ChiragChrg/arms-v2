@@ -8,9 +8,7 @@
 
 .InstituteInfo-Header{
     background-color: var(--primaryLite);
-    margin: 1em;
-    margin-top: 2em;
-    margin-left: 0.5em;
+    margin: 2em 0 1em 0;
     padding: 1em;
     border-radius: 0.4em;
     justify-content: flex-start;
@@ -76,8 +74,7 @@
 
 .InstituteInfo-SubHeader{
     justify-content: space-between;
-    margin: 1em;
-    margin-left: 0.5em;
+    margin: 1em 0;
 }
 
 .InstituteInfo-Create{
@@ -93,9 +90,7 @@
     display: grid;
     grid-template-columns: repeat(3,1fr);
     gap: 1em;
-    margin: 1em;
-    margin-top: 0.5em;
-    margin-left: 0.5em;
+    padding-bottom: 5em;
 }
 
 .InstituteInfo-CourseCard{

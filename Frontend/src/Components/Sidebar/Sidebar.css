@@ -42,6 +42,7 @@
     padding: 0.8em;
     padding-top: 2em;
     justify-content: flex-start;
+    user-select: none;
 }
 
 .Sidebar-NavLinks a{
@@ -80,6 +81,7 @@
 .Sidebar-Profile{
     justify-content: flex-start;
     color: var(--white);
+    user-select: none;
 }
 
 .Sidebar-ProfileImg{
