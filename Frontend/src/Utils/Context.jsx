@@ -34,7 +34,7 @@ const ContextProvider = ({ children }) => {
 
         if (userData?.uid === import.meta.env.VITE_ARMS_ADMIN_UID) setIsAdmin(true);
 
-        if (isAdmin || isUserFaculty) {
+        if ((isAdmin || isUserFaculty) && userData.isApproved) {
             setAuthorizedUser(true);
         } else {
             setAuthorizedUser(false);

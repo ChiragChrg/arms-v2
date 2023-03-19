@@ -57,6 +57,7 @@ exports.LoginUser = async (req, res) => {
             username: CheckUser.username,
             email: CheckUser.email,
             avatar: CheckUser.avatarImg,
+            isApproved: CheckUser.isApproved,
             token,
         }
 

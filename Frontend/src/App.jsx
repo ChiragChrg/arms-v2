@@ -24,7 +24,7 @@ import NewSubject from './Pages/Institution/CourseInfo/NewSubject';
 import SubjectInfo from './Pages/Institution/SubjectInfo/SubjectInfo';
 
 function App() {
-  const { userData, setUserData, isAdmin, isUserLoggedIn, authorizedUser, setIsUserLoggedIn, setIsUserFaculty, setIsReturningUser, setIsDarkTheme } = useContextData();
+  const { userData, setUserData, isUserLoggedIn, authorizedUser, setIsUserLoggedIn, setIsUserFaculty, setIsReturningUser, setIsDarkTheme } = useContextData();
 
   useEffect(() => {
     const getFacultyLoggedIn = localStorage.getItem('arms-isFacultyLoggedIn');
@@ -37,6 +37,10 @@ function App() {
       setIsReturningUser(true);
     }
 
+    const getLocalUser = localStorage.getItem('arms-user');
+    const LocalUser = JSON.parse(getLocalUser)
+    setUserData(LocalUser);
+
     let getTheme = localStorage.getItem("arms-theme");
     document.body.setAttribute("data-theme", getTheme || "light");
     getTheme === "dark" ? setIsDarkTheme(true) : setIsDarkTheme(false);
@@ -46,21 +50,18 @@ function App() {
     axios.defaults.headers.common['Authorization'] = userData?.token;
   }, [userData])
 
-  // console.log(isFacultyLoggedIn);
 
   return (
     <div className="App">
       <Browser>
         <Routes>
           {isUserLoggedIn && <Route element={<Content />}>
-            <Route path="/dashboard" element={!isAdmin ? <Dashboard /> : <AdminDash />} />
+            <Route path="/dashboard" element={!authorizedUser ? <Dashboard /> : <AdminDash />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<h1>Contact</h1>} />
-            <Route path="/upload" element={authorizedUser ? <FileUpload /> : <h1>User Not Authorized</h1>} />
             <Route path="/institution" element={<Institution />} />
             <Route path="/institution/new" element={authorizedUser ? <NewInstitute /> : <h1>User Not Authorized</h1>} />
             <Route path="/institution/:institute" element={<InstituteInfo />} />
-            {/* <Route path="/institution/:institute/upload" element={authorizedUser ? <FileUpload /> : <h1>User Not Authorized</h1>} /> */}
             <Route path="/institution/:institute/new" element={authorizedUser ? <NewCourse /> : <h1>User Not Authorized</h1>} />
             <Route path="/institution/:institute/:course" element={<CourseInfo />} />
             <Route path="/institution/:institute/:course/new" element={authorizedUser ? <NewSubject /> : <h1>User Not Authorized</h1>} />
