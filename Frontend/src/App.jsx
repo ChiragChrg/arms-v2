@@ -45,7 +45,7 @@ function App() {
     let getTheme = localStorage.getItem("arms-theme");
     document.body.setAttribute("data-theme", getTheme || "light");
     getTheme === "dark" ? setIsDarkTheme(true) : setIsDarkTheme(false);
-  }, [])
+  }, [userData])
 
   // console.log(isFacultyLoggedIn);
 
