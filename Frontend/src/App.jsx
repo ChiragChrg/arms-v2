@@ -37,14 +37,16 @@ function App() {
       setIsReturningUser(true);
     }
 
+    let getTheme = localStorage.getItem("arms-theme");
+    document.body.setAttribute("data-theme", getTheme || "light");
+    getTheme === "dark" ? setIsDarkTheme(true) : setIsDarkTheme(false);
+  }, [])
+
+  useEffect(() => {
     const getLocalUser = localStorage.getItem('arms-user');
     const LocalUser = JSON.parse(getLocalUser)
     setUserData(LocalUser);
     axios.defaults.headers.common['Authorization'] = userData?.token;
-
-    let getTheme = localStorage.getItem("arms-theme");
-    document.body.setAttribute("data-theme", getTheme || "light");
-    getTheme === "dark" ? setIsDarkTheme(true) : setIsDarkTheme(false);
   }, [userData])
 
   // console.log(isFacultyLoggedIn);

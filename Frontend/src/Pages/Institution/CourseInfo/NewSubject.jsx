@@ -67,7 +67,7 @@ const NewSubject = () => {
                     <div className="NewInstitute-InputHolder flex col">
                         <label htmlFor="email">Subject Name</label>
                         <div className="NewInstitute-Input flex gap05">
-                            <input type="text" maxLength={30} placeholder="Enter Subject short name" ref={SubjectRef} required />
+                            <input type="text" maxLength={15} placeholder="Enter Subject short name" ref={SubjectRef} required />
                             <IoBookOutline size={25} color="var(--grey)" />
                         </div>
                     </div>
