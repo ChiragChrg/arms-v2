@@ -47,6 +47,7 @@ const Login = () => {
             navigate("/dashboard");
         } catch (err) {
             setLoading(false);
+            console.log(err)
             setAlertMsg("Invalid Credentials! Please try again.");
             toast.error(err.response.data.message || "Something went wrong!");
         }

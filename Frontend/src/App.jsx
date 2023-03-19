@@ -40,7 +40,7 @@ function App() {
     const getLocalUser = localStorage.getItem('arms-user');
     const LocalUser = JSON.parse(getLocalUser)
     setUserData(LocalUser);
-    axios.defaults.headers.common['Authorization'] = LocalUser.token;
+    axios.defaults.headers.common['Authorization'] = LocalUser?.token;
 
     let getTheme = localStorage.getItem("arms-theme");
     document.body.setAttribute("data-theme", getTheme || "light");

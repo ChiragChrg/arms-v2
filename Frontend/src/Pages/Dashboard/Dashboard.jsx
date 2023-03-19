@@ -22,7 +22,7 @@ const Dashboard = () => {
 
     return (
         <div className="Dashboard-Main">
-            <NavRoute routes={routes} />
+            {/* <NavRoute routes={routes} /> */}
             <h1>{welcomeTxt}</h1>
         </div>
     )

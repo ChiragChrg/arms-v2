@@ -32,8 +32,8 @@ const NavRoute = ({ routes = [{ path: "", state: {} }], defaultRoute = "Dashboar
                 return (
                     <Fragment key={index}>
                         <IoIosArrowForward size={18} color="var(--grey)" />
-                        <Link to={`/${item?.path.toLowerCase()}`} state={item?.state}>
-                            <span>{item?.path.includes("/") ? item?.path.split("/").pop() : item?.path}</span>
+                        <Link to={`/${item?.path?.toLowerCase()}`} state={item?.state}>
+                            <span>{item?.path?.includes("/") ? item?.path?.split("/").pop() : item?.path}</span>
                         </Link>
                     </Fragment>
                 )
