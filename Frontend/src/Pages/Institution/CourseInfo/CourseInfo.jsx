@@ -7,6 +7,7 @@ import NavRoute from "../../../Components/NavRoute/NavRoute"
 import { TbBooks } from "react-icons/tb"
 import { FiPlus } from "react-icons/fi"
 import { IoBookOutline } from "react-icons/io5"
+import { MdSettings } from "react-icons/md"
 
 const CourseInfo = () => {
     const [courseData, setCourseData] = useState([])
@@ -14,31 +15,47 @@ const CourseInfo = () => {
     const [initialRender, setInitialRender] = useState(false)
     const [docsCount, setDocsCount] = useState(0)
     const { state } = useLocation()
-    const { courseStateData } = useContextData()
+    const { courseStateData, setManageDelete } = useContextData()
 
     useEffect(() => {
+        console.log("STATO", state)
+        const CountDocs = (array) => {
+            if (!initialRender) {
+                setInitialRender(true)
+
+                array.forEach(itm => {
+                    console.log(itm)
+                    setDocsCount(prev => prev + itm?.subjectDocs?.length)
+                })
+            }
+        }
+
         if (courseStateData.length !== 0) {
-            courseStateData.course.forEach(obj => {
-                if (obj._id == state.data._id) {
-                    setCourseData(obj)
-                    setSubjectList(obj.subjects)
-                }
-            })
+            console.log("toooo", courseStateData, state)
+            if (courseStateData?.course) {
+                console.log("running length")
+                courseStateData.course.forEach(obj => {
+                    if (obj._id == state.data._id) {
+                        console.log("running corus")
+                        setCourseData(obj)
+                        setSubjectList(obj.subjects)
+                        CountDocs(obj.subjects)
+                    }
+                })
+            } else {
+                setCourseData(courseStateData[0])
+                setSubjectList(courseStateData[0].subjects)
+                CountDocs(courseStateData[0].subjects)
+                console.log("running arr")
+            }
         }
         else {
+            console.log("running state")
             setCourseData(state?.data)
             setSubjectList(state?.data?.subjects)
+            CountDocs(state?.data?.subjects)
         }
-        // console.log("State",state)
-
-        if (!initialRender) {
-            setInitialRender(true)
-
-            state?.data?.subjects?.forEach(itm => {
-                setDocsCount(prev => prev + itm?.subjectDocs?.length)
-            })
-        }
-    }, [])
+    }, [courseStateData, state])
 
     return (
         <div className="CourseInfo-Main">
@@ -53,6 +70,18 @@ const CourseInfo = () => {
             <div className="InstituteInfo-Header flex gap">
                 <div className="InstituteInfo-Icon flex">
                     <TbBooks size={60} color="var(--white)" />
+                </div>
+
+                <div className="InstituteInfo-Settings flex gap05" onClick={() => setManageDelete({
+                    title: "Course",
+                    name: courseData?.courseName,
+                    collegeId: state?.collegeInfo?._id,
+                    courseId: state?.data?._id,
+                    backPath: `institution/${state?.collegeInfo?.collegeName.replaceAll(" ", "-")}`,
+                    backState: state,
+                })}>
+                    <MdSettings size={25} color="inherit" />
+                    <span>Manage</span>
                 </div>
 
                 <div className="InstituteInfo-HeadInfo flex col">

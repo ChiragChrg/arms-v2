@@ -1,13 +1,13 @@
 import "./InstituteInfo.css"
 import { useState, useEffect } from 'react'
 import { useLocation, Link } from "react-router-dom"
-import axios from 'axios'
+import { useContextData } from "../../../Hooks/useContextData"
 import moment from 'moment'
 import NavRoute from "../../../Components/NavRoute/NavRoute"
 import { BsBuilding } from "react-icons/bs"
-import { TbBooks, TbFileUpload } from "react-icons/tb"
+import { TbBooks } from "react-icons/tb"
 import { FiPlus } from "react-icons/fi"
-import { useContextData } from "../../../Hooks/useContextData"
+import { MdSettings } from "react-icons/md"
 
 const InstituteInfo = () => {
     const [collegeInfo, setCollegeInfo] = useState([]);
@@ -17,7 +17,7 @@ const InstituteInfo = () => {
     const [initialRender, setInitialRender] = useState(false)
 
     const { state, pathname } = useLocation()
-    const { instituteStateData } = useContextData()
+    const { instituteStateData, setManageDelete } = useContextData()
     const CollegeData = instituteStateData.length !== 0 ? instituteStateData : state;
 
     useEffect(() => {
@@ -51,6 +51,16 @@ const InstituteInfo = () => {
             <div className="InstituteInfo-Header flex gap">
                 <div className="InstituteInfo-Icon flex">
                     <BsBuilding size={70} color="var(--white)" />
+                </div>
+
+                <div className="InstituteInfo-Settings flex gap05" onClick={() => setManageDelete({
+                    title: "Institute",
+                    name: collegeInfo?.collegeName,
+                    collegeId: collegeInfo?._id,
+                    backPath: `institution`,
+                })}>
+                    <MdSettings size={25} color="inherit" />
+                    <span>Manage</span>
                 </div>
 
                 <div className="InstituteInfo-HeadInfo flex col">

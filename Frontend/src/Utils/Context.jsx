@@ -8,8 +8,11 @@ const ContextProvider = ({ children }) => {
     const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
     const [isUserFaculty, setIsUserFaculty] = useState(false);
     const [authorizedUser, setAuthorizedUser] = useState(false);
-    const [onLogout, setOnLogout] = useState(false);
     const [isReturningUser, setIsReturningUser] = useState(false);
+
+    const [onLogout, setOnLogout] = useState(false);
+    const [manageDelete, setManageDelete] = useState(null)
+
     const [instituteStateData, setInstituteStateData] = useState([])
     const [courseStateData, setCourseStateData] = useState([])
     const [docsStateData, setDocsStateData] = useState([])
@@ -56,6 +59,8 @@ const ContextProvider = ({ children }) => {
             setIsDarkTheme,
             onLogout,
             setOnLogout,
+            manageDelete,
+            setManageDelete,
             instituteStateData,
             setInstituteStateData,
             courseStateData,
