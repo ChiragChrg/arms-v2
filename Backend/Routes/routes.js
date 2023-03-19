@@ -12,6 +12,10 @@ router.post('/createinstitute', isAuth, RoutesController.CreateInstitute)
 router.post('/createcourse', isAuth, RoutesController.CreateCourse)
 router.post('/createsubject', isAuth, RoutesController.CreateSubject)
 router.post('/upload', isAuth, upload.array("files", 10), RoutesController.UploadToDrive)
-// router.post('/download', RoutesController.DownloadFromDrive)
+
+router.post('/deletedoc', RoutesController.DeleteDocument)
+router.post('/deletesubject', RoutesController.DeleteSubject)
+router.post('/deletecourse', RoutesController.DeleteCourse)
+router.post('/deleteinstitute', RoutesController.DeleteInstitute)
 
 module.exports = router;

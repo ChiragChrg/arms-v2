@@ -67,6 +67,7 @@ exports.LoginUser = async (req, res) => {
     }
 };
 
+//Get Routes
 exports.GetInstitutions = async (req, res) => {
     try {
         const DocsDB = await Docs.find({})
@@ -77,6 +78,8 @@ exports.GetInstitutions = async (req, res) => {
     }
 }
 
+
+//Create Routes
 exports.CreateInstitute = async (req, res) => {
     const { collegeName, description, userName } = req.body;
     try {
@@ -145,7 +148,7 @@ exports.UploadToDrive = async (req, res) => {
     const { collegeId, courseId, subjectId, uploadedBy } = req.body;
     const fileList = req.files;
 
-    const DocsDB = await Docs.findOne({ "_id": collegeId }, { course: 1 })
+    const DocsDB = await Docs.findOne({ "_id": collegeId })
     if (!DocsDB) return res.status(400).json({ message: 'Invalid Entry, Check entered details.' });
 
     let indexCount = 1;
@@ -178,7 +181,6 @@ exports.UploadToDrive = async (req, res) => {
                     media: media,
                     fields: 'id, name, size, webContentLink'
                 });
-                // console.log("MAIN", result.data)
 
                 DocsDB.course.forEach((obj) => {
                     if (obj._id == courseId) {
@@ -213,8 +215,13 @@ exports.UploadToDrive = async (req, res) => {
     // res.status(201).json({ message: "Files Uploaded Successfully!" });
 }
 
-exports.DownloadFromDrive = async (req, res) => {
-    const { fileId } = req.body;
+
+//Delete Routes
+exports.DeleteDocument = async (req, res) => {
+    const { fileId, collegeId, courseId, subjectId } = req.body;
+
+    const DocsDB = await Docs.findOne({ "_id": collegeId })
+    if (!DocsDB) return res.status(400).json({ message: 'Invalid Institute' });
 
     // GOOGLE DRIVE API SERVICE
     const KEYFILE = path.join(__dirname, "../credentials.json");
@@ -226,14 +233,137 @@ exports.DownloadFromDrive = async (req, res) => {
     const driveService = google.drive({ version: "v3", auth });
 
     try {
-        let result = await driveService.files.get({
-            fileId: fileId,
-            fields: "id, name, originalFilename, size, webContentLink"
+        let result = await driveService.files.delete({
+            fileId: fileId
+        })
+        // console.log(result)
+
+        DocsDB.course.forEach((obj) => {
+            if (obj._id == courseId) {
+                obj.subjects.forEach(async (sub) => {
+                    if (sub._id == subjectId) {
+                        await sub.subjectDocs.remove({ docId: fileId })
+                    }
+                })
+            }
         })
 
-        console.log(result)
+        const deletedDocs = await DocsDB.save()
+        res.status(200).json({ deletedDocs, message: "Document deleted Successfully!" })
+    } catch (err) {
+        console.log(err)
+        res.status(500)
+    }
+}
 
-        res.status(200).send(result.data)
+exports.DeleteSubject = async (req, res) => {
+    const { collegeId, courseId, subjectId } = req.body;
+
+    const DocsDB = await Docs.findOne({ "_id": collegeId })
+    if (!DocsDB) return res.status(400).json({ message: 'Invalid Institute' });
+
+    // GOOGLE DRIVE API SERVICE
+    const KEYFILE = path.join(__dirname, "../credentials.json");
+    const SCOPE = ['https://www.googleapis.com/auth/drive'];
+    const auth = new google.auth.GoogleAuth({
+        keyFile: KEYFILE,
+        scopes: SCOPE,
+    })
+    const driveService = google.drive({ version: "v3", auth });
+
+    try {
+        DocsDB.course.forEach(async (obj) => {
+            if (obj._id == courseId) {
+                obj.subjects.forEach((sub) => {
+                    if (sub._id == subjectId) {
+                        sub.subjectDocs?.forEach(async (docs) => {
+                            await driveService.files.delete({
+                                fileId: docs.docId
+                            })
+                        })
+                    }
+                })
+
+                await obj.subjects.remove({ _id: subjectId })
+            }
+        })
+
+        const deletedSub = await DocsDB.save()
+        res.status(200).json({ deletedSub, message: "Subject deleted Successfully!" })
+    } catch (err) {
+        console.log(err)
+        res.status(500)
+    }
+}
+
+exports.DeleteCourse = async (req, res) => {
+    const { collegeId, courseId } = req.body;
+
+    const DocsDB = await Docs.findOne({ "_id": collegeId })
+    if (!DocsDB) return res.status(400).json({ message: 'Invalid Institute' });
+
+    // GOOGLE DRIVE API SERVICE
+    const KEYFILE = path.join(__dirname, "../credentials.json");
+    const SCOPE = ['https://www.googleapis.com/auth/drive'];
+    const auth = new google.auth.GoogleAuth({
+        keyFile: KEYFILE,
+        scopes: SCOPE,
+    })
+    const driveService = google.drive({ version: "v3", auth });
+
+    try {
+        DocsDB.course?.forEach(async (obj) => {
+            if (obj._id == courseId) {
+                obj.subjects?.forEach((sub) => {
+                    sub.subjectDocs?.forEach(async (docs) => {
+                        await driveService.files.delete({
+                            fileId: docs?.docId
+                        })
+                    })
+                })
+                await obj.remove()
+            }
+        })
+
+        const deletedCourse = await DocsDB.save()
+        res.status(200).json({ deletedCourse, message: "Course deleted Successfully!" })
+    } catch (err) {
+        console.log(err)
+        res.status(500)
+    }
+}
+
+exports.DeleteInstitute = async (req, res) => {
+    const { collegeId } = req.body;
+
+    const DocsDB = await Docs.findOne({ "_id": collegeId })
+    if (!DocsDB) return res.status(400).json({ message: 'Invalid Institute' });
+
+    // GOOGLE DRIVE API SERVICE
+    const KEYFILE = path.join(__dirname, "../credentials.json");
+    const SCOPE = ['https://www.googleapis.com/auth/drive'];
+    const auth = new google.auth.GoogleAuth({
+        keyFile: KEYFILE,
+        scopes: SCOPE,
+    })
+    const driveService = google.drive({ version: "v3", auth });
+
+    try {
+        DocsDB.course?.forEach(async (obj) => {
+            obj.subjects?.forEach((sub) => {
+                sub.subjectDocs?.forEach(async (docs) => {
+                    console.log(docs.docName)
+                    await driveService.files.delete({
+                        fileId: docs.docId
+                    })
+                })
+            })
+        })
+
+        await Docs.deleteOne({ "_id": collegeId })
+
+        // const deletedCourse = await DocsDB.save()
+        res.status(200).json({ message: "Subject deleted Successfully!" })
     } catch (err) {
         console.log(err)
         res.status(500)
