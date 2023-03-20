@@ -10,12 +10,15 @@
 .Sidebar-Header{
     width: 100%;
     background-color: var(--secondary);
-    padding: 0.2em;
     position: relative;
     border-radius: 0.5em 0.5em 0 0;
     padding: 0.5em;
-    justify-content: space-between;
     color: var(--white);
+}
+
+.Sidebar-HeadMain{
+    justify-content: space-between;
+    width: 100%;
 }
 
 .Sidebar-Logo{
@@ -112,4 +115,43 @@
 
 .Sidebar-Logout:hover{
     background-color: red;
+}
+
+@media (max-width: 750px){
+    .Sidebar-Main{
+        transition: 0.25s ease-in-out;
+        position: absolute;
+        z-index: 99;
+    }
+
+    .Sidebar-Header{
+        flex-direction: column;
+        gap: 1.5em;
+        overflow: hidden;
+        padding-bottom: 1em;
+    }
+
+    .Sidebar-NavLinks{
+        overflow: hidden;
+    }
+
+    .Sidebar-MobNavHam{
+        display: flex !important;
+        width: 100%;
+        margin-top: 2em;
+    }
+
+    .Sidebar-HeadMain{
+        gap: 1em;
+        padding: 0 0.5em;
+    }
+
+    .Sidebar-Avatar{
+        width: 36px !important;
+    }
+
+    .Sidebar-FooterHolder{
+        gap: 0.5em;
+        overflow: hidden;
+    }
 }

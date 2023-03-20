@@ -9,6 +9,7 @@ const ContextProvider = ({ children }) => {
     const [isUserFaculty, setIsUserFaculty] = useState(false);
     const [authorizedUser, setAuthorizedUser] = useState(false);
     const [isReturningUser, setIsReturningUser] = useState(false);
+    const [showSidebar, setShowSidebar] = useState(false);
 
     const [onLogout, setOnLogout] = useState(false);
     const [manageDelete, setManageDelete] = useState(null)
@@ -24,7 +25,7 @@ const ContextProvider = ({ children }) => {
 
     useEffect(() => {
         if (initialRenderDone) {
-            document.body.setAttribute("data-theme", isDarkTheme ? "dark" : "light");
+            document.documentElement.setAttribute("data-theme", isDarkTheme ? "dark" : "light");
             document.querySelector('meta[name="theme-color"]')?.setAttribute('content', isDarkTheme ? "#0F0F0F" : "#FAFAFA");
             localStorage.setItem("arms-theme", isDarkTheme ? "dark" : "light");
         } else {
@@ -67,6 +68,8 @@ const ContextProvider = ({ children }) => {
             setCourseStateData,
             docsStateData,
             setDocsStateData,
+            showSidebar,
+            setShowSidebar,
         }}>
             {children}
         </Context.Provider>

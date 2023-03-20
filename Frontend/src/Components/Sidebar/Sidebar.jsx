@@ -1,5 +1,5 @@
 import "./Sidebar.css"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { NavLink } from "react-router-dom"
 import { useContextData } from "../../Hooks/useContextData"
 
@@ -9,29 +9,48 @@ import { FiLogOut } from 'react-icons/fi'
 import { CgDarkMode } from 'react-icons/cg'
 // import { MdDashboard } from 'react-icons/md'
 import { HiOutlineHome } from 'react-icons/hi'
-import { BsInfoCircleFill } from 'react-icons/bs'
+import { BsInfoCircleFill, BsXCircle } from 'react-icons/bs'
+
 import { RiContactsBookLine } from 'react-icons/ri'
 
-const Sidebar = () => {
-    const { userData, setOnLogout, setIsDarkTheme, isUserFaculty, isAdmin } = useContextData();
+const Sidebar = ({ isMobile }) => {
+    const { userData, setOnLogout, setIsDarkTheme, isUserFaculty, isAdmin, showSidebar, setShowSidebar } = useContextData();
     const [role, setRole] = useState("Student");
+    const SidebarRef = useRef()
 
     useEffect(() => {
         if (isUserFaculty) {
             isAdmin ? setRole("Admin") : setRole("Faculty")
         }
-    }, [isUserFaculty, isAdmin])
+
+        console.log(SidebarRef)
+        if (isMobile) {
+            if (showSidebar) {
+                SidebarRef.current.style.width = "100%"
+                SidebarRef.current.style.visibility = "visible"
+            } else {
+                SidebarRef.current.style.width = "0%"
+                SidebarRef.current.style.visibility = "hidden"
+            }
+        }
+    }, [isUserFaculty, isAdmin, showSidebar])
 
     return (
-        <div className="Sidebar-Main flex col">
+        <div className="Sidebar-Main flex col" ref={SidebarRef}>
             <div className="Sidebar-Header flex">
-                <div className="Sidebar-Logo flex">
-                    <ArmsLogo size={35} fill="var(--white)" stroke="var(--secondary)" />
-                    <p>ARMS</p>
+                <div className="Sidebar-MobNavHam flex" style={{ display: "none" }} onClick={() => setShowSidebar(false)}>
+                    <BsXCircle size={30} color="inherit" />
                 </div>
 
-                <div className="Sidebar-ThemeToggle flex" onClick={() => setIsDarkTheme(prev => !prev)}>
-                    <CgDarkMode size={30} color="inherit" />
+                <div className="Sidebar-HeadMain flex">
+                    <div className="Sidebar-Logo flex">
+                        <ArmsLogo size={35} fill="var(--white)" stroke="var(--secondary)" />
+                        <p>ARMS</p>
+                    </div>
+
+                    <div className="Sidebar-ThemeToggle flex" onClick={() => setIsDarkTheme(prev => !prev)}>
+                        <CgDarkMode size={35} color="inherit" />
+                    </div>
                 </div>
             </div>
 

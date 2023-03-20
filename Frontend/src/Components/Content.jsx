@@ -14,10 +14,11 @@ const Content = () => {
     const { onLogout, setOnLogout, setIsUserLoggedIn,
         setIsUserFaculty, setIsReturningUser, setUserData,
         setIsAdmin, manageDelete, setManageDelete,
-        setCourseStateData, setInstituteStateData } = useContextData();
+        setCourseStateData, setInstituteStateData, showSidebar } = useContextData();
     const navigate = useNavigate();
     const ContentRef = useRef();
     const DeleteRef = useRef();
+    let isMobile = window.innerWidth < 750;
 
     useEffect(() => {
         if (onLogout) {
@@ -112,9 +113,9 @@ const Content = () => {
 
     return (
         <div className="Content-Main" ref={ContentRef}>
-            <Sidebar />
+            <Sidebar isMobile={isMobile} />
 
-            <div className="Outlet-Main">
+            <div className={isMobile ? "Outlet-Main fullWidth" : "Outlet-Main"} >
                 <Outlet />
             </div>
 
