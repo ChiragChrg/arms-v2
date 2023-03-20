@@ -166,3 +166,61 @@
     color: var(--primary);
     font-weight: bold;
 }
+
+
+@media (max-width: 750px){
+    .InstituteInfo-Header{
+        margin: 0.5em 0;
+        overflow: hidden;
+    }
+
+    .InstituteInfo-Icon{
+        position: absolute;
+        top: -1em; 
+        left: -1em;
+        padding: 1em;
+        opacity: 0.5;
+    }
+
+    .InstituteInfo-Icon svg{
+        width: 60px;
+        height: 60px;
+    }
+
+    .InstituteInfo-HeadInfo{
+        margin-top: 2.5em;
+    }
+
+    .InstituteInfo-Title h1{
+        font-size: 1.5em;
+    }
+    
+    .InstituteInfo-Title p{
+        text-align: center;
+    }
+
+    .InstituteInfo-Chips{
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        padding: 0;
+        padding-top: 1em;
+    }
+
+    .InstituteInfo-Chip{
+        white-space: nowrap;
+        font-size: 0.8em;
+    }
+
+    .InstituteInfo-SubHeader h2{
+        font-size: 1.7em;
+    }
+
+    .InstituteInfo-CourseList{
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    .InstituteInfo-CourseCard h1{
+        font-size: 1.5em;
+        white-space: nowrap;
+    }
+}

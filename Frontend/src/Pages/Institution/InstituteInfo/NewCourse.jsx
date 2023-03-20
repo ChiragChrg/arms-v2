@@ -6,6 +6,8 @@ import { useNavigate, useLocation } from "react-router-dom"
 import NavRoute from "../../../Components/NavRoute/NavRoute";
 import LoaderBtn from "../../../Components/LoaderBtn/LoaderBtn";
 import { toast } from 'react-toastify'
+import MobileHam from "../../../Components/MobileHam/MobileHam";
+
 import { CourseSVG } from "../../../Assets";
 import { TbBooks } from "react-icons/tb"
 import { FiUser } from "react-icons/fi"
@@ -57,6 +59,8 @@ const NewCourse = () => {
                     { path: `institution/${state?.collegeName?.replaceAll(" ", "-")}/New`, state: state }
                 ]}
             />
+
+            <MobileHam />
 
             <h1>Create new <span style={{ color: "var(--primary)" }}>Course</span></h1>
 

@@ -74,7 +74,9 @@
 
 
 @media (max-width: 750px){
-    .NewInstitute-Main h1{
+    .NewInstitute-Main h1,
+    .NewCourse-Main h1,
+    .NewSubject-Main h1{
         width: 100%;
         text-align: center;
     }

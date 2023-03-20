@@ -30,9 +30,9 @@ const AdminDash = () => {
 
     return (
         <div className="AdminDash-Main">
+            <MobileHam />
             <div className="AdminDash-Header flex">
-                <MobileHam />
-                <h1>Welcome back, Admin!</h1>
+                <h1>Welcome back, <span style={{ color: "var(--primary)" }}>Admin!</span></h1>
             </div>
 
             <div className="AdminDash-Cards">

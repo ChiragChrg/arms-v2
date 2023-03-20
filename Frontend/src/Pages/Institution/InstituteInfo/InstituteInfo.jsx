@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react'
 import { useLocation, Link } from "react-router-dom"
 import { useContextData } from "../../../Hooks/useContextData"
 import moment from 'moment'
+
+import MobileHam from "../../../Components/MobileHam/MobileHam"
 import NavRoute from "../../../Components/NavRoute/NavRoute"
 import { BsBuilding } from "react-icons/bs"
 import { TbBooks } from "react-icons/tb"
@@ -54,6 +56,7 @@ const InstituteInfo = () => {
     return (
         <div className="InstituteInfo-Main">
             <NavRoute routes={[{ path: "Institution" }, { path: `institution/${collegeInfo?.collegeName?.replaceAll(" ", "-")}`, state: state }]} />
+            <MobileHam />
 
             <div className="InstituteInfo-Header flex gap">
                 <div className="InstituteInfo-Icon flex">
@@ -80,8 +83,8 @@ const InstituteInfo = () => {
                         <div className="InstituteInfo-Chip">Courses : {collegeInfo?.course?.length}</div>
                         <div className="InstituteInfo-Chip">Subjects : {subjectCount}</div>
                         <div className="InstituteInfo-Chip">Documents : {docsCount}</div>
-                        <div className="InstituteInfo-Chip">Registered On: {moment(collegeInfo?.createdOn).format('LL')}</div>
-                        <div className="InstituteInfo-Chip">Registered By: {collegeInfo?.registeredBy}</div>
+                        <div className="InstituteInfo-Chip">Created On: {moment(collegeInfo?.createdOn).format('LL')}</div>
+                        <div className="InstituteInfo-Chip">Created By: {collegeInfo?.registeredBy}</div>
                     </div>
                 </div>
             </div>
