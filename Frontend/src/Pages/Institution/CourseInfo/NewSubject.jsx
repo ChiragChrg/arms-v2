@@ -5,6 +5,7 @@ import { useContextData } from "../../../Hooks/useContextData"
 import axios from "axios"
 import { toast } from 'react-toastify'
 
+import MobileHam from '../../../Components/MobileHam/MobileHam'
 import NavRoute from "../../../Components/NavRoute/NavRoute"
 import LoaderBtn from "../../../Components/LoaderBtn/LoaderBtn"
 import { SubjectSVG } from "../../../Assets"
@@ -59,6 +60,7 @@ const NewSubject = () => {
                 { path: `institution/${state?.collegeInfo?.collegeName.replaceAll(" ", "-")}/${state?.data?.courseName}`, state: state },
                 { path: `institution/${state?.collegeInfo?.collegeName.replaceAll(" ", "-")}/${state?.data?.courseName}/New`, state: state },
             ]} />
+            <MobileHam />
 
             <h1>Create new <span style={{ color: "var(--primary)" }}>Subject</span></h1>
 

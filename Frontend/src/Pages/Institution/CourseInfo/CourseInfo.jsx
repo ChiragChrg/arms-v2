@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import { useLocation, Link } from "react-router-dom"
 import { useContextData } from "../../../Hooks/useContextData"
 
+import MobileHam from '../../../Components/MobileHam/MobileHam'
 import NavRoute from "../../../Components/NavRoute/NavRoute"
 import { TbBooks } from "react-icons/tb"
 import { FiPlus } from "react-icons/fi"
@@ -66,6 +67,7 @@ const CourseInfo = () => {
                     { path: `institution/${state?.collegeInfo?.collegeName.replaceAll(" ", "-")}/${state?.data?.courseName}`, state: state }
                 ]}
             />
+            <MobileHam />
 
             <div className="InstituteInfo-Header flex gap">
                 <div className="InstituteInfo-Icon flex">
@@ -91,12 +93,12 @@ const CourseInfo = () => {
                     </div>
 
                     <div className="InstituteInfo-Chips flex gap">
-                        <h3>{state?.collegeInfo?.collegeName}</h3>
-                        <div className="flex gap">
-                            <div className="InstituteInfo-Chip">Subjects: {courseData?.subjects?.length}</div>
-                            <div className="InstituteInfo-Chip">Documents: {docsCount}</div>
-                            <div className="InstituteInfo-Chip">Registered By: {courseData?.courseCreator}</div>
-                        </div>
+                        {/* <h3>{state?.collegeInfo?.collegeName}</h3> */}
+                        {/* <div className="flex gap"> */}
+                        <div className="InstituteInfo-Chip">Subjects: {courseData?.subjects?.length}</div>
+                        <div className="InstituteInfo-Chip">Documents: {docsCount}</div>
+                        <div className="InstituteInfo-Chip">Registered By: {courseData?.courseCreator}</div>
+                        {/* </div> */}
                     </div>
                 </div>
             </div>

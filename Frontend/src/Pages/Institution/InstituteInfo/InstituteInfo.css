@@ -61,7 +61,8 @@
 
 .InstituteInfo-Chips{
     font-size: 0.9em;
-    justify-content: space-between;
+    /* justify-content: space-between; */
+    justify-content: flex-start;
     width: 100%;
     padding: 1em;
 }
@@ -221,6 +222,6 @@
 
     .InstituteInfo-CourseCard h1{
         font-size: 1.5em;
-        white-space: nowrap;
+        text-align: center;
     }
 }
