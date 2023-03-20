@@ -108,6 +108,10 @@ const Signup = () => {
                         {/* <button className="Signup-Submit flex" type="submit">Signup</button> */}
                         <LoaderBtn className="Login-Submit flex" type="submit" loading={loading} text="Signup" />
                     </form>
+
+                    <div className="Signup-toLoginMob">
+                        <p>Already have an account? <Link to="/login">Login</Link></p>
+                    </div>
                 </div>
 
                 <div className="Signup-Title flex col gap">

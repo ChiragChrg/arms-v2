@@ -35,7 +35,7 @@ const Landing = () => {
                     }
                 </div>
 
-                <img className="Landing-Vector" src={FolderSVG} alt="FolderSVG" width="400px" height="auto" />
+                <img className="Landing-Vector" src={FolderSVG} alt="FolderSVG" width="340px" height="auto" />
 
                 <div className="Landing-Start flex col">
                     <h2>Lets get started</h2>

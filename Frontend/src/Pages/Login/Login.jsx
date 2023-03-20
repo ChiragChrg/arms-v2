@@ -82,8 +82,8 @@ const Login = () => {
                                 <input type={showPassword ? "text" : "password"} id="password" placeholder="Password" ref={passwordRef} required />
                                 <div className="Login-ShowPassToggle flex">
                                     {showPassword ?
-                                        <FiEyeOff size={25} color="var(--grey)" onClick={() => setShowPassword(false)} />
-                                        : <FiEye size={25} color="var(--grey)" onClick={() => setShowPassword(true)} />
+                                        <FiEye size={25} color="var(--grey)" onClick={() => setShowPassword(false)} />
+                                        : <FiEyeOff size={25} color="var(--grey)" onClick={() => setShowPassword(true)} />
                                     }
                                 </div>
                             </div>

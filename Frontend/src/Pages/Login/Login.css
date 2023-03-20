@@ -81,6 +81,10 @@
     background: transparent;
 } */
 
+.Login-ShowPassToggle{
+    cursor: pointer;
+}
+
 .Login-ForgotPass{
     align-self: flex-end;
     padding: 0.2em 0;
@@ -118,21 +122,35 @@
         padding: 1em;
     }
 
+    .Login-Container{
+        flex-direction: column !important;
+        padding: 2em 0;
+    }
+
     .Login-Form{
         padding: 2em 0;
     }
 
     .Login-Form form{
         padding: 0;
-        padding: 4em 0;
+        padding: 2em 0;
     }
 
     .Login-Input input{
         width: 5em;
     }
 
-    .Login-Title,
-    .Login-Title2{
+    .Login-Title{
         font-size: 1em;
+        margin-bottom: 0;
+        gap: 3em;
+    }
+
+    .Login-Title img{
+        width: 200px !important;
+    }
+
+    .Login-Title2{
+        display: none;
     }
 }

@@ -24,6 +24,7 @@
     color: var(--primary);
 }
 
+.Signup-toLoginMob,
 .Signup-toLogin{
     /* position: absolute;
     right: 7em;
@@ -32,6 +33,7 @@
     font-size: 0.9em;
 }
 
+.Signup-toLoginMob a,
 .Signup-toLogin a{
     text-decoration: none;
     color: var(--primary);
@@ -99,13 +101,28 @@
         padding: 1em;
     }
 
+    .Signup-Container{
+        flex-direction: column-reverse !important;
+        padding: 2em 0;
+        padding-bottom: 3em;
+    }
+
+    .Signup-Title{
+        margin-bottom: 0;
+        font-size: 1em;
+    }
+
+    .Signup-Title img{
+        width: 300px !important;
+    }
+
     .Signup-toLogin{
-        width: 100%;
-        top: 78%;
-        left: 0;
-        right: 0;
-        font-size: 0.8em;
-        text-align: center;
+        display: none;
+    }
+
+    .Signup-toLoginMob{
+        padding-top: 2em;
+        font-size: 1em;
     }
 
     .Signup-Form{
