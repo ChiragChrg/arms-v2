@@ -75,9 +75,18 @@ html,body{
   height: 100vh;
 }
 
+
+.MobileHam-Main{
+  display: none;
+}
+
 @media (max-width: 750px){
-  .Content-Main{
-      padding: 1em;
+  .MobileHam-Main{
+    display: flex;
+  }
+
+  .Outlet-Main{
+    padding: 1em !important;
   }
 }
 
@@ -86,6 +95,10 @@ html,body{
   color: var(--text);
   width: 77%;
   overflow: auto;
+}
+
+.Outlet-Main.fullWidth{
+  width: 100% !important;
 }
 
 .BackropModal{

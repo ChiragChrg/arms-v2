@@ -42,7 +42,7 @@ function App() {
     setUserData(LocalUser);
 
     let getTheme = localStorage.getItem("arms-theme");
-    document.body.setAttribute("data-theme", getTheme || "light");
+    document.documentElement.setAttribute("data-theme", getTheme || "light");
     getTheme === "dark" ? setIsDarkTheme(true) : setIsDarkTheme(false);
   }, [])
 

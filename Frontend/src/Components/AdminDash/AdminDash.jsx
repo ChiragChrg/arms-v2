@@ -4,7 +4,8 @@ import { Link } from "react-router-dom"
 import axios from 'axios'
 import CountUp from "react-countup"
 
-import { FiUsers, FiPlus } from "react-icons/fi"
+import MobileHam from "../MobileHam/MobileHam"
+import { FiUserPlus } from "react-icons/fi"
 import { HiOutlineDocumentDuplicate } from "react-icons/hi"
 import { TbBooks, TbFileUpload } from "react-icons/tb"
 import { BsBuilding } from "react-icons/bs"
@@ -12,20 +13,16 @@ import { IoBookOutline } from "react-icons/io5"
 
 const AdminDash = () => {
     const [count, setCount] = useState({})
-    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         const GetCount = async () => {
-            setLoading(true);
             try {
                 const res = await axios.get('/api/getcountup')
                 if (res.status === 200) {
-                    setLoading(false);
                     setCount(res.data.Count)
                 }
             } catch (err) {
                 console.log(err)
-                setLoading(false);
             }
         }
         GetCount()
@@ -33,9 +30,12 @@ const AdminDash = () => {
 
     return (
         <div className="AdminDash-Main">
-            <h1>Welcome back, Admin!</h1>
+            <div className="AdminDash-Header flex">
+                <MobileHam />
+                <h1>Welcome back, Admin!</h1>
+            </div>
 
-            <div className="AdminDash-Cards flex gap2">
+            <div className="AdminDash-Cards">
                 <div className="AdminDash-Card flex col">
                     <div className="flex gap05">
                         <BsBuilding size={25} />
@@ -81,25 +81,20 @@ const AdminDash = () => {
                 </div>
             </div>
 
-            <div className="AdminDash-Controler flex col gap">
+            <div className="AdminDash-controller flex col gap">
                 <h2>Admin Control Panel</h2>
-                <Link to="/institution" className="AdminDash-Control flex gap05">
-                    <BsBuilding size={25} />
-                    <h3>Manage Institutions</h3>
-                </Link>
 
-                <div className="flex gap">
-                    <Link to="/upload" className="AdminDash-Control Upload flex gap05">
-                        <TbFileUpload size={25} />
-                        <h3>Upload Documents</h3>
+                <div className="AdminDash-controlList">
+                    <Link to="/institution" className="AdminDash-Control flex gap">
+                        <BsBuilding size={25} />
+                        <h3>Manage Institutions</h3>
                     </Link>
 
-                    <Link to="/approve" className="AdminDash-Control flex gap05">
-                        <FiPlus size={25} />
-                        <h3>Approve Faculty</h3>
+                    <Link to="/approve" className="AdminDash-Control flex gap">
+                        <FiUserPlus size={25} />
+                        <h3>Approve Users</h3>
                     </Link>
                 </div>
-
             </div>
         </div>
     )
