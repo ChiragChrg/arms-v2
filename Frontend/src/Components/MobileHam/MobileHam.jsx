@@ -6,7 +6,7 @@ const MobileHam = () => {
 
     return (
         <div className="MobileHam-Main flex" onClick={() => setShowSidebar(true)}>
-            <BsFilterLeft size={40} />
+            <BsFilterLeft size={45} />
         </div>
     )
 }

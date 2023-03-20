@@ -22,3 +22,10 @@
     font-weight: bold;
     background-color: var(--primaryLite);
 }
+
+
+@media (max-width: 750px){
+    .NavRoute-Main{
+        display: none;
+    }
+  }

@@ -6,6 +6,7 @@ import axios from 'axios'
 import { toast } from "react-toastify"
 import NavRoute from "../../Components/NavRoute/NavRoute"
 import LoaderBtn from "../../Components/LoaderBtn/LoaderBtn"
+import MobileHam from "../../Components/MobileHam/MobileHam"
 
 import { BooksSVG } from "../../Assets"
 import { MdShortText } from "react-icons/md"
@@ -47,6 +48,7 @@ const NewInstitute = () => {
     return (
         <div className="NewInstitute-Main">
             <NavRoute routes={[{ path: "Institution" }, { path: "Institution/New" }]} />
+            <MobileHam />
             <h1>Create a new <span style={{ color: "var(--primary)" }}>Institute</span></h1>
 
             <div className="NewInstitute-Container flex">

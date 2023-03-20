@@ -71,3 +71,37 @@
     border-radius: 0.2em;
     cursor: pointer;
 }
+
+
+@media (max-width: 750px){
+    .NewInstitute-Main h1{
+        width: 100%;
+        text-align: center;
+    }
+
+    .NewInstitute-Container{
+        flex-direction: column-reverse;
+    }
+
+    .NewInstitute-Vector{
+        width: 300px !important;
+    }
+
+    .NewInstitute-InputHolder label,
+    .NewInstitute-Input input,
+    .NewInstitute-Input textarea{
+        font-size: 1.1em;
+    }
+
+    .NewInstitute-InputHolder,
+    .NewInstitute-Input,
+    .NewInstitute-Form{
+        width: 100%;
+    }
+
+    .NewInstitute-Input input,
+    .NewInstitute-Input textarea{
+        min-width: 0;
+        width: 100%;
+    }
+}

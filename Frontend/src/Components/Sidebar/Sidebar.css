@@ -146,10 +146,6 @@
         padding: 0 0.5em;
     }
 
-    .Sidebar-Avatar{
-        width: 36px !important;
-    }
-
     .Sidebar-FooterHolder{
         gap: 0.5em;
         overflow: hidden;

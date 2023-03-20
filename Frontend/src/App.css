@@ -83,10 +83,16 @@ html,body{
 @media (max-width: 750px){
   .MobileHam-Main{
     display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
   }
 
   .Outlet-Main{
     padding: 1em !important;
+  }
+
+  ::-webkit-scrollbar {
+    width: 0 !important;
   }
 }
 

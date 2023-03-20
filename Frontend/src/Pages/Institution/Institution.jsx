@@ -6,7 +6,7 @@ import axios from "axios"
 import { Link } from "react-router-dom"
 import { toast } from "react-toastify"
 
-// import { FolderSVG } from "../../Assets"
+import MobileHam from "../../Components/MobileHam/MobileHam"
 import Skeleton from '@mui/material/Skeleton';
 import { FiPlus } from "react-icons/fi"
 import { BsBuilding } from "react-icons/bs"
@@ -42,13 +42,17 @@ const Institution = () => {
     return (
         <div className="Institution-Main">
             <NavRoute routes={[{ path: "Institution" }]} />
+
             <div className="Institution-Header flex">
                 <h1>Institutions</h1>
 
-                <Link to="new" className="Institution-Create flex gap05">
-                    <FiPlus size={25} color="inherit" />
-                    <span>New Institution</span>
-                </Link>
+                <div className="Institution-Nav flex gap">
+                    <MobileHam />
+                    <Link to="new" className="Institution-Create flex gap05">
+                        <FiPlus size={25} color="inherit" />
+                        <span>New Institution</span>
+                    </Link>
+                </div>
             </div>
 
             {!loading ? <div className="Institution-Cards">
