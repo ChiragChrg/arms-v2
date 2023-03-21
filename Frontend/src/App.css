@@ -13,8 +13,9 @@
     --greyDark: rgba(26, 26, 26, 0.5);
     --greyDarkLite: rgba(26, 26, 26, 0.2);
     --primaryLite: rgba(45, 101, 206, 0.15);
-    --green: rgb(1, 150, 1);
-    --red: rgb(255, 0, 0);
+    --green: rgb(0, 180, 0);
+    --red: rgb(225, 0, 0);
+    --yellow: rgba(255, 217, 0, 0.5);
 }
 
 [data-theme="dark"]{
@@ -32,8 +33,9 @@
   --greyDark: rgba(26, 26, 26, 0.5);
   --greyDarkLite: rgba(26, 26, 26, 0.2);
   --primaryLite: rgba(45, 101, 206, 0.15);
-  --green: rgb(1, 150, 1);
-  --red: rgb(255, 0, 0);
+  --green: rgb(0, 180, 0);
+  --red: rgb(225, 0, 0);
+  --yellow: rgba(255, 217, 0, 0.5);
 }
 
 *{
@@ -262,4 +264,10 @@ input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
     transition: background-color 5000000s ease-in-out 0s;
     -webkit-text-fill-color: var(--text) !important;
+}
+
+/* Spin Animation */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }

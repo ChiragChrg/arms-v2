@@ -22,9 +22,10 @@ import NewCourse from './Pages/Institution/InstituteInfo/NewCourse';
 import CourseInfo from './Pages/Institution/CourseInfo/CourseInfo';
 import NewSubject from './Pages/Institution/CourseInfo/NewSubject';
 import SubjectInfo from './Pages/Institution/SubjectInfo/SubjectInfo';
+import Approval from './Pages/Approval/Approval';
 
 function App() {
-  const { userData, setUserData, isUserLoggedIn, authorizedUser, setIsUserLoggedIn, setIsUserFaculty, setIsReturningUser, setIsDarkTheme } = useContextData();
+  const { isAdmin, userData, setUserData, isUserLoggedIn, authorizedUser, setIsUserLoggedIn, setIsUserFaculty, setIsReturningUser, setIsDarkTheme } = useContextData();
 
   useEffect(() => {
     const getFacultyLoggedIn = localStorage.getItem('arms-isFacultyLoggedIn');
@@ -50,7 +51,6 @@ function App() {
     axios.defaults.headers.common['Authorization'] = userData?.token;
   }, [userData])
 
-
   return (
     <div className="App">
       <Browser>
@@ -58,6 +58,7 @@ function App() {
           {isUserLoggedIn && <Route element={<Content />}>
             <Route path="/dashboard" element={!authorizedUser ? <Dashboard /> : <AdminDash />} />
             <Route path="/about" element={<About />} />
+            {isAdmin && <Route path="/approval" element={<Approval />} />}
             <Route path="/contact" element={<h1>Contact</h1>} />
             <Route path="/institution" element={<Institution />} />
             <Route path="/institution/new" element={<NewInstitute />} />

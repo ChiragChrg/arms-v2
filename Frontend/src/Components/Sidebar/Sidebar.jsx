@@ -5,11 +5,11 @@ import { useContextData } from "../../Hooks/useContextData"
 
 import ArmsLogo from "../../Assets/ArmsLogo"
 import { FaRegUser } from "react-icons/fa"
-import { FiLogOut } from 'react-icons/fi'
+import { FiLogOut, FiUserPlus } from 'react-icons/fi'
 import { CgDarkMode } from 'react-icons/cg'
 // import { MdDashboard } from 'react-icons/md'
 import { HiOutlineHome } from 'react-icons/hi'
-import { BsInfoCircleFill, BsXCircle } from 'react-icons/bs'
+import { BsInfoCircleFill, BsXCircle, BsBuilding } from 'react-icons/bs'
 
 import { RiContactsBookLine } from 'react-icons/ri'
 
@@ -25,7 +25,7 @@ const Sidebar = ({ isMobile }) => {
             } else if (userData.isApproved) {
                 setRole("Faculty")
             } else {
-                setRole("Pending Faculty Approval")
+                setRole("Pending Approval")
             }
         }
 
@@ -69,12 +69,18 @@ const Sidebar = ({ isMobile }) => {
                 <NavLink to="/dashboard" className="flex gap" onClick={() => setShowSidebar(false)}>
                     <HiOutlineHome size={25} color="inherit" />Dashboard
                 </NavLink>
+
+                <NavLink to="/institution" className="flex gap" onClick={() => setShowSidebar(false)}>
+                    <BsBuilding size={25} color="inherit" />Institutions
+                </NavLink>
+
+                {isAdmin && <NavLink to="/approval" className="flex gap" onClick={() => setShowSidebar(false)}>
+                    <FiUserPlus size={25} color="inherit" />Approval
+                </NavLink>}
+
                 <NavLink to="/about" className="flex gap" onClick={() => setShowSidebar(false)}>
                     <BsInfoCircleFill size={25} color="inherit" />About
                 </NavLink>
-                {/* <NavLink to="" className="flex gap" onClick={() => setShowSidebar(false)}>
-                    <RiContactsBookLine size={25} color="inherit" />Contact
-                </NavLink> */}
             </div>
 
             <div className="Sidebar-Footer flex col gap">
@@ -88,7 +94,7 @@ const Sidebar = ({ isMobile }) => {
                         }
 
                         <div className="Sidebar-ProfileInfo">
-                            <h3>{userData?.username || "Anonymous"}</h3>
+                            <h3>{userData?.username}</h3>
                             <p>{role}</p>
                         </div>
                     </div>

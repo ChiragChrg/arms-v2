@@ -12,7 +12,9 @@ const Content = () => {
     const [userLogout, setUserLogout] = useState(false);
     const [loading, setLoading] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
-    const { onLogout, setOnLogout, setIsUserLoggedIn,
+    const [runOnce, setRunOnce] = useState(false);
+
+    const { onLogout, userData, setOnLogout, setIsUserLoggedIn,
         setIsUserFaculty, setIsReturningUser, setUserData,
         setIsAdmin, manageDelete, setManageDelete,
         setCourseStateData, setInstituteStateData, setShowSidebar } = useContextData();
@@ -38,6 +40,24 @@ const Content = () => {
         ResizeWindow()
     }, [onLogout, window.innerWidth])
 
+    useEffect(() => {
+        const GetCurrentUser = async () => {
+            try {
+                const res = await axios.post("/api/curruser", { userId: userData.uid })
+
+                let data = { ...userData, isApproved: res.data.UserDB.isApproved }
+                setUserData(data)
+                localStorage.setItem('arms-user', JSON.stringify(data));
+                setRunOnce(true)
+            } catch (err) {
+                console.log(err)
+            }
+        }
+
+        if (!runOnce) {
+            GetCurrentUser()
+        }
+    }, [runOnce])
 
     const Logout = () => {
         setOnLogout(false);
@@ -177,13 +197,6 @@ const Content = () => {
                     </div>
                 </div>
             }
-
-            <style>{`
-                @keyframes spin {
-                    0% { transform: rotate(0deg); }
-                    100% { transform: rotate(360deg); }
-                }
-            `}</style>
         </div >
     )
 }

@@ -89,13 +89,6 @@ const SubjectInfo = () => {
 
     return (
         <div className="SubjectInfo-Main">
-            <style>{`
-                @keyframes spin {
-                    0% { transform: rotate(0deg); }
-                    100% { transform: rotate(360deg); }
-                }
-            `}</style>
-
             <NavRoute routes={[
                 { path: "Institution" },
                 { path: `institution/${state?.collegeInfo?.collegeName.replaceAll(" ", "-")}`, state: state.collegeInfo },

@@ -90,7 +90,7 @@ const AdminDash = () => {
                         <h3>Manage Institutions</h3>
                     </Link>
 
-                    <Link to="/approve" className="AdminDash-Control flex gap">
+                    <Link to="/approval" className="AdminDash-Control flex gap">
                         <FiUserPlus size={25} />
                         <h3>Approve Users</h3>
                     </Link>
