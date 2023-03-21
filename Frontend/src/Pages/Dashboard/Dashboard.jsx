@@ -1,4 +1,3 @@
-import "./Dashboard.css"
 // import "../../Components/AdminDash/AdminDash.css"
 import { useState, useEffect } from "react";
 import { useContextData } from "../../Hooks/useContextData"
@@ -39,9 +38,14 @@ const Dashboard = () => {
                 {isReturningUser ?
                     <h1>Welcome back, <span style={{ color: "var(--primary)" }}>{userData?.username ? userData.username : "User"}</span></h1>
                     :
-                    <h1>Welcome to ARMS</h1>
+                    <h1>Welcome to <span style={{ color: "var(--primary)" }}>ARMS</span></h1>
                 }
             </div>
+
+            {(userData.uid && !userData.isApproved) && <div className="Dashboard-ApprovalAlert flex col gap05">
+                <p>Faculty Approval Pending, you will have Limited Access to ARMS.</p>
+                <p>You will recieve an Approval email on <span style={{ color: "var(--secondary)" }}>{userData.email}</span></p>
+            </div>}
 
             <div className="AdminDash-Cards">
                 <div className="AdminDash-Card flex col">

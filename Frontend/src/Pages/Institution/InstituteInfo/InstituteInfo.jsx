@@ -48,7 +48,7 @@ const InstituteInfo = () => {
     }, [state])
 
     useEffect(() => {
-        if (collegeInfo.registeredBy === userData.username && authorizedUser) {
+        if (collegeInfo.registeredBy === userData?.username && authorizedUser) {
             setIsAuthorized(true)
         }
     }, [collegeInfo])

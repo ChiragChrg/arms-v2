@@ -7,7 +7,7 @@ import Trails from "../../Components/Trails/Trails"
 import { FolderSVG } from "../../Assets"
 
 const Landing = () => {
-    const { setIsUserLoggedIn, setIsUserFaculty } = useContextData();
+    const { setIsUserLoggedIn, setIsUserFaculty, setUserData } = useContextData();
     const navigate = useNavigate();
     let isMobile = window.innerWidth <= 750;
     let currYear = new Date().getFullYear();
@@ -15,6 +15,12 @@ const Landing = () => {
     const HandleStudentLogin = () => {
         setIsUserLoggedIn(true);
         setIsUserFaculty(false);
+        const data = {
+            username: "Anonymous"
+        }
+        setUserData(data)
+        localStorage.setItem('arms-user', JSON.stringify(data));
+
         localStorage.setItem('arms-isUserLoggedIn', true);
         localStorage.setItem('arms-isFacultyLoggedIn', false);
         navigate('/dashboard');
