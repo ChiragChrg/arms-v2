@@ -7,7 +7,7 @@ import CountUp from "react-countup"
 import MobileHam from "../MobileHam/MobileHam"
 import { FiUserPlus } from "react-icons/fi"
 import { HiOutlineDocumentDuplicate } from "react-icons/hi"
-import { TbBooks, TbFileUpload } from "react-icons/tb"
+import { TbBooks } from "react-icons/tb"
 import { BsBuilding } from "react-icons/bs"
 import { IoBookOutline } from "react-icons/io5"
 

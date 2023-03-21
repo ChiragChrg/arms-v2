@@ -6,8 +6,8 @@ const RoutesController = require('../Controllers/RoutesController');
 router.post('/signup', RoutesController.RegisterUser);
 router.post('/login', RoutesController.LoginUser);
 
-router.get('/getcountup', isAuth, RoutesController.GetCountUp)
-router.get('/getinstitutions', isAuth, RoutesController.GetInstitutions)
+router.get('/getcountup', RoutesController.GetCountUp)
+router.get('/getinstitutions', RoutesController.GetInstitutions)
 
 router.post('/createinstitute', isAuth, RoutesController.CreateInstitute)
 router.post('/createcourse', isAuth, RoutesController.CreateCourse)

@@ -27,7 +27,7 @@ const Institution = () => {
                 }
             } catch (err) {
                 console.log(err)
-                toast.error(err.message + ". Try again later.")
+                toast.error(err.response?.data?.message || err.message + ". Try again later.")
                 setLoading(false);
             }
         }
