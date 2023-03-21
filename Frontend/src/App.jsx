@@ -60,13 +60,13 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<h1>Contact</h1>} />
             <Route path="/institution" element={<Institution />} />
-            <Route path="/institution/new" element={authorizedUser ? <NewInstitute /> : <h1>User Not Authorized</h1>} />
+            <Route path="/institution/new" element={<NewInstitute />} />
             <Route path="/institution/:institute" element={<InstituteInfo />} />
-            <Route path="/institution/:institute/new" element={authorizedUser ? <NewCourse /> : <h1>User Not Authorized</h1>} />
+            <Route path="/institution/:institute/new" element={<NewCourse />} />
             <Route path="/institution/:institute/:course" element={<CourseInfo />} />
-            <Route path="/institution/:institute/:course/new" element={authorizedUser ? <NewSubject /> : <h1>User Not Authorized</h1>} />
+            <Route path="/institution/:institute/:course/new" element={<NewSubject />} />
             <Route path="/institution/:institute/:course/:subject" element={<SubjectInfo />} />
-            <Route path="/institution/:institute/:course/:subject/upload" element={authorizedUser ? <FileUpload /> : <h1>User Not Authorized</h1>} />
+            <Route path="/institution/:institute/:course/:subject/upload" element={<FileUpload />} />
           </Route>}
 
           <Route path="/" element={!isUserLoggedIn ? <Landing /> : <Navigate to="/dashboard" />} />

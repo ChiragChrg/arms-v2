@@ -20,7 +20,13 @@ const Sidebar = ({ isMobile }) => {
 
     useEffect(() => {
         if (isUserFaculty) {
-            isAdmin ? setRole("Admin") : setRole("Faculty")
+            if (isAdmin) {
+                setRole("Admin")
+            } else if (userData.isApproved) {
+                setRole("Faculty")
+            } else {
+                setRole("Pending Faculty Approval")
+            }
         }
 
         if (isMobile) {

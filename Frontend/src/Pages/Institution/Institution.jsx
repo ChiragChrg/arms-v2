@@ -14,7 +14,7 @@ import { BsBuilding } from "react-icons/bs"
 const Institution = () => {
     const [institutions, setInstitutions] = useState([]);
     const [loading, setLoading] = useState(false);
-    const { setInstituteStateData, setCourseStateData, setDocsStateData } = useContextData()
+    const { setInstituteStateData, setCourseStateData, setDocsStateData, authorizedUser } = useContextData()
 
     useEffect(() => {
         const GetInstitutions = async () => {
@@ -48,10 +48,10 @@ const Institution = () => {
 
                 <div className="Institution-Nav flex gap">
                     <MobileHam />
-                    <Link to="new" className="Institution-Create flex gap05">
+                    {authorizedUser && <Link to="new" className="Institution-Create flex gap05">
                         <FiPlus size={25} color="inherit" />
                         <span>New Institution</span>
-                    </Link>
+                    </Link>}
                 </div>
             </div>
 
