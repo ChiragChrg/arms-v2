@@ -56,7 +56,7 @@ function App() {
       <Browser>
         <Routes>
           {isUserLoggedIn && <Route element={<Content />}>
-            <Route path="/dashboard" element={!authorizedUser ? <Dashboard /> : <AdminDash />} />
+            <Route path="/dashboard" element={!isAdmin ? <Dashboard /> : <AdminDash />} />
             <Route path="/about" element={<About />} />
             {isAdmin && <Route path="/approval" element={<Approval />} />}
             <Route path="/contact" element={<h1>Contact</h1>} />
