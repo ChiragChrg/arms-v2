@@ -15,7 +15,7 @@ const Content = () => {
     const { onLogout, setOnLogout, setIsUserLoggedIn,
         setIsUserFaculty, setIsReturningUser, setUserData,
         setIsAdmin, manageDelete, setManageDelete,
-        setCourseStateData, setInstituteStateData, showSidebar } = useContextData();
+        setCourseStateData, setInstituteStateData, setShowSidebar } = useContextData();
     const navigate = useNavigate();
     const ContentRef = useRef();
     const DeleteRef = useRef();
@@ -46,6 +46,7 @@ const Content = () => {
         setIsReturningUser(false);
         setUserData({});
         setIsAdmin(false);
+        setShowSidebar(false)
         localStorage.clear();
         navigate("/");
     }

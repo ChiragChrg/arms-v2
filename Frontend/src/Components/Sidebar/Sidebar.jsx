@@ -24,11 +24,14 @@ const Sidebar = ({ isMobile }) => {
         }
 
         if (isMobile) {
+            // console.log(showSidebar)
             if (showSidebar) {
                 SidebarRef.current.style.width = "100%"
                 SidebarRef.current.style.visibility = "visible"
+                SidebarRef.current.style.padding = "0.6em"
             } else {
                 SidebarRef.current.style.width = "0%"
+                SidebarRef.current.style.padding = "0"
                 SidebarRef.current.style.visibility = "hidden"
             }
         } else {
