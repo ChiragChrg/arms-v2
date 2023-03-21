@@ -8,6 +8,11 @@ router.post('/login', RoutesController.LoginUser);
 
 router.get('/getcountup', RoutesController.GetCountUp)
 router.get('/getinstitutions', RoutesController.GetInstitutions)
+router.get('/pending', isAuth, RoutesController.GetPending)
+
+router.post('/approve', isAuth, RoutesController.ApproveUsers)
+router.post('/decline', isAuth, RoutesController.DeclineUsers)
+router.post('/curruser', RoutesController.CurrentUser)
 
 router.post('/createinstitute', isAuth, RoutesController.CreateInstitute)
 router.post('/createcourse', isAuth, RoutesController.CreateCourse)

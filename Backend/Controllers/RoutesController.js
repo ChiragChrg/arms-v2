@@ -115,6 +115,49 @@ exports.GetInstitutions = async (req, res) => {
     }
 }
 
+exports.GetPending = async (req, res) => {
+    try {
+        const UserDB = await User.find({}, { password: 0 }).where({ isApproved: false })
+        res.status(200).json({ UserDB })
+    } catch (err) {
+        console.log(err)
+        res.status(500).json({ message: "Failed to get Pending Users" })
+    }
+}
+
+//Approve Routes
+exports.ApproveUsers = async (req, res) => {
+    const { userId } = req.body;
+    try {
+        const UserDB = await User.findOneAndUpdate({ "_id": userId }, { isApproved: true }, { new: true })
+        res.status(200).json({ UserDB, message: "User Approved Successfully!" })
+    } catch (err) {
+        console.log(err)
+        res.status(500).json({ message: "Failed to get Pending Users" })
+    }
+}
+
+exports.DeclineUsers = async (req, res) => {
+    const { userId } = req.body;
+    try {
+        const UserDB = await User.findOneAndDelete({ "_id": userId })
+        res.status(200).json({ UserDB, message: "User Declined Successfully!" })
+    } catch (err) {
+        console.log(err)
+        res.status(500).json({ message: "Failed to get Pending Users" })
+    }
+}
+
+exports.CurrentUser = async (req, res) => {
+    const { userId } = req.body;
+    try {
+        const UserDB = await User.findOne({ "_id": userId }, { isApproved: 1 })
+        res.status(200).json({ UserDB, message: "User Data Retrieved!" })
+    } catch (err) {
+        console.log(err)
+        res.status(500).json({ message: "Failed to get User data." })
+    }
+}
 
 //Create Routes
 exports.CreateInstitute = async (req, res) => {
