@@ -7,10 +7,11 @@ import { toast } from "react-toastify"
 import moment from 'moment'
 import axios from 'axios'
 
+import MobileHam from "../../../Components/MobileHam/MobileHam";
 import NavRoute from "../../../Components/NavRoute/NavRoute"
 import { IoBookOutline } from "react-icons/io5"
-import { FiLoader, FiPlus } from "react-icons/fi"
-import { MdSettings } from "react-icons/md"
+import { FiLoader, FiPlus, FiDownloadCloud } from "react-icons/fi"
+import { MdDeleteForever, MdSettings } from "react-icons/md"
 
 const SubjectInfo = () => {
     const [subjectData, setSubjectData] = useState([])
@@ -101,6 +102,7 @@ const SubjectInfo = () => {
                 { path: `institution/${state?.collegeInfo?.collegeName.replaceAll(" ", "-")}/${state?.courseInfo?.courseName.replaceAll(" ", "-")}`, state: { data: state.courseInfo, collegeInfo: state.collegeInfo } },
                 { path: `institution/${state?.collegeInfo?.collegeName.replaceAll(" ", "-")}/${state?.courseInfo?.courseName.replaceAll(" ", "-")}/${state?.data?.subjectName.replaceAll(" ", "-")}`, state: state }
             ]} />
+            <MobileHam />
 
             <div className="InstituteInfo-Header flex gap">
                 <div className="InstituteInfo-Icon flex">
@@ -128,11 +130,11 @@ const SubjectInfo = () => {
 
 
                     <div className="InstituteInfo-Chips flex gap">
-                        <h3>{state?.collegeInfo?.collegeName}</h3>
-                        <div className="flex gap">
-                            <div className="InstituteInfo-Chip">Documents: {subjectData?.subjectDocs?.length}</div>
-                            <div className="InstituteInfo-Chip">Registered By: {subjectData?.subjectCreator}</div>
-                        </div>
+                        {/* <h3>{state?.collegeInfo?.collegeName}</h3>
+                        <div className="flex gap"> */}
+                        <div className="InstituteInfo-Chip">Documents: {subjectData?.subjectDocs?.length}</div>
+                        <div className="InstituteInfo-Chip">Registered By: {subjectData?.subjectCreator}</div>
+                        {/* </div> */}
                     </div>
                 </div>
             </div>
@@ -185,6 +187,36 @@ const SubjectInfo = () => {
                         })}
                     </tbody>
                 </table>
+            </div>
+
+            <div className="SubjectInfo-DocContainer flex col gap">
+                {docsList.map((obj, index) => {
+                    let fileId = obj?.docId;
+                    return (<div className="SubjectInfo-DocList flex gap05" key={index}>
+                        <div className="flex col">
+                            <h3>{obj.docName}</h3>
+                            <div className="SubjectInfo-DocInfo flex">
+                                <span>Uploader: {obj.docUploader}</span>
+                                <span>Date: {moment(obj?.docCreated).format('LL')}</span>
+                                <span>Size: {size(obj?.docSize)}</span>
+                            </div>
+                        </div>
+
+                        <div className="SubjectInfo-DocBtns flex col gap">
+                            <a href={obj?.docLink} className="SubjectInfo-DownloadBtn flex"><FiDownloadCloud size={20} /></a>
+                            {authorizedUser &&
+                                <div>
+                                    {obj?.docUploader === userData.username && <div className="SubjectInfo-DeleteBtn flex" onClick={() => HandleDocDelete(fileId, index)}>
+                                        {loading === index ?
+                                            <FiLoader size={25} color="inherit" style={{ animation: "spin 2s linear infinite" }} />
+                                            :
+                                            <MdDeleteForever size={20} />}
+                                    </div>}
+                                </div>
+                            }
+                        </div>
+                    </div>)
+                })}
             </div>
         </div>
     )

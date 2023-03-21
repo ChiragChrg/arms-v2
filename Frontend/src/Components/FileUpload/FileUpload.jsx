@@ -5,6 +5,7 @@ import { useContextData } from "../../Hooks/useContextData"
 import axios from "axios"
 import { partial } from "filesize";
 import NavRoute from "../NavRoute/NavRoute"
+import MobileHam from "../MobileHam/MobileHam"
 
 import { BsBuilding } from "react-icons/bs"
 import { HiOutlineDocumentDuplicate, HiOutlineBookOpen } from "react-icons/hi"
@@ -45,9 +46,25 @@ const FileUpload = () => {
 
     const handleFileSelection = (e) => {
         const files = e.target.files;
+        let isValid = true
+
         if (files.length > 10) {
             toast.error("Max File Limit is 10!")
-        } else {
+            isValid = false
+            return
+        }
+
+        Array.from(files).forEach(obj => {
+            if (obj.type !== "application/pdf") {
+                toast.warn("Invalid file. Select PDFs Only!", {
+                    toastId: "InvalidFile"
+                })
+                isValid = false
+                return
+            }
+        })
+
+        if (isValid) {
             setFile(files ? [...files] : [])
             setIsUploading("idle")
         }
@@ -119,6 +136,8 @@ const FileUpload = () => {
                 { path: `institution/${infoData?.collegeName?.replaceAll(" ", "-")}/${infoData?.courseName?.replaceAll(" ", "-")}/${infoData?.subjectName?.replaceAll(" ", "-")}`, state: state },
                 { path: `institution/${infoData?.collegeName?.replaceAll(" ", "-")}/${infoData?.courseName?.replaceAll(" ", "-")}/${infoData?.subjectName?.replaceAll(" ", "-")}/Upload`, state: state }
             ]} />
+            <MobileHam />
+
             <h1>Upload new <span style={{ color: "var(--primary)" }}>Documents</span></h1>
 
             <form className="FileUpload-Form flex col">
@@ -208,6 +227,26 @@ const FileUpload = () => {
                             })}
                         </tbody>
                     </table>
+
+                    {file.map((obj, index) => {
+                        return (
+                            <div className="FileUpload-FileListMob" key={index}>
+                                <div className="flex col gap05">
+                                    <h3>{obj.name}</h3>
+                                    <div className="SubjectInfo-DocInfo flex">
+                                        <span>Type: {obj.type === "application/pdf" ? "PDF" : obj.type}</span>
+                                        <span>Size: {size(obj?.size)}</span>
+                                    </div>
+                                </div>
+
+                                <div className="FileUpload-Status flex">
+                                    {isUploading === "idle" && "--"}
+                                    {isUploading === "loading" && <div><FiLoader size={25} color="var(--grey)" style={{ animation: "spin 2s linear infinite" }} /></div>}
+                                    {isUploading === "done" && <div><MdCloudDone size={25} color="var(--green)" /></div>}
+                                    {isUploading === "error" && <div><FaExclamation size={25} color="var(--red)" /></div>}
+                                </div>
+                            </div>)
+                    })}
                 </div>
             }
         </div >

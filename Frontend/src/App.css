@@ -11,9 +11,10 @@
     --grey: #808080;
     --greyLite: rgba(200, 200, 200, 0.5);
     --greyDark: rgba(26, 26, 26, 0.5);
+    --greyDarkLite: rgba(26, 26, 26, 0.2);
     --primaryLite: rgba(45, 101, 206, 0.15);
     --green: rgb(1, 150, 1);
-    --red: rgb(211, 2, 2);
+    --red: rgb(255, 0, 0);
 }
 
 [data-theme="dark"]{
@@ -29,9 +30,10 @@
   --grey: #808080;
   --greyLite: rgba(40, 40, 40, 0.5);
   --greyDark: rgba(26, 26, 26, 0.5);
+  --greyDarkLite: rgba(26, 26, 26, 0.2);
   --primaryLite: rgba(45, 101, 206, 0.15);
   --green: rgb(1, 150, 1);
-  --red: rgb(211, 2, 2);
+  --red: rgb(255, 0, 0);
 }
 
 *{
@@ -78,22 +80,6 @@ html,body{
 
 .MobileHam-Main{
   display: none;
-}
-
-@media (max-width: 750px){
-  .MobileHam-Main{
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-  }
-
-  .Outlet-Main{
-    padding: 1em !important;
-  }
-
-  ::-webkit-scrollbar {
-    width: 0 !important;
-  }
 }
 
 .Outlet-Main{
@@ -146,14 +132,14 @@ html,body{
 }
 
 .Logout-Buttons .logout{
-  background-color: red;
-  color: var(--text);
+  background-color: var(--red);
+  color: var(--white);
   transition: 0.2s ease-in-out;
 }
 
 .Logout-Buttons .logout:hover{
-  background-color: #fff;
-  color: red;
+  background-color: var(--primaryLite);
+  color: var(--red);
 }
 
 .Manage-Delete{
@@ -203,6 +189,48 @@ html,body{
 .Manage-DeleteBtn:hover{
   color: var(--white);
   background-color: var(--red);
+}
+
+@media (max-width: 750px){
+  .MobileHam-Main{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  .Outlet-Main{
+    padding: 1em !important;
+  }
+
+  .Logout-Card{
+    width: 90%;
+  }
+
+  .Logout-Card h3{
+    font-size: 1em;
+    white-space: nowrap;
+  }
+
+  .Manage-Delete{
+    width: 90%;
+  }
+
+  .Manage-Delete h4{
+    font-size: 0.95em;
+  }
+
+  .Manage-DeleteBtn{
+    width: 100%;
+  }
+
+  ::-webkit-scrollbar {
+    width: 0 !important;
+  }
+
+  .Toastify__toast-container{
+    transform: scale(0.85) !important;
+    margin-bottom: 3em !important;
+  }
 }
 
 

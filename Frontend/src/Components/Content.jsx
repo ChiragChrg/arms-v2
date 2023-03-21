@@ -11,6 +11,7 @@ import { FiLoader } from "react-icons/fi"
 const Content = () => {
     const [userLogout, setUserLogout] = useState(false);
     const [loading, setLoading] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
     const { onLogout, setOnLogout, setIsUserLoggedIn,
         setIsUserFaculty, setIsReturningUser, setUserData,
         setIsAdmin, manageDelete, setManageDelete,
@@ -18,14 +19,25 @@ const Content = () => {
     const navigate = useNavigate();
     const ContentRef = useRef();
     const DeleteRef = useRef();
-    let isMobile = window.innerWidth < 750;
 
     useEffect(() => {
         if (onLogout) {
             setUserLogout(true);
             document.body.style.overflow = "hidden";
         }
-    }, [onLogout])
+
+        const ResizeWindow = () => {
+            if (window.innerWidth < 750) {
+                setIsMobile(true)
+            } else {
+                setIsMobile(false)
+            }
+        }
+
+        window.addEventListener('resize', ResizeWindow)
+        ResizeWindow()
+    }, [onLogout, window.innerWidth])
+
 
     const Logout = () => {
         setOnLogout(false);

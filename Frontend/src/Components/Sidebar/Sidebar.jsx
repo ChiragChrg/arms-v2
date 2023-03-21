@@ -23,7 +23,6 @@ const Sidebar = ({ isMobile }) => {
             isAdmin ? setRole("Admin") : setRole("Faculty")
         }
 
-        console.log(SidebarRef)
         if (isMobile) {
             if (showSidebar) {
                 SidebarRef.current.style.width = "100%"
@@ -32,8 +31,11 @@ const Sidebar = ({ isMobile }) => {
                 SidebarRef.current.style.width = "0%"
                 SidebarRef.current.style.visibility = "hidden"
             }
+        } else {
+            SidebarRef.current.style.width = "23%"
+            SidebarRef.current.style.visibility = "visible"
         }
-    }, [isUserFaculty, isAdmin, showSidebar])
+    }, [isUserFaculty, isAdmin, showSidebar, isMobile])
 
     return (
         <div className="Sidebar-Main flex col" ref={SidebarRef}>
@@ -55,15 +57,15 @@ const Sidebar = ({ isMobile }) => {
             </div>
 
             <div className="Sidebar-NavLinks flex col gap">
-                <NavLink to="/dashboard" className="flex gap">
+                <NavLink to="/dashboard" className="flex gap" onClick={() => setShowSidebar(false)}>
                     <HiOutlineHome size={25} color="inherit" />Dashboard
                 </NavLink>
-                <NavLink to="/about" className="flex gap">
+                <NavLink to="/about" className="flex gap" onClick={() => setShowSidebar(false)}>
                     <BsInfoCircleFill size={25} color="inherit" />About
                 </NavLink>
-                <NavLink to="/contact" className="flex gap">
+                {/* <NavLink to="" className="flex gap" onClick={() => setShowSidebar(false)}>
                     <RiContactsBookLine size={25} color="inherit" />Contact
-                </NavLink>
+                </NavLink> */}
             </div>
 
             <div className="Sidebar-Footer flex col gap">

@@ -112,6 +112,10 @@
     /* margin-left: 1em; */
 }
 
+.FileUpload-FileListMob{
+    display: none;
+}
+
 .FileUpload-FileList thead{
     background-color: var(--greyLite);
 }
@@ -143,4 +147,65 @@
 
 .FileUpload-TableRow:last-child{
     border-bottom: 2em solid var(--base);
+}
+
+
+@media (max-width: 750px){
+    .FileUpload-Main h1{
+        font-size: 1.8em;
+        width: 100%;
+        text-align: center;
+    }
+
+    .FileUpload-Row{
+        flex-direction: column;
+        gap: 1em;
+        width: 100%;
+    }
+
+    .FileUpload-Row.alignBottom,
+    .FileUpload-InputHolder,
+    .FileUpload-Input{
+        width: 100%;
+    }
+    
+    .FileUpload-Input input,
+    .FileUpload-FilePicker,
+    .FileUpload-Submit{
+        min-width: 0;
+        width: 100%;
+    }
+
+    .FileUpload-FileList{
+        display: none;
+    }
+
+    .FileUpload-FileListContainer{
+        display: flex;
+        flex-direction: column;
+        padding: 0 1em;
+        gap: 1em;
+    }
+
+    .FileUpload-FileListMob{
+        display: flex;
+        justify-content: space-between;
+        background-color: var(--primaryLite);
+        color: var(--text);
+        border-radius: 0.5em;
+        width: 100%;
+        padding: 0.5em;
+    }
+
+    .FileUpload-FileListMob h3{
+        text-align: left;
+        width: 100%;
+        font-size: 1em;
+    }
+
+    .FileUpload-Status{
+        width: 3em;
+        padding: 1em;
+        white-space: nowrap;
+    }
 }

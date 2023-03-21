@@ -109,6 +109,10 @@
     /* box-shadow: 1px 2px 20px 0px rgba(0, 0, 0, 0.5); */
 }
 
+.SubjectInfo-DocContainer{
+    display: none;
+}
+
 .SubjectInfo-TableContainer{
     width: 100%;
     padding: 0 1em;
@@ -223,5 +227,65 @@
     .InstituteInfo-CourseCard h1{
         font-size: 1.5em;
         text-align: center;
+    }
+
+    .SubjectInfo-TableContainer{
+        display: none;
+    }
+
+    .SubjectInfo-DocContainer{
+        display: flex;
+        padding-bottom: 5em;
+    }
+
+    .SubjectInfo-DocList{
+        background-color: var(--primary);
+        color: var(--white);
+        border-radius: 0.5em;
+        width: 100%;
+        padding: 0.5em;
+        justify-content: space-between;
+    }
+
+    .SubjectInfo-DocList>div{
+        justify-content: flex-start;
+    }
+
+    .SubjectInfo-DocList h3{
+        text-align: left;
+        width: 100%;
+        font-size: 1em;
+    }
+
+    .SubjectInfo-DocInfo{
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        gap: 0.5em;
+    }
+
+    .SubjectInfo-DocInfo span{
+        font-size: 0.7em;
+        background-color: var(--greyDarkLite);
+        padding: 0.2em 0.5em;
+        border-radius: 0.35em;
+    }
+
+    .SubjectInfo-DocBtns{
+        padding-right: 0.5em;
+    }
+
+    .SubjectInfo-DownloadBtn{
+        text-decoration: none;
+        color: var(--primary);
+        padding: 0.5em;
+        border-radius: 0.3em;
+        background-color: var(--base);
+    }
+    
+    .SubjectInfo-DeleteBtn{
+        color: var(--white);
+        padding: 0.5em;
+        border-radius: 0.3em;
+        background-color: var(--red);
     }
 }

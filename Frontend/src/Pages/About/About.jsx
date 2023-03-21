@@ -1,5 +1,6 @@
 import "./About.css"
-import NavRoute from "../../Components/NavRoute/NavRoute";
+// import NavRoute from "../../Components/NavRoute/NavRoute";
+import MobileHam from "../../Components/MobileHam/MobileHam"
 
 const About = () => {
     const routes = [
@@ -10,7 +11,8 @@ const About = () => {
 
     return (
         <div className="About-Main">
-            <NavRoute routes={routes} />
+            {/* <NavRoute routes={routes} /> */}
+            <MobileHam />
             <h1>About</h1>
         </div>
     )

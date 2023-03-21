@@ -93,4 +93,8 @@
     .Institution-Card:hover{
         scale: 1;
     }
+
+    .Institution-Cards .MuiSkeleton-root{
+        width: 100% !important;
+    }
 }
