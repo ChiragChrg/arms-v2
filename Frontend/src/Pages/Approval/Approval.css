@@ -1,0 +1,91 @@
+.Approval-Main{
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.Approval-UserList,
+.Approval-Skeletons{
+    margin-top: 2em;
+    margin-right: 0.5em;
+}
+
+.Approval-User{
+    background-color: var(--primaryLite);
+    width: 100%;
+    border-radius: 0.4em;
+    justify-content: space-between;
+    padding: 0.5em 1em;
+}
+
+.Approval-UserInfo{
+    align-items: flex-start;
+}
+
+.Approval-UserDetails span{
+    background-color: var(--primaryLite);
+    padding: 0 0.5em;
+    border-radius: 0.3em;
+}
+
+.Approval-Approve,
+.Approval-Reject{
+    background-color: var(--base);
+    padding: 0.2em 0.5em;
+    border-radius: 0.25em;
+    transition: 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.Approval-Approve{
+    color: var(--green);
+}
+
+.Approval-Reject{
+    color: var(--red);
+}
+
+.Approval-Approve:hover{
+    background-color: var(--green);
+    color: var(--white);
+}
+
+.Approval-Reject:hover{
+    background-color: var(--red);
+    color: var(--white);
+}
+
+.Approval-Vector{
+    margin-top: 4em;
+}
+
+
+@media (max-width: 750px){
+    .Approval-User>div{
+        gap: 0.5em;
+    }
+
+    .Approval-UserDetails{
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5em;
+    }
+
+    .Approval-UserDetails span{
+        font-size: 0.8em;
+    }
+
+    .Approval-Buttons{
+        flex-direction: column;
+    }
+
+    .Approval-Approve,
+    .Approval-Reject{
+        padding: 1em;
+    }
+
+    .Approval-Approve p,
+    .Approval-Reject p{
+        display: none;
+    }
+}
