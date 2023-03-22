@@ -102,7 +102,7 @@ html,body{
   top: 0;
   z-index: 99;
   background-color: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(3px);
   -webkit-backdrop-filter: blur(5px);
 }
   
@@ -196,8 +196,23 @@ html,body{
 @media (max-width: 750px){
   .MobileHam-Main{
     display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 0.5em;
+    margin-bottom: 0.5em;
+  }
+
+  .MobileHam-ProfileImg{
+    padding: 0.5em;
+    border-radius: 100%;
+    background-color: var(--greyLite);
+  }
+
+  .MobileHam-Avatar{
+    width: 40px;
+    aspect-ratio: 1;
+    border-radius: 100%;
+    object-fit: cover;
   }
 
   .Outlet-Main{

@@ -14,7 +14,7 @@ const Content = () => {
     const [isMobile, setIsMobile] = useState(false);
     const [runOnce, setRunOnce] = useState(false);
 
-    const { onLogout, userData, setOnLogout, setIsUserLoggedIn,
+    const { onLogout, userData, setOnLogout, setIsUserLoggedIn, isUserFaculty,
         setIsUserFaculty, setIsReturningUser, setUserData,
         setIsAdmin, manageDelete, setManageDelete,
         setCourseStateData, setInstituteStateData, setShowSidebar } = useContextData();
@@ -54,7 +54,7 @@ const Content = () => {
             }
         }
 
-        if (!runOnce) {
+        if (!runOnce && isUserFaculty) {
             GetCurrentUser()
         }
     }, [runOnce])
