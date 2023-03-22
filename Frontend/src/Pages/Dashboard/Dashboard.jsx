@@ -36,7 +36,7 @@ const Dashboard = () => {
 
             <div className="AdminDash-Header flex">
                 {isReturningUser ?
-                    <h1>Welcome back, <span style={{ color: "var(--primary)" }}>{userData?.username ? userData.username : "User"}</span></h1>
+                    <h1>Welcome back, <span style={{ color: "var(--primary)" }}>{userData?.username == "Anonymous" ? "User" : userData.username}</span></h1>
                     :
                     <h1>Welcome to <span style={{ color: "var(--primary)" }}>ARMS</span></h1>
                 }
