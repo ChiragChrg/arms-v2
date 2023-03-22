@@ -60,7 +60,7 @@ const Sidebar = ({ isMobile }) => {
                         <p>ARMS</p>
                     </div>
 
-                    <div className="Sidebar-ThemeToggle flex" onClick={() => setIsDarkTheme(prev => !prev)}>
+                    <div className="Sidebar-ThemeToggle flex" onClick={() => { setIsDarkTheme(prev => !prev); setShowSidebar(false) }}>
                         <CgDarkMode size={35} color="inherit" />
                     </div>
                 </div>
