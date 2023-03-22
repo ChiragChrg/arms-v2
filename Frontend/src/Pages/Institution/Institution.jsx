@@ -47,7 +47,7 @@ const Institution = () => {
                 <h1>Institutions</h1>
 
                 <div className="Institution-Nav flex gap">
-                    <MobileHam />
+                    <MobileHam hideProfile={true} />
                     {authorizedUser && <Link to="new" className="Institution-Create flex gap05">
                         <FiPlus size={25} color="inherit" />
                         <span>New Institution</span>

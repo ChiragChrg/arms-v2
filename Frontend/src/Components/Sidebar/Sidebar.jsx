@@ -10,6 +10,7 @@ import { CgDarkMode } from 'react-icons/cg'
 // import { MdDashboard } from 'react-icons/md'
 import { HiOutlineHome } from 'react-icons/hi'
 import { BsInfoCircleFill, BsXCircle, BsBuilding } from 'react-icons/bs'
+import { MdSettings } from "react-icons/md"
 
 import { RiContactsBookLine } from 'react-icons/ri'
 
@@ -37,7 +38,7 @@ const Sidebar = ({ isMobile }) => {
                 SidebarRef.current.style.padding = "0.6em"
             } else {
                 SidebarRef.current.style.width = "0%"
-                SidebarRef.current.style.padding = "0"
+                SidebarRef.current.style.padding = "0.6em 0"
                 SidebarRef.current.style.visibility = "hidden"
             }
         } else {
@@ -80,6 +81,10 @@ const Sidebar = ({ isMobile }) => {
 
                 <NavLink to="/about" className="flex gap" onClick={() => setShowSidebar(false)}>
                     <BsInfoCircleFill size={25} color="inherit" />About
+                </NavLink>
+
+                <NavLink to="/settings" className="flex gap" onClick={() => setShowSidebar(false)}>
+                    <MdSettings size={25} color="inherit" />Settings
                 </NavLink>
             </div>
 

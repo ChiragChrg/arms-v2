@@ -1,0 +1,122 @@
+.Settings-Main{
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.Settings-Main h2{
+    margin: 0.5em 0;
+}
+
+.Settings-User{
+    margin-top: 1em;
+}
+
+.Settings-ProfileImg{
+    padding: 2em;
+    border-radius: 100%;
+    background-color: var(--greyLite);
+  }
+
+.Settings-Avatar{
+    width: 120px;
+    aspect-ratio: 1;
+    border-radius: 100%;
+    object-fit: cover;
+}
+
+.Settings-Details{
+    width: 100%;
+    height: fit-content;
+    /* padding-right: 0.5em; */
+    align-items: flex-start;
+}
+
+.Settings-UserInfo,
+.Settings-Actions{
+    width: 100%;
+}
+
+.Settings-Actions{
+    gap: 4em;
+}
+
+.Settings-InfoCol{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: var(--primaryLite);
+    width: 100%;
+    padding: 0.5em 1em;
+    border-radius: 0.4em;
+}
+
+.Settings-ActionCol{
+    width: 100%;
+    border-radius: 0.4em;
+    padding: 0 2em;
+}
+
+.Settings-ActionCol.Logout{
+    padding: 0 5em;
+}
+
+.Settings-ActionCol span{
+    min-width: 10em;
+}
+
+.Settings-InfoCol span{
+    min-width: 10em;
+    /* background-color: red; */
+    margin-right: 1em;
+    border-right: 1px solid var(--greyLite);
+}
+
+.Settings-InfoCol p{
+    justify-content: flex-start;
+}
+
+.Settings-ThemeToggle{
+    background-color: var(--baseAlt);
+    color: var(--textAlt);
+    width: 100%;
+    padding: 0.5em 1em;
+    border-radius: 0.3em;
+    cursor: pointer;
+}
+
+.Settings-Logout{
+    background-color: var(--base);
+    color: var(--red);
+    border: 1px solid var(--red);
+    width: 100%;
+    padding: 0.5em 1em;
+    border-radius: 0.3em;
+    cursor: pointer;
+}
+
+.Settings-Logout:hover{
+    background-color: var(--red);
+    color: var(--white);
+}
+
+
+@media (max-width: 750px){
+    .Settings-Main h2{
+        margin-top: 1em;
+    }
+
+    .Settings-Details{
+        flex-direction: column;
+        padding-right: 0.3em;
+    }
+
+    .Settings-InfoCol p{
+        overflow: hidden;
+    }
+
+    .Settings-Actions{
+        margin-top: 2em;
+        gap: 3em;
+    }
+}
