@@ -134,7 +134,7 @@ const Approval = () => {
                 </div>
             }
 
-            {pendingUsers.length == 0 &&
+            {(pendingUsers.length == 0 && !loading) &&
                 <div className="Approval-Vector flex col gap">
                     <img src={ApproveSVG} alt="ApproveSVG" width="300px" height="auto" />
                     <h3>No new faculties yet...</h3>
