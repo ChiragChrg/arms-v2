@@ -12,6 +12,20 @@
     margin-top: 1em;
 }
 
+.Settings-Profile{
+    position: relative;
+}
+
+.Settings-DashBorder{
+    width: 100%;
+    aspect-ratio: 1;
+    border: 4px dashed var(--primary);
+    border-radius: 100%;
+    scale: 1.12;
+    animation: spin 25s linear infinite;
+    position: absolute;
+}
+
 .Settings-ProfileImg{
     padding: 2em;
     border-radius: 100%;
@@ -93,6 +107,7 @@
     padding: 0.5em 1em;
     border-radius: 0.3em;
     cursor: pointer;
+    transition: 0.3s ease-in-out;
 }
 
 .Settings-Logout:hover{

@@ -16,6 +16,7 @@ const Settings = () => {
 
             <div className="Settings-User flex col gap05">
                 <div className="Settings-Profile">
+                    <div className="Settings-DashBorder"></div>
                     {!isUserFaculty ?
                         <div className="Settings-ProfileImg flex">
                             <FaRegUser size={58} color="var(--white)" />
