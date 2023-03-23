@@ -9,7 +9,7 @@ import { BsFilterLeft } from 'react-icons/bs'
 
 const Header = ({ dark, altLogo }) => {
     const [showMobileNav, setShowMobileNav] = useState(false);
-    const { setIsDarkTheme } = useContextData();
+    const { setIsDarkTheme, isDarkTheme } = useContextData();
     const deviceWidth = window.innerWidth;
     document.body.style.overflow = showMobileNav ? "hidden" : "auto";
 
@@ -47,8 +47,9 @@ const Header = ({ dark, altLogo }) => {
                         <a href="https://devbase.netlify.app/">DevBase</a>
                         <a href="https://github.com/ChiragChrg/ARMS">GitHub</a>
 
-                        <div className="Header-ThemeToggle flex" onClick={() => setIsDarkTheme(prev => !prev)}>
+                        <div className="Header-ThemeToggle flex gap05" onClick={() => setIsDarkTheme(prev => !prev)}>
                             <CgDarkMode size={25} color="inherit" />
+                            {isDarkTheme ? "Light" : "Dark"}
                         </div>
                     </div>
                     <div className="Header-Overlay" onClick={() => setShowMobileNav(false)}></div>
