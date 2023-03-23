@@ -125,6 +125,16 @@ exports.GetPending = async (req, res) => {
     }
 }
 
+exports.GetUsers = async (req, res) => {
+    try {
+        const UserDB = await User.find({}, { password: 0 }).where({ isApproved: true })
+        res.status(200).json({ UserDB })
+    } catch (err) {
+        console.log(err)
+        res.status(500).json({ message: "Failed to get Pending Users" })
+    }
+}
+
 //Approve Routes
 exports.ApproveUsers = async (req, res) => {
     const { userId } = req.body;

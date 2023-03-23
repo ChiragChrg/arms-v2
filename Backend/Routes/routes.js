@@ -9,6 +9,7 @@ router.post('/login', RoutesController.LoginUser);
 router.get('/getcountup', RoutesController.GetCountUp)
 router.get('/getinstitutions', RoutesController.GetInstitutions)
 router.get('/pending', isAuth, RoutesController.GetPending)
+router.get('/getusers', isAuth, RoutesController.GetUsers)
 
 router.post('/approve', isAuth, RoutesController.ApproveUsers)
 router.post('/decline', isAuth, RoutesController.DeclineUsers)
