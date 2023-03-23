@@ -5,7 +5,7 @@ import axios from 'axios'
 import CountUp from "react-countup"
 
 import MobileHam from "../MobileHam/MobileHam"
-import { FiUserPlus } from "react-icons/fi"
+import { FiUserPlus, FiUsers } from "react-icons/fi"
 import { HiOutlineDocumentDuplicate } from "react-icons/hi"
 import { TbBooks } from "react-icons/tb"
 import { BsBuilding } from "react-icons/bs"
@@ -88,6 +88,11 @@ const AdminDash = () => {
                     <Link to="/institution" className="AdminDash-Control flex gap">
                         <BsBuilding size={25} />
                         <h3>Manage Institutions</h3>
+                    </Link>
+
+                    <Link to="/faculty" className="AdminDash-Control flex gap">
+                        <FiUsers size={25} />
+                        <h3>Authorized Faculty</h3>
                     </Link>
 
                     <Link to="/approval" className="AdminDash-Control flex gap">

@@ -23,6 +23,7 @@ import CourseInfo from './Pages/Institution/CourseInfo/CourseInfo';
 import NewSubject from './Pages/Institution/CourseInfo/NewSubject';
 import SubjectInfo from './Pages/Institution/SubjectInfo/SubjectInfo';
 import Approval from './Pages/Approval/Approval';
+import Faculty from './Pages/Faculty/Faculty';
 import Settings from './Pages/Settings/Settings';
 
 function App() {
@@ -60,6 +61,7 @@ function App() {
             <Route path="/dashboard" element={!isAdmin ? <Dashboard /> : <AdminDash />} />
             <Route path="/about" element={<About />} />
             {isAdmin && <Route path="/approval" element={<Approval />} />}
+            {isAdmin && <Route path="/faculty" element={<Faculty />} />}
             <Route path="/settings" element={<Settings />} />
             <Route path="/institution" element={<Institution />} />
             <Route path="/institution/new" element={<NewInstitute />} />

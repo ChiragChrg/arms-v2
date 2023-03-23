@@ -5,7 +5,7 @@ import { useContextData } from "../../Hooks/useContextData"
 
 import ArmsLogo from "../../Assets/ArmsLogo"
 import { FaRegUser } from "react-icons/fa"
-import { FiLogOut, FiUserPlus } from 'react-icons/fi'
+import { FiLogOut, FiUserPlus, FiUsers } from 'react-icons/fi'
 import { CgDarkMode } from 'react-icons/cg'
 // import { MdDashboard } from 'react-icons/md'
 import { HiOutlineHome } from 'react-icons/hi'
@@ -75,16 +75,20 @@ const Sidebar = ({ isMobile }) => {
                     <BsBuilding size={25} color="inherit" />Institutions
                 </NavLink>
 
+                {isAdmin && <NavLink to="/faculty" className="flex gap" onClick={() => setShowSidebar(false)}>
+                    <FiUsers size={25} color="inherit" />Faculty
+                </NavLink>}
+
                 {isAdmin && <NavLink to="/approval" className="flex gap" onClick={() => setShowSidebar(false)}>
                     <FiUserPlus size={25} color="inherit" />Approval
                 </NavLink>}
 
-                <NavLink to="/about" className="flex gap" onClick={() => setShowSidebar(false)}>
-                    <BsInfoCircleFill size={25} color="inherit" />About
-                </NavLink>
-
                 <NavLink to="/settings" className="flex gap" onClick={() => setShowSidebar(false)}>
                     <MdSettings size={25} color="inherit" />Settings
+                </NavLink>
+
+                <NavLink to="/about" className="flex gap" onClick={() => setShowSidebar(false)}>
+                    <BsInfoCircleFill size={25} color="inherit" />About
                 </NavLink>
             </div>
 
