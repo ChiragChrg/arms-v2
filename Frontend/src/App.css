@@ -107,7 +107,8 @@ html,body{
 }
   
 .Logout-Card{
-  background-color: var(--white);
+  background-color: var(--base);
+  color: var(--text);
   justify-content: space-evenly;
   padding: 1em 2em;
   border-radius: 0.4em;
@@ -123,6 +124,7 @@ html,body{
 
 .Logout-Buttons button{
   background-color: var(--primaryLite);
+  color: var(--text);
   border: none;
   outline: none;
   border-radius: 0.3em;
@@ -254,6 +256,14 @@ html,body{
 /* Disable blue button click highlight */
 input, button, a, div {
     -webkit-tap-highlight-color: transparent;
+}
+
+/* Skeleton Fix for darkmode visibility */
+.MuiSkeleton-root{
+  background-color: var(--primaryLite) !important;
+}
+.MuiSkeleton-root::after{
+ background: linear-gradient( 90deg, transparent, rgba(0, 0, 0, 0.06), transparent ) !important;
 }
 
 /* Custom ScrollBar */

@@ -5,7 +5,6 @@ import { FaRegUser } from 'react-icons/fa'
 
 const MobileHam = ({ hideProfile = false }) => {
     const { setShowSidebar, userData, isUserFaculty } = useContextData()
-    console.log(hideProfile, isUserFaculty)
     return (
         <div className="MobileHam-Main flex">
             <BsFilterLeft size={45} onClick={() => setShowSidebar(true)} />

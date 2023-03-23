@@ -174,7 +174,7 @@ const FileUpload = () => {
                         <input type="file" accept="application/pdf" name="files" ref={FilePickerRef} style={{ display: 'none' }} multiple onChange={handleFileSelection} />
                         <div className="flex gap05">
                             <HiOutlineDocumentDuplicate size={25} color="var(--grey)" />
-                            <span>{file ? `${file.length} files Selected` : "Select Documents"}</span>
+                            <span>{file ? `${file.length} files Selected` : "Select PDF files"}</span>
                         </div>
                         {file && <div className="FileUpload-NewFiles flex gap05" title="Select New Files">
                             <MdRotateRight size={25} color="inherit" />
