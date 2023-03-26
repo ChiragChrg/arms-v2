@@ -25,6 +25,9 @@ import SubjectInfo from './Pages/Institution/SubjectInfo/SubjectInfo';
 import Approval from './Pages/Approval/Approval';
 import Faculty from './Pages/Faculty/Faculty';
 import Settings from './Pages/Settings/Settings';
+import NotFound from './Pages/NotFound/NotFound';
+import ForgotPass from './Pages/ForgotPass/ForgotPass';
+import ResetPass from './Pages/ForgotPass/ResetPass';
 
 function App() {
   const { isAdmin, userData, setUserData, isUserLoggedIn, authorizedUser, setIsUserLoggedIn, setIsUserFaculty, setIsReturningUser, setIsDarkTheme } = useContextData();
@@ -76,7 +79,9 @@ function App() {
           <Route path="/" element={!isUserLoggedIn ? <Landing /> : <Navigate to="/dashboard" />} />
           <Route path="/login" element={!isUserLoggedIn ? <Login /> : <Navigate to="/dashboard" />} />
           <Route path="/signup" element={!isUserLoggedIn ? <Signup /> : <Navigate to="/dashboard" />} />
-          <Route path="*" element={<h1 style={{ color: "var(--text)" }}>Error 404</h1>} />
+          <Route path="/forgot-password" element={!isUserLoggedIn ? <ForgotPass /> : <Navigate to="/dashboard" />} />
+          <Route path="/reset-password/:resetId" element={<ResetPass />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Browser>
 

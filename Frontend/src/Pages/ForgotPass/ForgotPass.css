@@ -1,0 +1,52 @@
+.ForgotPass-Main,
+.ResetPass-Main{
+    width: 100%;
+    height: 100%;
+    padding: 1em;
+}
+
+.ForgotPass-Vector h1{
+    color: var(--text);
+}
+
+.ForgotPass-Header{
+    justify-content: space-between;
+    padding: 0 1.5em;
+    /* margin-bottom: 2em; */
+}
+
+.ForgotPass-BackBtn{
+    text-decoration: none;
+    color: var(--primary);
+    border: 1px solid var(--primary);
+    padding: 0.3em 0.6em;
+    border-radius: 0.3em;
+    transition: 0.3s ease-in-out;
+}
+
+.ForgotPass-BackBtn:hover{
+    background-color: var(--primary);
+    color: var(--white);
+}
+
+.ForgotPass-FormHolder{
+    background-color: var(--baseLite);
+    padding: 1em;
+    margin-top: 2em;
+    border-radius: 0.4em;
+}
+
+.ForgotPass-FormHolder .Login-Submit{
+    min-width: 18em;
+}
+
+@media (max-width: 750px){
+    .ForgotPass-Header{
+        padding: 0;
+        margin-bottom: 3em !important;
+    }
+
+    .ForgotPass-Vector{
+        margin-bottom: 2em;
+    }
+}
