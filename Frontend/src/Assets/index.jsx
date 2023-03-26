@@ -8,6 +8,8 @@ import CourseSVG from './Course.svg';
 import SubjectSVG from './Subject.svg';
 import ApproveSVG from './Approve.svg';
 import NotFoundSVG from './NotFound.svg';
+import ForgotPassSVG from './ForgotPass.svg';
+import ResetPassSVG from './ResetPass.svg';
 
 export {
     Logo,
@@ -20,4 +22,6 @@ export {
     SubjectSVG,
     ApproveSVG,
     NotFoundSVG,
+    ForgotPassSVG,
+    ResetPassSVG,
 };
