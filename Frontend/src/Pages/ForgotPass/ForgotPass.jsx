@@ -35,10 +35,15 @@ const ForgotPass = () => {
                     templateParams,
                     import.meta.env.VITE_EMAILJS_PUBLIC_KEY
                 );
-                setLoading(false)
+
+                if (mailRes.status == 200) {
+                    toast.success("Reset Link has been sent to your Email ID.")
+                    setLoading(false)
+                }
             }
         } catch (err) {
             console.log(err)
+            toast.error(res.data.message || "Somthing went wrong")
             setLoading(false)
         }
     }
