@@ -1,13 +1,17 @@
 import "./Faculty.css"
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import MobileHam from '../../Components/MobileHam/MobileHam'
 import moment from 'moment'
+import MobileHam from '../../Components/MobileHam/MobileHam'
+import { useContextData } from "../../Hooks/useContextData"
+
 import Skeleton from '@mui/material/Skeleton';
+import { MdClose } from "react-icons/md"
 
 const Faculty = () => {
     const [faculty, setFaculty] = useState([])
     const [loading, setLoading] = useState(false)
+    const { setDeleteUser } = useContextData()
 
     useEffect(() => {
         const GetFaculty = async () => {
@@ -36,16 +40,23 @@ const Faculty = () => {
                 <div className="Faculty-List flex col gap">
                     {faculty.map((obj, index) => {
                         return <div className="Faculty-User flex gap" key={index}>
-                            <div className="Approval-Avatar flex">
-                                <img src={obj.avatarImg} alt={obj.username} className="Sidebar-Avatar" />
+                            <div className="flex gap">
+                                <div className="Faculty-Avatar flex">
+                                    <img src={obj.avatarImg} alt={obj.username} />
+                                </div>
+
+                                <div className="Faculty-UserInfo flex col gap05">
+                                    <h3>{obj.username}</h3>
+                                    <div className="Faculty-UserDetails flex gap05">
+                                        <span>Email: {obj.email}</span>
+                                        <span>Request Date: {moment(obj.createdAt).format('LL')}</span>
+                                    </div>
+                                </div>
                             </div>
 
-                            <div className="Approval-UserInfo flex col gap05">
-                                <h3>{obj.username}</h3>
-                                <div className="Approval-UserDetails flex gap">
-                                    <span>Email: {obj.email}</span>
-                                    <span>Request Date: {moment(obj.createdAt).format('LL')}</span>
-                                </div>
+                            <div className="Faculty-DeleteBtn flex gap05" onClick={() => setDeleteUser(obj)}>
+                                <MdClose size={25} color="inherit" />
+                                <span>Delete User</span>
                             </div>
                         </div>
                     })}

@@ -13,16 +13,61 @@
     background-color: var(--primaryLite);
     width: 100%;
     border-radius: 0.4em;
-    justify-content: flex-start;
+    justify-content: space-between;
     padding: 0.5em 1em;
+}
+
+.Faculty-Avatar img{
+    width: 46px;
+    aspect-ratio: 1;
+    border-radius: 100%;
+    object-fit: cover;
 }
 
 .Faculty-UserInfo{
     align-items: flex-start;
 }
 
+.Faculty-UserDetails{
+    align-items: flex-start;
+}
+
 .Faculty-UserDetails span{
     background-color: var(--primaryLite);
-    padding: 0 0.5em;
+    padding: 0 0.3em;
+    font-size: 0.9em;
     border-radius: 0.3em;
+}
+
+.Faculty-DeleteBtn{
+    background-color: var(--white);
+    color: var(--red);
+    padding: 0.3em 0.9em;
+    border-radius: 0.3em;
+    transition: 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.Faculty-DeleteBtn:hover{
+    background-color: var(--red);
+    color: var(--white); 
+}
+
+@media (max-width: 750px){
+    .Faculty-UserDetails{
+        flex-direction: column;
+    }
+
+    .Faculty-UserDetails span{
+        font-size: 0.65em;
+        white-space: nowrap;
+    }
+
+    .Faculty-DeleteBtn{
+        padding: 0.5em;
+    }
+
+    .Faculty-DeleteBtn span{
+        display: none;
+    }
 }
