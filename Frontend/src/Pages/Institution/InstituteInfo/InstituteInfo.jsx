@@ -20,7 +20,7 @@ const InstituteInfo = () => {
     const [initialRender, setInitialRender] = useState(false)
 
     const { state, pathname } = useLocation()
-    const { instituteStateData, setManageDelete, userData, authorizedUser } = useContextData()
+    const { instituteStateData, setManageDelete, userData, authorizedUser, isAdmin } = useContextData()
     const CollegeData = instituteStateData.length !== 0 ? instituteStateData : state;
 
     useEffect(() => {
@@ -48,7 +48,7 @@ const InstituteInfo = () => {
     }, [state])
 
     useEffect(() => {
-        if (collegeInfo.registeredBy === userData?.username && authorizedUser) {
+        if ((collegeInfo.registeredBy === userData?.username && authorizedUser) || isAdmin) {
             setIsAuthorized(true)
         }
     }, [collegeInfo])
