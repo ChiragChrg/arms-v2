@@ -48,13 +48,14 @@ const ResetPass = () => {
         try {
             setLoading(true);
             const result = await axios.post("/api/reset-password", { userId: resetUser.uid, password });
-            result.status === 200 && setLoading(false);
-
-            toast.success(result.data.message);
-            navigate("/login");
+            if (result.status == 200) {
+                setLoading(false);
+                toast.success(result?.data?.message);
+                navigate("/login");
+            }
         } catch (err) {
             setLoading(false);
-            toast.error(err.response.data.message || "Something went wrong!");
+            toast.error(err.response?.data?.message || "Something went wrong!");
         }
     }
 
