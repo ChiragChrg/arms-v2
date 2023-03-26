@@ -61,7 +61,7 @@ const Approval = () => {
                 }
             } else {
                 setLoadingBtn("Decline")
-                const res = await axios.post('/api/decline', { userId: user._id })
+                const res = await axios.post('/api/decline', { userId: user._id, actionMsg: "Declined" })
                 if (res.status == 200) {
                     toast.success(res.data.message)
                     isSuccess = true

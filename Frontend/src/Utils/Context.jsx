@@ -13,6 +13,7 @@ const ContextProvider = ({ children }) => {
 
     const [onLogout, setOnLogout] = useState(false);
     const [manageDelete, setManageDelete] = useState(null)
+    const [deleteUser, setDeleteUser] = useState(null)
 
     const [instituteStateData, setInstituteStateData] = useState([])
     const [courseStateData, setCourseStateData] = useState([])
@@ -62,6 +63,8 @@ const ContextProvider = ({ children }) => {
             setOnLogout,
             manageDelete,
             setManageDelete,
+            deleteUser,
+            setDeleteUser,
             instituteStateData,
             setInstituteStateData,
             courseStateData,

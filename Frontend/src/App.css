@@ -79,7 +79,6 @@ html,body{
   height: 100vh;
 }
 
-
 .MobileHam-Main{
   display: none;
 }
@@ -93,106 +92,6 @@ html,body{
 
 .Outlet-Main.fullWidth{
   width: 100% !important;
-}
-
-.BackropModal{
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  z-index: 99;
-  background-color: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
-}
-  
-.Logout-Card{
-  background-color: var(--base);
-  color: var(--text);
-  justify-content: space-evenly;
-  padding: 1em 2em;
-  border-radius: 0.4em;
-  min-height: 10em;
-  gap: 1em;
-  z-index: 4;
-  letter-spacing: 1.5px;
-}
-
-.Logout-Buttons{
-  gap: 3em;
-}
-
-.Logout-Buttons button{
-  background-color: var(--primaryLite);
-  color: var(--text);
-  border: none;
-  outline: none;
-  border-radius: 0.3em;
-  padding: 0.5em 1em;
-  font-size: 0.9em;
-  font-weight: bold;
-  letter-spacing: 1px;
-  cursor: pointer;
-}
-
-.Logout-Buttons .logout{
-  background-color: var(--red);
-  color: var(--white);
-  transition: 0.2s ease-in-out;
-}
-
-.Logout-Buttons .logout:hover{
-  background-color: var(--primaryLite);
-  color: var(--red);
-}
-
-.Manage-Delete{
-  background-color: var(--base);
-  color: var(--text);
-  position: relative;
-  width: 50%;
-  height: 50%;
-  border-radius: 0.4em;
-  justify-content: flex-start;
-  align-items: flex-start;
-  padding: 1.5em;
-}
-
-.Manage-Header{
-  margin-bottom: 2em;
-  width: 100%;
-  justify-content: space-between;
-}
-
-.Manage-Close{
-  position: absolute;
-  top: 0.6em;
-  right: 0.8em;
-  cursor: pointer;
-}
-
-.Manage-DeleteBtn{
-  border: none;
-  outline: none;
-  font-size: 1em;
-  color: var(--red);
-  background-color: var(--primaryLite);
-  width: fit-content;
-  padding: 0.3em 0.5em;
-  border-radius: 0.2em;
-  cursor: pointer;
-  transition: 0.2s ease-in-out;
-}
-
-.Manage-Form{
-  /* align-items: flex-start; */
-  margin-top: 2em;
-  width: 100%;
-}
-
-.Manage-DeleteBtn:hover{
-  color: var(--white);
-  background-color: var(--red);
 }
 
 @media (max-width: 750px){
@@ -219,27 +118,6 @@ html,body{
 
   .Outlet-Main{
     padding: 1em !important;
-  }
-
-  .Logout-Card{
-    width: 90%;
-  }
-
-  .Logout-Card h3{
-    font-size: 1em;
-    white-space: nowrap;
-  }
-
-  .Manage-Delete{
-    width: 90%;
-  }
-
-  .Manage-Delete h4{
-    font-size: 0.95em;
-  }
-
-  .Manage-DeleteBtn{
-    width: 100%;
   }
 
   ::-webkit-scrollbar {

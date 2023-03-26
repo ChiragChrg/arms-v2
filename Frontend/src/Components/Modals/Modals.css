@@ -1,0 +1,142 @@
+.BackdropModal{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  z-index: 99;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+}
+
+.Modal-Card{
+  background-color: var(--base);
+  color: var(--text);
+  position: relative;
+  padding: 1em;
+  border-radius: 0.4em;
+  min-height: 10em;
+  min-width: 45%;
+  gap: 1em;
+  z-index: 100;
+  letter-spacing: 1.2px;
+}
+
+.Logout-Card{
+  padding: 2em;
+}
+
+.Modal-Header{
+  /* margin-bottom: 2em; */
+  width: 100%;
+  justify-content: space-between;
+}
+
+.Modal-Close{
+  position: absolute;
+  top: 0.6em;
+  right: 0.8em;
+  cursor: pointer;
+}
+
+.Modal-Form{
+  margin-top: 2em;
+  width: 100%;
+}
+
+.Modal-Form .NewInstitute-Input{
+  width: 100%;
+}
+
+.Modal-Form input{
+  min-width: 0 !important;
+  width: 100%;
+}
+
+.Modal-Avatar img{
+  width: 80px;
+  aspect-ratio: 1;
+  border-radius: 100%;
+  object-fit: cover;
+}
+
+.Modal-Buttons{
+  gap: 2.5em;
+}
+
+.Modal-Cancel,
+.Modal-Delete{
+  background-color: var(--primaryLite);
+  color: var(--text);
+  min-width: 7em;
+  padding: 0.3em 0.5em;
+  border-radius: 0.3em;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+
+.Modal-Delete{
+  color: var(--red);
+}
+
+.Modal-Delete:hover{
+  background-color: var(--red);
+  color: var(--white);
+}
+
+.Modal-Delete.logout{
+  background-color: var(--red);
+  color: var(--white);
+  transition: 0.2s ease-in-out;
+}
+
+.Modal-Delete.logout:hover{
+  background-color: var(--primaryLite);
+  color: var(--red);
+}
+
+.Modal-SubmitBtn{
+  border: none;
+  outline: none;
+  font-size: 1em;
+  color: var(--red);
+  background-color: var(--primaryLite);
+  min-width: 15em;
+  width: fit-content;
+  padding: 0.3em 0.5em;
+  border-radius: 0.2em;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+
+.Modal-SubmitBtn:hover{
+  color: var(--white);
+  background-color: var(--red);
+}
+
+@media (max-width: 750px){
+  .Modal-Card{
+    width: 90%;
+  }
+
+  .Modal-Card h4{
+    font-size: 0.85em;  
+  }
+
+  .Modal-Form .NewInstitute-InputHolder label{
+    font-size: 0.9em;
+  }
+
+  .Modal-SubmitBtn{
+    min-width: 100%;
+  }
+
+  .Logout-Card{
+    width: 88%;
+  }
+
+  .Logout-Card h3{
+    font-size: 1em;
+    white-space: nowrap;
+  }
+}
