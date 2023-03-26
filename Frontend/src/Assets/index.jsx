@@ -7,6 +7,7 @@ import BooksSVG from './Books.svg';
 import CourseSVG from './Course.svg';
 import SubjectSVG from './Subject.svg';
 import ApproveSVG from './Approve.svg';
+import NotFoundSVG from './NotFound.svg';
 
 export {
     Logo,
@@ -18,4 +19,5 @@ export {
     CourseSVG,
     SubjectSVG,
     ApproveSVG,
+    NotFoundSVG,
 };
