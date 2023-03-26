@@ -21,7 +21,7 @@ const ForgotPass = () => {
 
         try {
             setLoading(true)
-            const res = await axios.post('/api/forgot-password', { email: emailRef.current.value })
+            const res = await axios.post('/api/forgot-password', { email: emailRef.current.value.toLowerCase() })
             if (res.status == 200) {
                 //Sending Mail to User
                 let templateParams = {
