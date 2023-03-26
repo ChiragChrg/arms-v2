@@ -7,7 +7,7 @@ import ArmsLogo from "../../Assets/ArmsLogo"
 import { CgDarkMode, CgClose } from 'react-icons/cg'
 import { BsFilterLeft } from 'react-icons/bs'
 
-const Header = ({ dark, altLogo }) => {
+const Header = ({ dark, altLogo, hideHam = false }) => {
     const [showMobileNav, setShowMobileNav] = useState(false);
     const { setIsDarkTheme, isDarkTheme } = useContextData();
     const deviceWidth = window.innerWidth;
@@ -30,7 +30,7 @@ const Header = ({ dark, altLogo }) => {
                         <CgDarkMode size={25} color="inherit" />
                     </div>
                 </div>
-                :
+                : !hideHam &&
                 <div className="Header-Ham flex" onClick={() => setShowMobileNav(prev => !prev)}>
                     <BsFilterLeft size={40} color={altLogo ? "var(--white)" : "var(--primary)"} />
                 </div>
