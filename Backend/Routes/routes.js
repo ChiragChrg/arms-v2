@@ -5,6 +5,8 @@ const RoutesController = require('../Controllers/RoutesController');
 
 router.post('/signup', RoutesController.RegisterUser);
 router.post('/login', RoutesController.LoginUser);
+router.post('/forgot-password', RoutesController.ForgotPassword);
+router.post('/reset-password', RoutesController.ResetPassword);
 
 router.get('/getcountup', RoutesController.GetCountUp)
 router.get('/getinstitutions', RoutesController.GetInstitutions)

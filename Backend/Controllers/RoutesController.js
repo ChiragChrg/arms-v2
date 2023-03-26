@@ -68,6 +68,51 @@ exports.LoginUser = async (req, res) => {
     }
 };
 
+exports.ForgotPassword = async (req, res) => {
+    const { email } = req.body;
+
+    try {
+        const CheckUser = await User.findOne({ email });
+        if (!CheckUser) return res.status(400).json({ message: 'User not found with this email!' });
+
+        const key = jwt.sign({
+            uid: CheckUser._id,
+        }, process.env.JWT_SECRET,
+            {
+                expiresIn: "10min",
+            });
+
+        const resetLink = `https://armss.netlify.app/reset-password/${key}`
+
+        const reset = {
+            username: CheckUser.username,
+            email: CheckUser.email,
+            resetLink,
+        }
+
+        res.status(200).json({ reset });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+};
+
+exports.ResetPassword = async (req, res) => {
+    const { userId, password } = req.body;
+
+    try {
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(password, salt);
+
+        const CheckUser = await User.findOneAndUpdate({ _id: userId }, { password: hashedPassword })
+
+        res.status(200).json({ message: 'Password Reset Successful' });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+};
+
 //Get Routes
 exports.GetCountUp = async (req, res) => {
     let institute = 0;
@@ -148,10 +193,10 @@ exports.ApproveUsers = async (req, res) => {
 }
 
 exports.DeclineUsers = async (req, res) => {
-    const { userId } = req.body;
+    const { userId, actionMsg } = req.body;
     try {
         const UserDB = await User.findOneAndDelete({ "_id": userId })
-        res.status(200).json({ UserDB, message: "User Declined Successfully!" })
+        res.status(200).json({ UserDB, message: `User ${actionMsg} Successfully!` })
     } catch (err) {
         console.log(err)
         res.status(500).json({ message: "Failed to get Pending Users" })
