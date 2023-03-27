@@ -47,8 +47,10 @@ const ResetPass = () => {
 
         try {
             setLoading(true);
+            console.log("ResetId", resetUser.uid, password)
             const result = await axios.post("/api/reset-password", { userId: resetUser.uid, password });
             if (result.status == 200) {
+                console.log("ResetPass", result)
                 setLoading(false);
                 toast.success(result?.data?.message);
                 navigate("/login");
