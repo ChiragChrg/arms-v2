@@ -1,6 +1,6 @@
 import "./ForgotPass.css"
 import { useState, useRef } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import axios from "axios"
 import { toast } from "react-toastify"
 import emailjs from '@emailjs/browser';
@@ -15,6 +15,7 @@ import { FiArrowLeft } from "react-icons/fi"
 const ForgotPass = () => {
     const [loading, setLoading] = useState(false)
     const emailRef = useRef()
+    const navigate = useNavigate()
 
     const HandleSubmit = async (e) => {
         e.preventDefault()
@@ -38,6 +39,7 @@ const ForgotPass = () => {
 
                 if (mailRes.status == 200) {
                     toast.success("Reset Link has been sent to your Email ID.")
+                    navigate("/login")
                     setLoading(false)
                 }
             }

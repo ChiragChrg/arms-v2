@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react"
 import { useParams, Link, useNavigate } from "react-router-dom"
 import * as jose from "jose"
+import axios from "axios"
 import { toast } from "react-toastify"
 
 import Header from "../../Components/Header/Header"
@@ -47,10 +48,8 @@ const ResetPass = () => {
 
         try {
             setLoading(true);
-            console.log("ResetId", resetUser.uid, password)
             const result = await axios.post("/api/reset-password", { userId: resetUser.uid, password });
             if (result.status == 200) {
-                console.log("ResetPass", result)
                 setLoading(false);
                 toast.success(result?.data?.message);
                 navigate("/login");
