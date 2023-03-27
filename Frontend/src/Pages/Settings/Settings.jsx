@@ -46,7 +46,7 @@ const Settings = () => {
                         <span>Role </span>
                         <p>{isAdmin ? "Admin" : isUserFaculty ? "Faculty" : "Student"}</p>
                     </div>
-                    {isUserFaculty && <div className="Settings-InfoCol">
+                    {(isUserFaculty && !isAdmin) && <div className="Settings-InfoCol">
                         <span>Approval Status </span>
                         {userData.isApproved ?
                             <p className="flex gap05">
