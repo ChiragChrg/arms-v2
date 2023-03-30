@@ -22,12 +22,12 @@
     border-radius: 100%;
     background-color: var(--primary);
     opacity: 0;
-    animation: ripple 1.8s infinite;
+    animation: ripple 3s infinite;
     z-index: 0;
 }
 
 .About-Logo .pulse:nth-child(2) {
-    animation-delay: .65s;
+    animation-delay: 0.8s;
 }
 
 .About-Info{
