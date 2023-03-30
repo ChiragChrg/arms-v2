@@ -21,6 +21,7 @@
     height: 125%;
     border-radius: 100%;
     background-color: var(--primary);
+    opacity: 0;
     animation: ripple 1.8s infinite;
     z-index: 0;
 }
