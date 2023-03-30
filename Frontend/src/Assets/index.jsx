@@ -1,4 +1,6 @@
 import Logo from './ArmsLogo.svg';
+import DevbaseLogo from './DevbaseLogo.svg';
+import Google from './google.png';
 import FolderSVG from './Folder.svg';
 import PeopleSVG from './People.svg';
 import UploadSVG from './Upload.svg';
@@ -13,6 +15,8 @@ import ResetPassSVG from './ResetPass.svg';
 
 export {
     Logo,
+    DevbaseLogo,
+    Google,
     FolderSVG,
     PeopleSVG,
     UploadSVG,

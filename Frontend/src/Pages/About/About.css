@@ -1,0 +1,118 @@
+.About-Main{
+    width: 100%;
+    height: 100%;
+}
+
+.About-Title span{
+    color: var(--primary);
+}
+
+.About-Logo{
+    position: relative;
+}
+
+.About-Logo svg{
+    z-index: 2;
+}
+
+.About-Logo .pulse{
+    position: absolute;
+    width: 125%;
+    height: 125%;
+    border-radius: 100%;
+    background-color: var(--primary);
+    animation: ripple 1.8s infinite;
+    z-index: 0;
+}
+
+.About-Logo .pulse:nth-child(2) {
+    animation-delay: .65s;
+}
+
+.About-Info{
+    margin-top: 0.5em;
+    text-align: justify;
+    padding: 0 3em 0 2em;
+    text-indent: 4em;
+}
+
+.About-Info span{
+    color: var(--primary);
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.About-Links{
+    margin-top: 4em;
+    gap: 4em;
+}
+
+.About-Links a{
+    text-decoration: none;
+    background-color: #000;
+    border-radius: 100%;
+    width: 4em;
+    height: 4em;
+    padding: 0.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.About-Links a svg,
+.About-Links a img{
+    width: 100%;
+    height: 100%;
+    transition: 0.2s ease-in-out;
+}
+
+.About-Links a svg{
+    padding: 0.3em;
+}
+
+.About-Links a svg:hover,
+.About-Links a img:hover{
+    scale: 1.2;
+}
+
+#google{
+    background-color: #e9e9e9;
+    padding: 0.2em;
+}
+
+#contact{
+    background-color: #e9e9e9;
+}
+
+@keyframes ripple{
+    0% {
+        opacity: 1;
+        transform: scale(0);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(1);
+    }
+}
+
+@media (max-width: 750px){
+    .About-Title h2{
+        text-align: center;
+    }
+
+    .About-Info{
+        padding: 0.5em;
+        font-size: 0.9em;
+        text-indent: 2em;
+    }
+
+    .About-Links{
+        padding-bottom: 8em;
+        gap: 2em;
+    }
+
+    .About-Links a{
+        width: 3.5em;
+        height: 3.5em;
+    }
+}
