@@ -75,9 +75,9 @@ Check out a live demo of ARMS at https://armss.netlify.app/.
 To get started with ARMS, you can follow these simple steps:
 
 1. Clone the project from GitHub to your local machine using `https://github.com/ChiragChrg/ARMS.git`
-2. Install the necessary dependencies by running `npm install` on both `Frontend` and `Backend` folders.
-3. Run the application on a local server by running `npm run dev` on both `Frontend` and `Backend` folders.
-Start uploading and managing academic resources!
+2. Install the necessary dependencies by running `npm install` <br> on both `Frontend` and `Backend` folders.
+3. Run the application on a local server by running `npm run dev` <br> on both `Frontend` and `Backend` folders.
+4. Start uploading and managing academic resources!
 
 ## Contributing
 ARMS is an open-source project, and contributions are welcome from anyone. If you would like to contribute to the project, you can fork the repository, make your changes, and submit a pull request.
