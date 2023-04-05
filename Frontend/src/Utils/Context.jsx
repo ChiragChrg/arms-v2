@@ -10,6 +10,7 @@ const ContextProvider = ({ children }) => {
     const [authorizedUser, setAuthorizedUser] = useState(false);
     const [isReturningUser, setIsReturningUser] = useState(false);
     const [showSidebar, setShowSidebar] = useState(false);
+    const [disableAnimation, setDisableAnimation] = useState(false);
 
     const [onLogout, setOnLogout] = useState(false);
     const [manageDelete, setManageDelete] = useState(null)
@@ -73,6 +74,8 @@ const ContextProvider = ({ children }) => {
             setDocsStateData,
             showSidebar,
             setShowSidebar,
+            disableAnimation,
+            setDisableAnimation,
         }}>
             {children}
         </Context.Provider>

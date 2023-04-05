@@ -1,9 +1,10 @@
 import "./Trails.css"
 import { useState, useEffect, useRef } from "react"
 import { MdPlayArrow, MdPlayDisabled } from "react-icons/md"
+import { useContextData } from "../../Hooks/useContextData"
 
 const Trails = ({ angle, position, top }) => {
-    const [disableAnimation, setDisableAnimation] = useState(false);
+    const { disableAnimation, setDisableAnimation } = useContextData()
     const TrailsRef = useRef();
 
     const StripCount = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
