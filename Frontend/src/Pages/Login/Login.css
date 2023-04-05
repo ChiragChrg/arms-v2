@@ -6,6 +6,10 @@
     position: relative;
 }
 
+.Login-Main .Trails-Main{
+    left: -50% !important;
+}
+
 .Login-Container{
     position: relative;
     z-index: 1;
