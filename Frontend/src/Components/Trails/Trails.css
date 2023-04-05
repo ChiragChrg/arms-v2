@@ -1,14 +1,25 @@
 .Trails-Main{
     position: absolute;
-    top: 10em;
-    right: -15em;
-    width: 100%;
+    top: 2em;
+    right: -67em;
+    width: 200%;
     height: 600px;
     z-index: 0;
     background-color: var(--primary);
     transform: rotate(-45deg);
     transform-origin: center;
 }
+
+/* .Trails-Main::before{
+    content: "Center Debuger";
+    position: absolute;
+    width: 100px;
+    height: 100%;
+    background-color: red;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+} */
 
 .Trails-Holder{
     position: relative;
@@ -119,8 +130,8 @@
 
 @media (max-width: 750px){
     .Trails-Main{
-        top: 15.5em;
-        left: -15em;
+        top: 23.5em;
+        left: -22.5em;
         width: 70em;
         height: 400px;
     }
@@ -141,10 +152,10 @@
     }
 }
 
-@media (max-width: 1000px){
+@media (min-width:751px) and (max-width: 1000px){
     .Trails-Main{
-        top: 15.5em;
-        left: -15em;
+        top: 31.5em;
+        left: -51em;
         width: 300%;
         height: 400px;
     }

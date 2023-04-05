@@ -113,3 +113,19 @@
         border-radius: 0.3em;
     }
 }
+
+@media (min-width:751px) and (max-width: 1000px){
+    .Landing-Intro p{
+        background-color: var(--greyDark);
+        padding: 0.2em 0.5em;
+        border-radius: 0.3em;
+        color: var(--white);
+    }
+    
+    .Landing-Footer{
+        margin-top: 5em;
+        background-color: var(--greyDark);
+        padding: 0.2em 0.5em;
+        border-radius: 0.3em;
+    }
+}
