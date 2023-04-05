@@ -6,7 +6,7 @@ Welcome to ARMS, an open-source website that provides a platform for teachers to
 The website is available to the public, which means that any student can download the uploaded files and use them for their studies. ARMS is a powerful tool that enables teachers to manage and share their academic resources, providing a valuable service to students and educators alike. By using ARMS, teachers can reach a wider audience, improve their teaching materials, and contribute to the education community as a whole.
 
 ### Preview
-![SEM Preview](./frontend/src/Assets/Preview.png)
+![SEM Preview](./frontend/public/Icons/ARMSDevices.png)
 
 ## Tools and TechStacks used :
 
