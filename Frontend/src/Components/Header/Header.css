@@ -3,7 +3,7 @@
     justify-content: space-between;
     align-items: center;
     position: relative;
-    z-index: 1;
+    z-index: 4;
 }
 
 .Header-Logo{
@@ -92,4 +92,10 @@
     scale: 1.5;
     backdrop-filter: blur(3px);
     -webkit-backdrop-filter: blur(3px);
+}
+
+@media (max-width: 1000px){
+    .Header-Nav.lightTxt{
+        color: var(--text) !important;
+    }
 }

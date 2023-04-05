@@ -140,3 +140,12 @@
         scale: 1.5;
     }
 }
+
+@media (max-width: 1000px){
+    .Trails-Main{
+        top: 15.5em;
+        left: -15em;
+        width: 300%;
+        height: 400px;
+    }
+}
