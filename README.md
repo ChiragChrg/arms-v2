@@ -1,5 +1,5 @@
-
 [![Netlify Status](https://api.netlify.com/api/v1/badges/3b763e1f-a293-4a06-86f0-149baf9897aa/deploy-status)](https://app.netlify.com/sites/armss/deploys)
+##### Created : 24/01/2023
 
 # ARMS - Academic Resource Management System
 Welcome to ARMS, an open-source website that provides a platform for teachers to upload study materials such as PDFs. The system is designed to make it easy for teachers to share their educational resources with their students and also with the wider community. 
